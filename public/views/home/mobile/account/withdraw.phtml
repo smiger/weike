@@ -1,0 +1,87 @@
+<html>
+<head>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0,minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>提现</title>
+    {include file='common/header'}
+    <link href="/static/home/mobile/css/reset_5.css" rel="stylesheet" type="text/css" />
+    <link href="/static/home/mobile/css/style.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="/static/home/mobile/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/static/home/mobile/css/new_page.css" />
+</head>
+<body>
+    <header class="new-header" style="padding-top: 15px;">
+        <a href="javascript:history.go(-1)" class="back">
+            <img src="/static/home/mobile/picture/return.png" />
+        </a>
+        <div class="tit-name">提现</div>
+        <span class="dowm-btn publish-task-btn">
+            <a href="withdrawlog.html" class="sc" style="color: #fff;">明细</a>
+        </span>
+    </header>
+    <div class="new-top-up">
+        <div class="update-box" id="hasZfb" style="">
+            <form id="post_form">
+                <div class="zfb-count" style="display: flex;display: -webkit-flex;justify-content: space-around;align-items: center;">
+                    <label>
+                        <input name="pay_method" checked style="-webkit-appearance: radio" type="radio" value="1">支付宝
+                    </label>
+                    <label>
+                        <input name="pay_method" style="-webkit-appearance: radio" type="radio" value="2">微信
+                    </label>
+                    <label>
+                        <input name="pay_method" style="-webkit-appearance: radio" type="radio" value="0">银行卡
+                    </label>
+                </div>
+                <div class="member-form">
+                    <div class="item-box"><span>账号:</span>
+                        <input type="text" name="account" value="{$member['alipay_account']?$member['alipay_account']:''}" class="m_txt" placeholder="请输入支付宝账号">
+                    </div>
+                </div>
+                <div class="member-form">
+                    <div class="item-box"><span>姓名:</span>
+                        <input type="text" name="realname" value="{$member['alipay_realname']?$member['alipay_realname']:''}" class="m_txt" placeholder="请输入真实姓名">
+                    </div>
+                </div>
+                <div class="member-form">
+                    <div class="item-box"><span>手机:</span>
+                        <input type="text" name="mobile" class="m_txt" value="{$member['mobile']?$member['mobile']:''}" placeholder="请输入手机号">
+                    </div>
+                </div>
+                <div class="user-gold">
+                    <span>余额：<span class="user-gold-money" style="color: red">￥{$member['credit2']?$member['credit2']:0}</span></span>
+                </div>
+                <div class="member-form">
+                    <div class="item-box"><span style="font-size: 21px;font-weight: bold">￥</span>
+                        <input type="text" class="m_txt" placeholder="请输入取现金额" name="credit2">
+                    </div>
+                    <div class="tixian_txt">
+                        温馨提示：<br />
+                        1、最低提现&nbsp;<span style="color: red">{$setting['withdraw_min']?$setting['withdraw_min']:0}</span>&nbsp;元，手续费&nbsp;<span style="color: red">{$setting['withdraw_fee']?$setting['withdraw_fee']:0}%</span>。<br />
+                        2、提现时，系统将自动扣除<span style="color: red">{$setting['invitation_withdraw_rebate']?$setting['invitation_withdraw_rebate']:0}%</span>的红利给到你的推荐人，同样，你推荐的人在提现时一样返你<span style="color: red">{$setting['invitation_withdraw_rebate']?$setting['invitation_withdraw_rebate']:0}%</span>，推荐越多红利越多。<br />
+                        3、每天可提现，&nbsp;<span style="color: red">24</span>&nbsp;小时到账
+                    </div>
+                    <div class="member-btn">
+                        <input type="button" class="button1" value="确认">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $(function () {
+            $('.button1').click(function () {
+                $.post(
+                    window.location.href,
+                    $('#post_form').serialize(),
+                    function (ret) {
+                        message(ret.message,ret.redirect,ret.type);
+                    },'json'
+                );
+            });
+        });
+    </script>
+</body>
+</html>

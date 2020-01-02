@@ -1,0 +1,22 @@
+<section class="content-header">
+    <h1>
+        菜单规则管理
+        <small>
+            {if $action == 'index'}
+            菜单规则列表
+            {else}
+            {if empty($item)}添加菜单规则{else}修改菜单规则{/if}
+            {/if}
+        </small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i>菜单规则管理</a></li>
+        <li class="active">
+            {if $action == 'index'}
+            菜单规则列表
+            {else}
+            {if empty($item)}添加菜单规则{else}修改菜单规则{/if}
+            {/if}
+        </li>
+    </ol>
+</section>

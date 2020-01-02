@@ -1,0 +1,85 @@
+{include file="common/header"}
+<div class="content-wrapper">
+    <section class="content-header">
+        <h1>
+            管理员管理
+            <small>
+                授权角色
+            </small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i>管理员管理</a></li>
+            <li class="active">
+                授权角色
+            </li>
+        </ol>
+    </section>
+    <section class="content">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="nav-tabs-custom">
+                    <ul class="nav nav-tabs">
+                        <li>
+                            <a href="{:U('index')}" >管理员列表</a>
+                        </li>
+                        <li class="active">
+                            <a href="{:U('authgroup', 'id=' . $item['id'])}">授权角色</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <form method="post" class="form-horizontal form" id="post_form">
+                            <div class="panel panel-info">
+                                <div class="panel-heading">
+                                    管理员
+                                </div>
+                                <div class="panel-body">
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">用户名</label>
+                                        <div class="col-sm-7"><input class="form-control" disabled="disabled" value="【{$item.username}】{$item.nickname}" placeholder="用户名"></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">授权角色</label>
+                                        <div class="col-sm-7 rule_node">
+                                        {volist name="groupList" id="vo"}
+                                        <p class='left3  p_left' >
+                                        <label class="checkbox-inline">
+                                            <input type="checkbox" name="group_id[]" value="{$vo.id}" class="minimal" {if condition="isset($vo.ischeck) &&$vo.ischeck eq 'y'"}checked="checked"{/if} > {$vo.title}
+                                        </label>
+                                        </p>
+                                        {/volist}
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="col-sm-6 col-xs-12 col-sm-offset-2">
+                                            <input type="hidden" name="id" value="{$item['id']?$item['id']:0}">
+                                            <button type="button" name="submit" class="btn btn-primary">提交</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        <script type="text/javascript">
+                            $(function () {
+                                //提交分类信息
+                                $("button[name='submit']").click(function () {
+                                    $.post(
+                                        window.location.href,
+                                        $('#post_form').serialize(),
+                                        function (res) {
+                                            message(res.message,res.redirect,res.type)
+                                        },'json'
+                                    );
+                                });
+                            });
+                        </script>
+                    </div>
+                    <!-- /.tab-content -->
+                </div>
+                <!-- /.nav-tabs-custom -->
+            </div>
+            <!-- /.col -->
+        </div>
+    </section>
+</div>
+{include file="common/footer"}

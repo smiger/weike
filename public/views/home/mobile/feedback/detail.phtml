@@ -1,0 +1,190 @@
+﻿<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/html">
+
+<head>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>我的反馈</title>
+    {include file='common/header'}
+    <link href="/static/home/mobile/css/reset_5.css" rel="stylesheet" type="text/css"/>
+    <link href="/static/home/mobile/css/style.css" rel="stylesheet" type="text/css"/>
+    <link href="/static/home/mobile/css/new_style.css" rel="stylesheet" type="text/css"/>
+    <style type="text/css">
+    .member-form .item-box .m_textarea {
+        width: 90%;
+        min-height: 30px;
+        border: none;
+        outline: none;
+        color: #999;
+        padding: 5px 5%;
+        font-size: 16px;
+    }
+    .member-form .item-box .m_txt2 {
+        font-size: 16px;
+        line-height: 50px;
+    }
+.pagination {
+  font-size: 12px;
+  display: inline-block;
+  padding-left: 0;
+  margin: 20px 0 0 0;
+  border-radius: 4px;
+}
+.pagination > li {
+  display: inline;
+}
+.pagination > li > a,
+.pagination > li > span {
+  position: relative;
+  float: left;
+  padding: 6px 12px;
+  line-height: 1.42857143;
+  text-decoration: none;
+  color: #337ab7;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  margin-left: -1px;
+}
+.pagination > li:first-child > a,
+.pagination > li:first-child > span {
+  margin-left: 0;
+  border-bottom-left-radius: 4px;
+  border-top-left-radius: 4px;
+}
+.pagination > li:last-child > a,
+.pagination > li:last-child > span {
+  border-bottom-right-radius: 4px;
+  border-top-right-radius: 4px;
+}
+.pagination > li > a:hover,
+.pagination > li > span:hover,
+.pagination > li > a:focus,
+.pagination > li > span:focus {
+  z-index: 2;
+  color: #23527c;
+  background-color: #eeeeee;
+  border-color: #ddd;
+}
+.pagination > .active > a,
+.pagination > .active > span,
+.pagination > .active > a:hover,
+.pagination > .active > span:hover,
+.pagination > .active > a:focus,
+.pagination > .active > span:focus {
+  z-index: 3;
+  color: #fff;
+  background-color: #337ab7;
+  border-color: #337ab7;
+  cursor: default;
+}
+.pagination > .disabled > span,
+.pagination > .disabled > span:hover,
+.pagination > .disabled > span:focus,
+.pagination > .disabled > a,
+.pagination > .disabled > a:hover,
+.pagination > .disabled > a:focus {
+  color: #777777;
+  background-color: #fff;
+  border-color: #ddd;
+  cursor: not-allowed;
+}
+.pagination-lg > li > a,
+.pagination-lg > li > span {
+  padding: 10px 16px;
+  font-size: 18px;
+  line-height: 1.3333333;
+}
+.pagination-lg > li:first-child > a,
+.pagination-lg > li:first-child > span {
+  border-bottom-left-radius: 6px;
+  border-top-left-radius: 6px;
+}
+.pagination-lg > li:last-child > a,
+.pagination-lg > li:last-child > span {
+  border-bottom-right-radius: 6px;
+  border-top-right-radius: 6px;
+}
+.pagination-sm > li > a,
+.pagination-sm > li > span {
+  padding: 5px 10px;
+  font-size: 12px;
+  line-height: 1.5;
+}
+.pagination-sm > li:first-child > a,
+.pagination-sm > li:first-child > span {
+  border-bottom-left-radius: 3px;
+  border-top-left-radius: 3px;
+}
+.pagination-sm > li:last-child > a,
+.pagination-sm > li:last-child > span {
+  border-bottom-right-radius: 3px;
+  border-top-right-radius: 3px;
+}
+    </style>
+</head>
+<body>
+    <div class="site-header header-fixed">
+        <a onclick="history.back()" class="back"></a>
+        <div class="tit-name">我的反馈</div>
+    </div>
+    <div class="main bindMail">
+        <div class="member-form">
+            <div class="item-box">
+                <div class="m_txt m_txt2">{$item.username}&nbsp;&nbsp;{$item.create_time}</div>
+            </div>
+            <div class="item-box" style="height: auto;">
+                <div class="m_textarea">{$item.content|nl2br}</div>
+            </div>
+        </div>
+        {if !empty($list)}
+        {volist name="list" id="row"}
+        <div class="member-form">
+            <div class="item-box">
+                <div class="m_txt m_txt2">{$row.username?$row.username:'管理回复'}&nbsp;&nbsp;{$row.create_time}</div>
+            </div>
+            <div class="item-box" style="height: auto;">
+                <div class="m_textarea">{$row.content|nl2br}</div>
+            </div>
+        </div>
+        {/volist}
+        {/if}
+        {$pager}
+        <div class="member-form" style="margin-top: 20px;">
+            <div class="item-box" style="height: auto;">
+                <textarea id="content" name="content" class="m_textarea" style="height: 160px;" placeholder="请输入您需要回复的内容"></textarea>
+            </div>
+        </div>
+        <div class="member-btn">
+            {if $item.is_reply == 0}
+            <button type="button" class="button1">等待管理员回复</button>
+            {else}
+            <button type="button" class="button1 js-bind">确认</button>
+            {/if}
+        </div>
+       <!--  <div class="member-ts">
+            <label>温馨提示</label>
+            <p></p>
+        </div> -->
+    </div>
+    <script type="text/javascript">
+        var id = {$item.id};
+        $(function () {
+            //设置邮箱
+            $('.js-bind').click(function () {
+                var content = $('#content').val();
+                if ($.trim(content) == "") {
+                    message("请输入您需要回复的内容","","error");
+                    return;
+                }
+                $.post(
+                    '/home/feedback/save',
+                    {content: content, parent_id: id},
+                    function (ret) {
+                        message(ret.message,ret.redirect,ret.type);
+                    },'json'
+                );
+            });
+        });
+    </script>
+{include file="common/footer"}

@@ -1,0 +1,13 @@
+<ul class="nav nav-tabs">
+    <li {if condition="in_array($action,['category'])"}class="active"{/if}>
+        <a href="{:U('index')}" >分类列表</a>
+    </li>
+    {if condition="in_array($action,['post_category']) && !empty($item)"}
+        <li class="active">
+            <a href="{:U('post_category', 'id=' . $item['id'])}">修改分类</a>
+        </li>
+    {/if}
+    <li {if condition="in_array($action,['post_category']) && empty($item)"}class="active"{/if}>
+        <a href="{:U('post_category')}">添加分类</a>
+    </li>
+</ul>

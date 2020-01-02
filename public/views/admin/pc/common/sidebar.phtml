@@ -1,0 +1,68 @@
+<!-- Left side column. contains the logo and sidebar -->
+<aside class="main-sidebar">
+    <!-- sidebar: style can be found in sidebar.less -->
+    <section class="sidebar">
+        <!-- Sidebar user panel -->
+        <div class="user-panel">
+            <div class="pull-left image">
+                <img onerror="this.src='/static/admin/web/images/avatar.png'" src="{:to_media($admin['avatar'])}" class="img-circle" alt="User Image">
+            </div>
+            <div class="pull-left info">
+                <p>{$admin['username']}</p>
+                <a href="#"><i class="fa fa-circle text-success"></i>在线</a>
+            </div>
+        </div>
+
+        <!-- sidebar menu: : style can be found in sidebar.less -->
+        <ul class="sidebar-menu" data-widget="tree">
+            <li class="header">功能菜单</li>
+
+            {volist name="treeMenu" id="oo"}
+                {if condition=" $oo.childnum eq '0' "}
+                <li {if condition="menuActive($oo.name, $oo.level)"}class="active"{/if}><a href="{:U($oo.name)}"><i class="{$oo.icon}"></i><span>{$oo.title}</span></a></li>
+                {elseif condition=" $oo.level eq '1' "/}
+                <li class="treeview {if condition="menuActive($oo.name, $oo.level)"}active{/if}">
+                    <a href="javascript:void(0);">
+                        <i class="{$oo.icon}"></i><span>{$oo.title}</span>
+                    <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
+                </a>
+                <ul class="treeview-menu">
+                        {volist name="oo.children" id="to"}
+                        <li {if condition="menuActive($to.name)"}class="active"{/if}><a href="{:U($to.name)}"><i class="{$to.icon}"></i>{$to.title}</a></li>
+                        {/volist}
+                </ul>
+            </li>
+                {/if}
+            {/volist}
+
+            {if $_SERVER['SERVER_NAME'] == 'tuiguang.51muma.com'}
+            <li {if condition="in_array($controller,['lock'])"}class="active"{/if}>
+            <a href="{:U('lock/index')}">
+                <i class="fa fa-dashboard"></i>
+                <span>授权管理</span>
+            </a>
+            </li>
+            {/if}
+
+            <li class="header">其他功能</li>
+            <li><a href="#">
+                    <i class="fa fa-circle-o text-red"></i>
+                    <span>帮助手册</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fa fa-circle-o text-yellow"></i>
+                    <span>网站概况</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fa fa-circle-o text-aqua"></i>
+                    <span>技术支持</span>
+                </a>
+            </li>
+        </ul>
+    </section>
+    <!-- /.sidebar -->
+</aside>

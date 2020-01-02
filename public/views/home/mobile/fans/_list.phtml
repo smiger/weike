@@ -1,0 +1,15 @@
+            {volist name="list" id="item" key="list_index"}
+            <a href="/home/user/view/id/{$item.uid}">
+            <ul class="ui-list-text reward-icon">
+                <li class="clearfix">
+                    <i class="iconfont" style="background-image: url({:to_media($item['avatar']?$item['avatar']:'')});"></i>
+                    <div class="ui-vertical">
+                        <h3 class="ui-row">
+                            <span class="fr">{$item.create_time}</span>
+                            {$item.username}
+                        </h3>
+                    </div>
+                </li>
+            </ul>
+            </a>
+            {/volist}

@@ -1,0 +1,13 @@
+<ul class="nav nav-tabs">
+    <li {if condition="in_array($action,['index'])"}class="active"{/if}>
+        <a href="{:U('index')}" >公告列表</a>
+    </li>
+    {if condition="in_array($action,['post']) && !empty($item)"}
+        <li class="active">
+            <a href="{:U('post', 'id=' . $item['id'])}">修改公告</a>
+        </li>
+    {/if}
+    <li {if condition="in_array($action,['post']) && empty($item)"}class="active"{/if}>
+        <a href="{:U('post')}">添加公告</a>
+    </li>
+</ul>

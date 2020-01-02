@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0">
+		<meta name="format-detection" content="telephone=no">
+		<title>推推推广平台签到</title>
+		<link rel="stylesheet" href="/static/home/mobile/signin/css/public.css">
+		<link rel="stylesheet" href="/static/home/mobile/signin/css/signin.css">
+		<!-- 弹出层 -->
+		<link rel="stylesheet" href="/static/plugins/dialog/css/dialog.css" />
+		<script src="/static/plugins/dialog/lib/zepto.min.js"></script>
+		<script src="/static/plugins/dialog/js/dialog.js"></script>
+		<!-- 弹出层 -->
+		<script type="text/javascript" src="/static/plugins/clipboard.min.js"></script>
+		<script type="text/javascript" src="/static/home/mobile/js/global.js"></script>
+	</head>
+
+	<body>
+		<header class="site-header header-fixed">
+			<a onclick="window.history.back();" class="back"></a>
+			<div class="tit-name">签到</div>
+		</header>
+		<div class="top flex flex-align-end flex-pack-center flex-warp">
+			<div class="out-1 flex flex-align-center flex-pack-center" id="signIn">
+				<div class="out-2 flex flex-align-center flex-pack-center">
+					<div class="signBtn">
+						<strong id="sign-txt">签到</strong>
+						<span>连续<em id="sign-count">{$member.sign_continue}</em>天</span>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- <div class="tips">今天已签到，获得1个红包</div> -->
+		<div class="Calendar">
+			<div id="toyear" class="flex flex-pack-center">
+				<div id="idCalendarPre">&lt;</div>
+				<div class="year-month">
+					<span id="idCalendarYear">2018</span>年<span id="idCalendarMonth">7</span>月
+				</div>
+				<div id="idCalendarNext">&gt;</div>
+			</div>
+			<table border="1px" cellpadding="0" cellspacing="0">
+				<thead>
+					<tr class="tou">
+						<td>日</td>
+						<td>一</td>
+						<td>二</td>
+						<td>三</td>
+						<td>四</td>
+						<td>五</td>
+						<td>六</td>
+					</tr>
+				</thead>
+				<tbody id="idCalendar"></tbody>
+			</table>
+		</div>
+		<script type="text/javascript" src="/static/home/mobile/signin/js/rili.js"></script>
+		<script language="JavaScript">
+			var isSign = {$is_sign?'true':'false'};
+			var myday = {$myday}; //已签到的数组
+
+			var cale = new Calendar("idCalendar", {
+				qdDay: myday,
+				onToday: function(o) {
+					o.className = "onToday";
+				},
+				onSignIn: function (){
+					$$("sign-txt").innerHTML = '已签到';
+				},
+				onFinish: function() {
+					//$$("sign-count").innerHTML = myday.length //已签到次数
+					$$("idCalendarYear").innerHTML = this.Year;
+					$$("idCalendarMonth").innerHTML = this.Month; //表头年份
+				}
+			});
+			$$("idCalendarPre").onclick = function() {
+				cale.PreMonth();
+			}
+			$$("idCalendarNext").onclick = function() {
+				cale.NextMonth();
+			}
+			//添加今天签到
+			$$("signIn").onclick = function() {
+				if(isSign == false) {
+					$.post(
+						'/home/signin/post.html',
+						{},
+						function (res) {
+							if (res.type == 'success') {
+								var resSignIn = cale.SignIn();
+								if(resSignIn == '1') {
+									$$("sign-txt").innerHTML = '已签到';
+									$$("sign-count").innerHTML = parseInt($$("sign-count").innerHTML) + 1;
+									isSign = true;
+									message(res.message,res.redirect,res.type);
+								} else if (res == '2'){
+									$$("sign-txt").innerHTML = '已签到';
+									message('今天已经签到了','','error');
+								}
+							} else {
+								message(res.message,res.redirect,res.type);
+							}
+						}
+					);
+				} else {
+					message('今天已经签到了','','error');
+				}
+			}
+		</script>
+
+	
+
+</body></html>

@@ -1,0 +1,86 @@
+﻿<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0,minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>用户中心-推广帐号</title>
+    <link rel="shortcut icon" href="clientapp/images/new_images/favicon.ico"/>
+    <link href="/static/home/mobile/css/reset_5.css" rel="stylesheet" type="text/css"/>
+    <link href="/static/home/mobile/css/style.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="/static/home/mobile/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/static/home/mobile/css/new_style.css"/>
+    {include file='common/header'}
+</head>
+<body>
+<header class="header-fixed site-header">
+    <a href="javascript:history.go(-1)" class="back">
+        <!--<img src="picture/return.png" />-->
+    </a>
+    <div class="tit-name">合作渠道</div>
+</header>
+<div class="main" style="padding-top: 60px;margin-bottom: 0;">
+    <!--<div class="member-ts"></div>-->
+    <div class="task-tab">
+        <ul class="task-tab-tit">
+            <li class="task-tit1" style="width:100%;">
+                {if !empty($member['is_bind_channel'])}
+                <div class="li_txt">{$member['channel_name']?$member['channel_name']:''}</div>
+                {else}
+                <div class="li_txt" id="select_reward">选择合作渠道<i class="sj"></i></div>
+                {/if}
+            </li>
+        </ul>
+        <div class="task-tab-cont" style="display: none">
+            <ul class="second-nav second-nav-one">
+                {if !empty($channels)}
+                    {volist name="channels" id="channel"}
+                        <li data-id="{$channel['id']}">{$channel['title']}</li>
+                    {/volist}
+                {/if}
+            </ul>
+        </div>
+    </div>
+    <div class="member-form">
+        <div class="item-box">
+            <form id="post_form">
+                <input type="hidden" name="channel_id" value="0">
+                <input type="text" name="desc" class="m_txt" {$member['is_bind_channel']?'readonly':''} value="{$member['channel_desc']?$member['channel_desc']:''}" placeholder="请输入群号、号码、网址备注信息" id="account">
+            </form>
+        </div>
+    </div>
+</div>
+<div class="member-btn">
+    <input type="button" class="button1" value="提交" {$member['is_bind_channel']?'disabled':''} >
+</div>
+{include file='common/footer'}
+<script type="text/javascript">
+    $(function () {
+        $('#select_reward').click(function () {
+            $('.task-tab-cont').toggle();
+        });
+        
+        $('.second-nav li').click(function () {
+            var channel_id = $(this).attr('data-id');
+            var html = $(this).text();
+            $("input[name='channel_id']").val(channel_id);
+            $('#select_reward').html(html+'<i class="sj"></i>');
+            $(this).parent().parent().hide();
+        });
+
+        //设置邮箱
+        $('.button1').click(function () {
+            $.post(
+                window.location.href,
+                $('#post_form').serialize(),
+                function (ret) {
+                    message(ret.message,ret.redirect,ret.type);
+                },'json'
+            );
+        });
+    });
+</script>
+</body>
+</html>

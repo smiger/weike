@@ -1,0 +1,104 @@
+﻿@charset "utf-8";
+/* CSS Document */
+
+/*
+html5 css reset
+author:l_strive
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+select{
+	-webkit-appearance: none;
+}
+
+img {
+  width: auto\9;
+  height: auto;
+  max-width: 100%;
+  vertical-align: middle;
+  border: 0;
+  -ms-interpolation-mode: bicubic;
+}
+
+input:not([type]), input[type="color"], input[type="email"], input[type="number"], input[type="password"], input[type="tel"], input[type="url"], input[type="text"] {
+padding: 0px 0px;
+
+}
+
+input{
+	-webkit-appearance:none; 
+}
+
+/* 基本属性
+---------------------------------------------------------------------------------------------------------------------- */
+body{background:#fff;color:#666666;font-size:16px;text-align:left;
+font-family:'Microsoft YaHei UI', 'Microsoft YaHei', SimSun, 'Segoe UI', Tahoma, Helvetica, Sans-Serif;
+}
+
+a{text-decoration: none; font-family:'Microsoft YaHei UI', 'Microsoft YaHei', SimSun, 'Segoe UI', Tahoma, Helvetica, Sans-Serif;text-decoration: none;}
+a:link,a:visited{color:#666666;text-decoration: none;}
+a:hover,a:active,a:focus{text-decoration: none;}
+
+input, button, select, textarea{font-size:16px;color:#272727; font-family:'Microsoft YaHei UI', 'Microsoft YaHei', SimSun, 'Segoe UI', Tahoma, Helvetica, Sans-Serif;}
+
+
+
+/* 清除浮动
+---------------------------------------------------------- */
+.cl:after{content:".";display:block;height:0;clear:both;visibility:hidden;}.cl{zoom:1;}
+/*下面的清除浮动，相同与  clear_box，只用与，具体项目中，*/
+.bk,.bk10,.bk20{font:0px/0px sans-serif;clear:both;display:block;overflow:hidden;height:0;line-height:0px;border:0px;padding:0px;margin:0px;}
+.bk10{height:10px;}
+.bk20{height:20px;}
+.ad{ display:block; font-size:0; line-height:0;}
+.ad img{ width:100%;}
+
+.left{ float:left;}
+.right{ float:right;}
+.center{ text-align:center;}
+
+.m_b_2e{ margin-bottom:2em;}
+
+

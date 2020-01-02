@@ -1,0 +1,22 @@
+<section class="content-header">
+    <h1>
+        角色管理
+        <small>
+            {if $action == 'index'}
+            角色列表
+            {else}
+            {if empty($item)}添加角色{else}修改角色{/if}
+            {/if}
+        </small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i>角色管理</a></li>
+        <li class="active">
+            {if $action == 'index'}
+            角色列表
+            {else}
+            {if empty($item)}添加角色{else}修改角色{/if}
+            {/if}
+        </li>
+    </ol>
+</section>

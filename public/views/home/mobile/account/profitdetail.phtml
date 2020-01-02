@@ -1,0 +1,50 @@
+﻿<!DOCTYPE HTML>
+<html>
+
+	<head>
+		<meta name="apple-mobile-web-app-capable" content="yes">  
+        <meta name="viewport" content="width=device-width, initial-scale=1.0,minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>每日收益</title>
+		<link rel="shortcut icon" href="clientapp/images/new_images/favicon.ico"/>
+		<link href="/static/home/mobile/css/reset_5.css" rel="stylesheet" type="text/css" />
+		<link href="/static/home/mobile/css/style.css" rel="stylesheet" type="text/css" />
+		<link rel="stylesheet" href="/static/home/mobile/css/font-awesome.min.css">
+		<link rel="stylesheet" href="/static/home/mobile/css/new_page.css">
+	</head>
+	<body>
+		<header class="new-header">
+			<a onclick="history.back()" class="back">
+                <img src="/static/home/mobile/picture/return.png"/>
+			</a>
+			<div class="tit-name">明细</div>
+		</header>
+		<div class="new-gold-detial">
+			<div class="detail-tab">
+				<ul class="mingxi_tab">
+					<li id="gold"><span>钱包明细</span></li>
+					<li id="silver"><span>积分明细</span></li>
+					<li class="active" id="profit"><span>每日收益</span></li>
+				</ul>
+			</div>
+			<div class="new-all-profit">
+				您的今日收益为：<span id="today_profit">0.0</span>元
+				<p><span style="color:red;">(备注：当前数据为纯收入，不包含支出)</span></p>
+				
+			</div>
+			<div class="update-box">
+				<div class="alipa-box" style="display:block;">
+					<ul id="profitLog"></ul>
+					<div class="task-none" style="display: none;text-align: center;">暂无数据</div>
+				</div>
+			</div>
+			<div class="paging">
+				<span class="paging-prev" onclick="ProfitDetail.page_prev()"><a href="#">上一页</a></span>
+				<span class="paging-num-total"></span>
+				<span class="paging-next" onclick="ProfitDetail.page_next()"><a href="#">下一页</a></span>
+			</div>
+		</div>
+        {include file='common/footer'}
+</body>
+
+</html>

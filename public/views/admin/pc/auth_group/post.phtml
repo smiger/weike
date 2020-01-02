@@ -1,0 +1,122 @@
+{include file="common/header"}
+
+<style type="text/css">
+.rule_node p{ clear:both; margin-bottom:0px; padding: 6px;}
+.rule_node p .checkbox-inline{ padding-top:0px;}
+.rule_node .left1{ background:#f9f9f9;}
+.rule_node .left2{ float:left; margin-left:24px;}
+.rule_node .left3{ margin-left:0px; clear:none;}
+.rule_node .p_left{ float:left; }
+</style>
+
+<div class="content-wrapper">
+    {include file="auth_group/nav"/}
+    <section class="content">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="nav-tabs-custom">
+                    {include file="auth_group/tabs"/}
+                    <div class="tab-content">
+                        <form method="post" class="form-horizontal form" id="post_form">
+                            <div class="panel panel-info">
+                                <div class="panel-heading">
+                                    角色信息
+                                </div>
+                                <div class="panel-body">
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">角色名称</label>
+                                        <div class="col-sm-7"><input class="form-control" name="title" value="{$item['title']?$item['title']:''}" placeholder="请输入角色名称"></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">角色描述</label>
+                                        <div class="col-sm-7"><input class="form-control" name="notation" value="{$item['notation']?$item['notation']:''}" placeholder="请输入角色描述"></div>
+                                    </div>
+                                    <!-- <div class="form-group">
+                                        <label class="col-sm-2 control-label">角色图标</label>
+                                        <div class="col-sm-7">
+                                            <div class="input-group">
+                                                <input class="form-control" name="pic" value="{$item['pic']?$item['pic']:''}" placeholder="角色图标" >
+                                                <span class="input-group-btn">
+                                                    <a href="{$item.pic|default='/static/global/face/no-image.png'}" target="_blank" >
+                                                        <img src="{$item.pic|default='/static/global/face/no-image.png'}" style="height:34px; width:68px;" />
+                                                    </a>
+                                                    <button class="btn btn-success btn-flat up-btn" type="button" data-url="{:url('Uploads/upload')}?dir=image">
+                                                        <i class="fa fa-cloud-upload"> 上传</i>
+                                                    </button>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">推荐显示</label>
+                                        <div class="col-sm-7">
+                                            <select class="form-control select2" name="recom" style="width:100%;">
+                                                <option value="0" {$item['recom']?'selected':''}>是</option>
+                                                <option value="1" {$item['recom']?'':'selected'}>否</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">所属模块</label>
+                                        <div class="col-sm-7">
+                                            <select class="form-control select2" name="module" style="width:100%;">
+                                                <option value="admin" {$item['module']?'selected':''}>后台管理员</option>
+                                                <option value="member" {$item['module']?'':'selected'}>前台会员</option>
+                                            </select>
+                                        </div>
+                                    </div> -->
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">状态</label>
+                                        <div class="col-sm-7">
+                                            <select class="form-control select2" name="status" style="width:100%;">
+                                                <option value="1" {$item['status']?'selected':''}>启用</option>
+                                                <option value="0" {$item['status']?'':'selected'}>禁用</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">角色授权</label>
+                                        <div class="col-sm-7 rule_node">
+                                        {volist name="authRuleTree" id="rule_list"}
+                                        <p class='left{$rule_list.level} {if condition="$rule_list.level eq 3"} p_left{/if}' >
+                                        <label class="checkbox-inline">
+                                            <input type="checkbox" name="rules[]" value="{$rule_list.id}" class="minimal" {if condition="isset($rule_list.ischeck) &&$rule_list.ischeck eq 'y'"}checked="checked"{/if} > {$rule_list.title}
+                                        </label>
+                                        </p>
+                                        {/volist}
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="col-sm-6 col-xs-12 col-sm-offset-2">
+                                            <input type="hidden" name="id" value="{$item['id']?$item['id']:0}">
+                                            <button type="button" name="submit" class="btn btn-primary">提交</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        <script type="text/javascript">
+                            $(function () {
+                                //提交分类信息
+                                $("button[name='submit']").click(function () {
+                                    $.post(
+                                        window.location.href,
+                                        $('#post_form').serialize(),
+                                        function (res) {
+                                            message(res.message,res.redirect,res.type)
+                                        },'json'
+                                    );
+                                });
+                            });
+                        </script>
+                    </div>
+                    <!-- /.tab-content -->
+                </div>
+                <!-- /.nav-tabs-custom -->
+            </div>
+            <!-- /.col -->
+        </div>
+    </section>
+</div>
+{include file="common/footer"}

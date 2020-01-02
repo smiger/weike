@@ -1,0 +1,97 @@
+{include file="common/header"}
+<div class="content-wrapper">
+    {include file="auth_admin/nav"/}
+    <section class="content">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="nav-tabs-custom">
+                    {include file="auth_admin/tabs"/}
+                    <div class="tab-content">
+                        <form method="post" class="form-horizontal form" id="post_form">
+                            <div class="panel panel-info">
+                                <div class="panel-heading">
+                                    管理员信息
+                                </div>
+                                <div class="panel-body">
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">用户名</label>
+                                        <div class="col-sm-8 col-xs-12">
+                                            <input class="form-control" type="text" name="username" value="{$item['username']?$item['username']:''}" placeholder="请输入用户名" {$item['id']?'disabled':''} />
+                                        </div>
+                                    </div>
+                                    {:tpl_upload_image(['name'=>'avatar','title' => '头像','value'=>!empty($item['avatar'])?$item['avatar']:'','placeholder'=>'请上传头像','help'=>'建议宽高：150*150'])}
+                                    <div class="form-group">
+                                        <label class="col-xs-12 col-sm-3 col-md-2 control-label">新密码</label>
+                                        <div class="col-sm-8 col-xs-12">
+                                            <input type="text" class="form-control" name="password" placeholder="请输入新密码">
+                                            <span class="help-block">不修改密码时，可以不需要填写</span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-xs-12 col-sm-3 col-md-2 control-label">确认新密码</label>
+                                        <div class="col-sm-8 col-xs-12">
+                                            <input type="text" class="form-control" name="password_confirm" placeholder="请再次输入新密码">
+                                            <span class="help-block">不修改密码时，可以不需要填写</span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">姓名</label>
+                                        <div class="col-sm-8 col-xs-12">
+                                            <input class="form-control" type="text" name="nickname" value="{$item['nickname']?$item['nickname']:''}" placeholder="请输入姓名"   />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">邮箱</label>
+                                        <div class="col-sm-8 col-xs-12">
+                                            <input class="form-control" type="text" name="email" value="{$item['email']?$item['email']:''}" placeholder="请输入邮箱"   />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">手机号码</label>
+                                        <div class="col-sm-8 col-xs-12">
+                                            <input class="form-control" type="text" name="mobile" value="{$item['mobile']?$item['mobile']:''}" placeholder="请输入手机号码"   />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">状态</label>
+                                        <div class="col-sm-8 col-xs-12">
+                                            <select class="form-control select2" name="is_check" style="width:100%;">
+                                                <option value="1" {if isset($item['is_check']) && $item.is_check == 1}selected="selected"{/if} >启用</option>
+                                                <option value="0" {if isset($item['is_check']) && $item.is_check == 0}selected="selected"{/if} >禁用</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="col-sm-6 col-xs-12 col-sm-offset-2">
+                                            <input type="hidden" name="id" value="{$item['id']?$item['id']:0}">
+                                            <button type="button" name="submit" class="btn btn-primary">提交</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        <script type="text/javascript">
+                            $(function () {
+                                //提交分类信息
+                                $("button[name='submit']").click(function () {
+                                    $.post(
+                                        window.location.href,
+                                        $('#post_form').serialize(),
+                                        function (res) {
+                                            message(res.message,res.redirect,res.type)
+                                        },'json'
+                                    );
+                                });
+                            });
+                        </script>
+                    </div>
+                    <!-- /.tab-content -->
+                </div>
+                <!-- /.nav-tabs-custom -->
+            </div>
+            <!-- /.col -->
+        </div>
+    </section>
+</div>
+{include file="common/footer"}

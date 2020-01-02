@@ -1,0 +1,154 @@
+{include file="common/header"}
+<div class="content-wrapper">
+    {include file="task/nav"/}
+    <section class="content">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="nav-tabs-custom">
+                    {include file="task/tabs"/}
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="tab1">
+                            <div class="page-content">
+                                <div class="panel panel-info">
+                                    <div class="panel-heading">筛选</div>
+                                    <div class="panel-body">
+                                        <form class="form-horizontal" role="form">
+                                            <div class="form-group">
+                                                <label class="col-xs-12 col-sm-3 col-md-2 control-label">关键词</label>
+                                                <div class="col-sm-6 col-md-8 col-lg-8 col-xs-12">
+                                                    <input type="text" class="form-control" name="keyword" value="" placeholder="请输入关键词,任务名称">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-xs-12 col-sm-3 col-md-2 control-label">状态</label>
+                                                <div class="col-sm-6 col-md-8 col-lg-8 col-xs-12">
+                                                    <label class="checkbox-inline">
+                                                        <input type="checkbox" name="is_display[]" {if !empty($_GET['is_display']) && in_array(0,$_GET['is_display'])}checked{/if} value="0">
+                                                        待审核
+                                                    </label>
+                                                    <label class="checkbox-inline">
+                                                        <input type="checkbox" name="is_display[]" {if !empty($_GET['is_display']) && in_array(1,$_GET['is_display'])}checked{/if} value="1">
+                                                        已审核
+                                                    </label>
+                                                    <label class="checkbox-inline">
+                                                        <input type="checkbox" name="is_display[]" {if !empty($_GET['is_display']) && in_array(-1,$_GET['is_display'])}checked{/if} value="-1">
+                                                        审核未通过
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-sm-6 col-md-8 col-lg-8 col-xs-12 col-md-offset-2 col-lg-offset-2 col-sm-offset-4">
+                                                    <button class="btn btn-default"><i class="fa fa-search"></i> 搜索</button>
+                                                    <!-- <input type="hidden" name="token" value="28ab76d3">
+                                                    <input class="btn btn-primary" type="submit" name="export_submit" value="导出"> -->
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <form method="post" class="form-horizontal" id="display_form">
+                                    <input type="hidden" name="op" value="post_category">
+                                    <input type="hidden" name="ac" value="delete">
+                                    <div class="panel panel-default ">
+                                        <div class="table-responsive panel-body">
+                                            <table class="table table-hover">
+                                                <thead class="navbar-inner">
+                                                <tr>
+                                                    <th style="width: 45px">删?</th>
+                                                    <th>编号</th>
+                                                    <th>用户ID</th>
+                                                    <th>发布类型</th>
+                                                    <th>标题</th>
+                                                    <th>审核状态</th>
+                                                    <th>开始时间</th>
+                                                    <th>结束时间</th>
+                                                    <th>任务单价</th>
+                                                    <th>任务数量</th>
+                                                    <th>任务总额</th>
+                                                    <th>发布时间</th>
+                                                    <th>更新时间</th>
+                                                    <th>操作</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                {if !empty($list)}
+                                                    {volist name="list" id="item"}
+                                                    <tr>
+                                                        <td>
+                                                            <input type="checkbox" name="ids[]" value="{$item['id']}">
+                                                        </td>
+                                                        <td>{$item['id']}</td>
+                                                        <td>{$item['uid']}</td>
+                                                        <td>{$item['category']}</td>
+                                                        <td>{$item['title']}</td>
+                                                        <td>
+                                                            {if $item['is_display'] == 0}
+                                                            <label class="label label-info">待审核</label>
+                                                            {elseif $item['is_display'] == 1}
+                                                            <label class="label label-success">已审核</label>
+                                                            {else}
+                                                            <label class="label label-danger">审核未通过</label>
+                                                            {/if}
+                                                        </td>
+                                                        <td>{$item['start_time']}</td>
+                                                        <td>{$item['end_time']}</td>
+                                                        <td>
+                                                            <label class="label label-success">{$item['unit_price']}</label>
+                                                        </td>
+                                                        <td>{$item['ticket_num']}</td>
+                                                        <td>
+                                                            <label class="label label-success">{$item['give_credit2']}</label>
+                                                        </td>
+                                                        <td>
+                                                            {$item.create_time}
+                                                        </td>
+                                                        <td>
+                                                            {$item.update_time}
+                                                        </td>
+                                                        <td>
+                                                            <a href="{:U('post', 'id=' . $item['id'])}" class="btn btn-sm btn-success">编辑</a>
+                                                        </td>
+                                                    </tr>
+                                                    {/volist}
+                                                    <tr>
+                                                        <td>
+                                                            <input type="checkbox" onclick="var ck = this.checked;$('table').find(':checkbox').each(function(){this.checked = ck});">
+                                                        </td>
+                                                        <td colspan="6">
+                                                            <button class="btn btn-sm btn-danger" name="submit" type="button">删除</button>
+                                                        </td>
+                                                    </tr>
+                                                {/if}
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </form>
+                                {$pager}
+                                <script type="text/javascript">
+                                    $(function () {
+                                        $('button[name="submit"]').bind('click',function() {
+                                            if (confirm('删除后不可恢复，您确定删除吗？')) {
+                                                $.post(
+                                                    window.location.href,
+                                                    $('#display_form').serialize(),
+                                                    function (ret) {
+                                                        message(ret.message, ret.redirect, ret.type);
+                                                    }, 'json'
+                                                );
+                                            }
+                                        });
+                                    });
+                                </script>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.tab-content -->
+                </div>
+                <!-- /.nav-tabs-custom -->
+            </div>
+            <!-- /.col -->
+        </div>
+    </section>
+</div>
+{include file="common/footer"}

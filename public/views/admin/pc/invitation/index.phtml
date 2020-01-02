@@ -1,0 +1,73 @@
+{include file="common/header"}
+<div class="content-wrapper">
+    {include file="invitation/nav"/}
+    <section class="content">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="nav-tabs-custom">
+                    {include file="invitation/tabs"/}
+                    <div class="tab-content">
+                        <div class="page-content">
+                            <div class="panel panel-info">
+                                <div class="panel-heading">
+                                    筛选
+                                    <span class="pull-right">共有邀请&nbsp;<font style="color: red;font-weight: bold;">{$total}</font>&nbsp;次</span>
+                                </div>
+                                <div class="panel-body">
+                                    <form class="form-horizontal" method="get" role="form">
+                                        <div class="form-group">
+                                            <label class="col-xs-12 col-sm-3 col-md-2 control-label">关键词</label>
+                                            <div class="col-sm-6 col-md-8 col-lg-8 col-xs-12">
+                                                <input type="text" class="form-control" name="keyword" value="{$_GET['keyword']?$_GET['keyword']:''}" placeholder="请输入用户名/ID、邀请用户名/ID关键词">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-sm-6 col-md-8 col-lg-8 col-xs-12 col-md-offset-2 col-lg-offset-2 col-sm-offset-4">
+                                                <button class="btn btn-primary"><i class="fa fa-search"></i> 搜索</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <form method="post" class="form-horizontal" id="store_category_form">
+                                <div class="panel panel-default ">
+                                    <div class="table-responsive panel-body">
+                                        <table class="table table-hover">
+                                            <thead class="navbar-inner">
+                                            <tr>
+                                                <th>邀请ID</th>
+                                                <th>用户名/ID</th>
+                                                <th>邀请用户名/ID</th>
+                                                <th>邀请时间</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            {if !empty($list)}
+                                                {volist name="list" id="item"}
+                                                <tr>
+                                                    <td>{$item['id']}</td>
+                                                    <td>{$item['username']}&nbsp;/&nbsp;{$item['uid']}</td>
+                                                    <td>{$item['invite_username']}&nbsp;/&nbsp;{$item['invite_uid']}</td>
+                                                    <td>
+                                                        {$item.create_time}
+                                                    </td>
+                                                </tr>
+                                                {/volist}
+                                            {/if}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </form>
+                            {$pager}
+                        </div>
+                    </div>
+                    <!-- /.tab-content -->
+                </div>
+                <!-- /.nav-tabs-custom -->
+            </div>
+            <!-- /.col -->
+        </div>
+    </section>
+</div>
+{include file="common/footer"}

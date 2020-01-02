@@ -1,0 +1,168 @@
+{include file="common/header"}
+<div class="content-wrapper">
+    {include file="withdraw/nav"/}
+    <section class="content">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="nav-tabs-custom">
+                    {include file="withdraw/tabs"/}
+                    <div class="tab-content">
+                        <form method="post" class="form-horizontal form" id="post_form">
+                            <div class="panel panel-info">
+                                <div class="panel-heading">
+                                    提现详情
+                                </div>
+                                <div class="panel-body">
+                                    <div class="form-group">
+                                        <label class="col-xs-12 col-sm-3 col-md-2 control-label">用户名</label>
+                                        <div class="col-sm-6 col-xs-12">
+                                            <input type="text" class="form-control" readonly="readonly" value="{$item['username']?$item['username']:''}" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-xs-12 col-sm-3 col-md-2 control-label">提现金额</label>
+                                        <div class="col-sm-6 col-xs-12">
+                                            <input type="text" class="form-control" readonly="readonly" value="{$item['credit2']?$item['credit2']:''}" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-xs-12 col-sm-3 col-md-2 control-label">手续费</label>
+                                        <div class="col-sm-6 col-xs-12">
+                                            <input type="text" class="form-control" readonly="readonly" value="{$item['fee']?$item['fee']:''}" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-xs-12 col-sm-3 col-md-2 control-label">推荐人返利</label>
+                                        <div class="col-sm-6 col-xs-12">
+                                            <input type="text" class="form-control" readonly="readonly" value="{$parent_money?$parent_money:'0'}" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-xs-12 col-sm-3 col-md-2 control-label">实际转款</label>
+                                        <div class="col-sm-6 col-xs-12">
+                                            <input type="text" class="form-control" readonly="readonly" value="{$money?$money:'0'}" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-xs-12 col-sm-3 col-md-2 control-label">提现方式</label>
+                                        <div class="col-sm-6 col-xs-12">
+                                            <input type="text" class="form-control" readonly="readonly" value="{if $item['pay_method'] == 0}银行卡 {elseif $item['pay_method'] == 1}支付宝{else}微信{/if}" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-xs-12 col-sm-3 col-md-2 control-label">账号</label>
+                                        <div class="col-sm-6 col-xs-12">
+                                            <input type="text" class="form-control" readonly="readonly" value="{$item['account']?$item['account']:''}" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-xs-12 col-sm-3 col-md-2 control-label">真实姓名</label>
+                                        <div class="col-sm-6 col-xs-12">
+                                            <input type="text" class="form-control" readonly="readonly" value="{$item['realname']?$item['realname']:''}" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-xs-12 col-sm-3 col-md-2 control-label">手机号</label>
+                                        <div class="col-sm-6 col-xs-12">
+                                            <input type="text" class="form-control" readonly="readonly" value="{$item['mobile']?$item['mobile']:''}" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-xs-12 col-sm-3 col-md-2 control-label">申请时间</label>
+                                        <div class="col-sm-6 col-xs-12">
+                                            <input type="text" class="form-control" readonly="readonly" value="{$item['create_time']?$item['create_time']:''}" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-xs-12 col-sm-3 col-md-2 control-label">状态</label>
+                                        <div class="col-sm-6 col-xs-12">
+                                            <label class="radio-inline">
+                                                <input type="radio" name="status" {if 1==$item['status']}checked{/if} value="1">
+                                                已发放
+                                            </label>
+                                            <label class="radio-inline">
+                                                <input type="radio" name="status" {if -1==$item['status']}checked{/if} value="-1">
+                                                审核未通过
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-xs-12 col-sm-3 col-md-2 control-label">备注</label>
+                                        <div class="col-sm-6 col-xs-12">
+                                            <textarea class="form-control" name="note" maxlength="1000" rows="5" placeholder="请输入审核备注">{$item['note']?$item['note']:''}</textarea>
+                                        </div>
+                                    </div>
+                                    {if $origin['update_time'] == 0}
+                                    <div class="form-group">
+                                        <div class="col-sm-6 col-xs-12 col-sm-offset-2">
+                                            <input type="hidden" name="id" value="{$item['id']?$item['id']:0}">
+                                            <button type="button" id="submit" name="submit" class="btn btn-primary">审核</button>
+                                        </div>
+                                    </div>
+                                    {/if}
+                                </div>
+                            </div>
+                        </form>
+                        <link rel="stylesheet" href="/static/plugins/dialog/css/dialog.css" />
+                        <script src="/static/plugins/dialog/js/dialog.js"></script>
+                        <style type="text/css">
+                            .dialog {
+                              position: fixed;
+                              left: 0;
+                              top: 0;
+                              z-index: 10001;
+                              width: 100%;
+                              height: 100%;
+                            }
+                            .dialog-content {
+                                width: 200px;
+                            }
+                            .dialog-overlay {
+                              position: absolute;
+                              top: 0;
+                              left: 0;
+                              z-index: 10002;
+                              width: 100%;
+                              height: 100%;
+                              background-color: rgba(0, 0, 0, 0.5);
+                            }
+                        </style>
+                        <script type="text/javascript">
+                            $(function () {
+                                $("#submit").click(function () {
+                                    var val=$('input:radio[name="status"]:checked').val();
+                                     if(val==null){
+                                        $(document).dialog({
+                                            titleText: '审核提现',
+                                            content: '还未选择审核状态',
+                                        });
+                                        return;
+                                    }
+
+                                    $(document).dialog({
+                                        type : 'confirm',
+                                        titleText: '审核提现',
+                                        content: '确定要审核此提现吗？审核后无法修改。',
+                                        onClickConfirmBtn: function(){
+                                            $.post(
+                                                '/admin/withdraw/save',
+                                                $('#post_form').serialize(),
+                                                function (res) {
+                                                    message(res.message,res.redirect,res.type)
+                                                },'json'
+                                            );
+                                        }
+                                    });
+                                });
+                            });
+                        </script>
+                    </div>
+                    <!-- /.tab-content -->
+                </div>
+                <!-- /.nav-tabs-custom -->
+            </div>
+            <!-- /.col -->
+        </div>
+    </section>
+</div>
+{include file="common/footer"}

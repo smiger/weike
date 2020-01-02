@@ -1,0 +1,184 @@
+﻿<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0,minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>{$site['seo_title']?$site['seo_title']:''}</title>
+		<meta name="Description" content="{$site['seo_description']?$site['seo_description']:''}" />
+		<meta name="Keywords" content="{$site['seo_keywords']?$site['seo_keywords']:''}" />
+		<link rel="stylesheet" href="/static/home/mobile/css/bootstrap.css">
+		<link rel="stylesheet" href="/static/home/mobile/css/font-awesome.min.css">
+		<link href="/static/home/mobile/css/reset_5.css" rel="stylesheet" type="text/css" />
+		<link href="/static/home/mobile/css/style.css" rel="stylesheet" type="text/css" />
+		<link rel="stylesheet" type="text/css" href="/static/home/mobile/css/new_page.css?v=2" />
+		<link rel="stylesheet" href="/static/home/mobile/css/swiper.min.css" />
+		<style type="text/css">
+			.new-main {
+				padding-bottom: 40px;
+			}
+            .load-more{
+                margin-top: -10px;
+                margin-bottom: 30px;
+                height: 30px;
+                line-height: 30px;
+                text-align: center;
+                background: #ffffff;
+            }
+		</style>
+        <!-- 弹出层 -->
+        <link rel="stylesheet" href="/static/plugins/dialog/css/dialog.css" />
+        <script type="text/javascript" src="/static/home/mobile/js/jquery-2.0.3.min.js"></script>
+        <script src="/static/plugins/dialog/js/dialog.js"></script>
+        <!-- 弹出层 -->
+        <script type="text/javascript" src="/static/plugins/clipboard.min.js"></script>
+        <script type="text/javascript" src="/static/home/mobile/js/swiper.min.js"></script>
+        <script type="text/javascript" src="/static/home/mobile/js/global.js"></script>
+	</head>
+    <body class="new-body">
+    <header class="new-header" style="padding-top: 12px;">
+        <form id="search_form" action="/home/task/index.html">
+            <input type="hidden" name="search_type" value="1">
+            <input type="hidden" name="order_type" value="0">
+            <input type="hidden" name="page" value="1">
+            <div class="container">
+                <span class="daily-task">每日任务</span>
+                <div class="input-group">
+                    <input type="text" placeholder="请输入标题关键词" name="keyword">
+                    <img class="search-btn" src="/static/home/mobile/picture/search.png">
+                </div>
+                <span class="dowm-btn">
+                    <img src="/static/home/mobile/picture/down.png">
+                </span>
+            </div>
+        </form>
+    </header>
+    <div class="add-dowmload">
+        <span>公告</span>
+        <div id="notice" class="swiper-container swiper-container-vertical">
+            <div class="swiper-wrapper">
+                {if !empty($notices)}
+                    {volist name="notices" id="notice"}
+                        <div class="swiper-slide swiper-slide-duplicate">
+                            <a id="slide_href" href="/home/notice/detail/id/{$notice['id']}.html" hid="12">{$notice['title']}</a>
+                        </div>
+                    {/volist}
+                {/if}
+            </div>
+        </div>
+    </div>
+    <div class="dowm-list">
+        <ul class="second-nav">
+            <li data-type="0" class="active">智能排序</li>
+            <li data-type="1">金额数</li>
+            <li data-type="2">积分数</li>
+            <li data-type="3">进度</li>
+            <li data-type="4">等级</li>
+        </ul>
+    </div>
+    <div class="openNotice-back">
+        <div class="openNotice">
+            <span class="notice-ban">今日不再提示</span>
+            <span class="notice-close"><img src="/static/home/mobile/picture/close.png"></span>
+            <div class="noticeDetail">
+
+            </div>
+        </div>
+    </div>
+    {if !empty($banners)}
+    <div class="">
+      <div id="banner" class="swiper-container">
+        <div class="swiper-wrapper">
+          {volist name="banners" id="banner"}
+          <div class="swiper-slide">
+            <a href="{$banner.url}" target="_blank"><img src="{:to_media($banner.thumb)}" border="0" alt="{:to_media($banner.title)}" /></a>
+          </div>
+          {/volist}
+        </div>
+        <!-- Add Pagination -->
+        <div id="banner-pagination" class="swiper-pagination"></div>
+      </div>
+    </div>
+    {/if}
+    {if condition="!empty($categories)"}
+    <div class="new-task-content">
+        <ul>
+            {volist name="categories" id="category"}
+            <li>
+                <a href="/home/task/index/category_id/{$category['id']}.html">
+                    <img src="{:to_media($category['thumb'])}">
+                    <span>{$category['title']}</span>
+                </a>
+            </li>
+            {/volist}
+        </ul>
+    </div>
+    {/if}
+    <div class="index-withdraws" style="padding-top:5px;border-top: solid 1px #E9E9E9;">
+        <div id="withdraw" class="swiper-container swiper-container-vertical">
+            <div class="swiper-wrapper">
+                {if !empty($withdraws)}
+                    {volist name="withdraws" id="withdraw"}
+                        <div class="swiper-slide swiper-slide-duplicate">
+                            <em style="color: #FD2D2E;">{$withdraw.username}</em> 于{$withdraw.create_time|strtotime|date="Y-n-j",###} 提现：<em style="color: #FD2D2E;">{$withdraw.credit2}</em> 元
+                        </div>
+                    {/volist}
+                {/if}
+            </div>
+        </div>
+    </div>
+    <div class="new-site-tit">
+        今天完成所有任务可获得：<span id="expect_gold">{$today_credit2}</span> 元，<span id="expect_silver">{$today_credit1}</span> 积分
+    </div>
+    <div class="new-main index-new-main">
+        {if !empty($tasks)}
+        <div class="new-task-list">
+            <ul>
+                {volist name="tasks" id="task" key="task_index"}
+                <li>
+                    <a href="/home/task/detail/id/{$task['id']}.html">
+                        {if $task_index == 0}
+                            <img class="task-list-hot" src="/static/home/mobile/images/hot.png">
+                        {/if}
+                        <div class="task-list-title-silver">
+                            <div class="task-list-title">{$task['title']}</div>
+                            <span class="task-list-gold">
+                                <span>￥</span>
+                                {$task['unit_price']}元
+                            </span>
+                        </div>
+                        <span class="task-list-prefix">商</span>
+                        <span class="task-list-id">{$task['id']}</span>
+                        <span class="task-jifen">{$task['give_credit1']}积分</span>
+                        <span class="task-list-remain-num">剩余{$task['ticket_num']-$task['join_num']}份</span>
+                        <div class="task-list-progress-content">
+                            <div class="task-list-progress"><span style="width:{$task['percent']}%"></span></div>
+                            <div class="task-list-progress-num">{$task['percent']}%</div>
+                        </div>
+                        <div class="task-list-gold-silver">
+                            <span class="task-list-end-time">结束时间：{$task['end_time']} </span>
+                        </div>
+                    </a>
+                </li>
+                {/volist}
+            </ul>
+        </div>
+        <div class="paging">
+            <span class="paging-prev">上一页</span>
+            <span class="paging-num-total">
+					<select name="page" class="paging-selct">
+                        {for start="1" end="$pageCount+1"}
+                        <option value="{$i}">{$i}</option>
+                        {/for}
+                    </select>
+				</span>
+            <span class="paging-next" data-page="{$pageCount}">下一页</span>
+        </div>
+        {/if}
+    </div>
+    {include file="common/footer"}
+    <script type="text/javascript" src="/static/home/mobile/js/index.js"></script>
+    {$site['baidu_stat']?$site['baidu_stat']:''}
+    {$site['baidu_chat']?$site['baidu_chat']:''}
+    </body>
+</html>

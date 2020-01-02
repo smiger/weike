@@ -1,0 +1,93 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="apple-mobile-web-app-capable" content="yes">  
+        <meta name="viewport" content="width=device-width, initial-scale=1.0,minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>提现</title>
+        {include file='common/header'}
+		<link href="/static/home/mobile/css/reset_5.css" rel="stylesheet" type="text/css" />
+		<link href="/static/home/mobile/css/style.css" rel="stylesheet" type="text/css" />
+		<link rel="stylesheet" href="/static/home/mobile/css/font-awesome.min.css">
+		<link rel="stylesheet" type="text/css" href="/static/home/mobile/css/new_page.css" />
+		<style type="text/css">
+			.new-header .dowm-btn {
+				bottom: 0;
+			}
+			.new-header .back{
+				bottom: 18px;
+			}
+			.pay-panel{
+				margin-top: 60px;
+				background: #fff;
+			}
+			.pay-panel ul li{
+				padding: 10px 0 10px 10px;
+				overflow: hidden;
+				border-bottom: 1px solid #efefef;
+				position: relative;
+			}
+			.pay-panel ul li:last-child{
+				border-bottom: none;
+			}
+			.pay-panel ul li img{
+				float: left;
+				margin: 10px 10px 10px 5px;
+			}
+			.pay-panel ul li p{
+				color: #999;
+			}
+			.pay-panel ul li p.l-p{
+				font-size: 16px;
+				margin-top: 10px;
+				color: #333;
+			}
+			.pay-panel ul li span{
+				position: absolute;
+				right: 20px;
+				top: 32px;
+			}
+			.pay-panel ul li span img{
+				width: 11px;
+				margin: 0;
+			}
+		</style>
+	</head>
+	
+	<body>
+		<header class="new-header" style="padding-top: 15px;">
+			<a onclick="history.back()" class="back">
+				<img src="/static/home/mobile/picture/return.png" />
+			</a>
+			<div class="tit-name">推推提现</div>
+			<span class="dowm-btn publish-task-btn">
+				<a href="goldDetail.html" class="sc" style="color: #fff;"></a>
+			</span>
+		</header>
+		<div class="pay-panel">
+			<ul>
+				<li>
+					<a href="withdrawal.html">
+						<img src="/static/home/mobile/picture/alipay.png" />
+						<p class="l-p">支付宝提现</p>
+						<p>支付宝安全提现</p>
+						<span class="more-btn">
+							<img src="/static/home/mobile/picture/ard.png" />
+						</span>
+					</a>
+				</li>
+				<li>
+					<a href="wechatwithdrawal.html">
+						<img src="/static/home/mobile/picture/wechatpay.png" />
+						<p class="l-p">微信提现</p>
+						<p>微信安全提现</p>
+						<span class="more-btn">
+							<img src="/static/home/mobile/picture/ard.png" />
+						</span>
+					</a>
+				</li>
+			</ul>
+		</div>
+        {include file='common/footer'}
+    </body>
+</html>

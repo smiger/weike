@@ -1,0 +1,79 @@
+﻿<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0,minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>审核任务[{$item['id']?$item['id']:''}]</title>
+    {include file='common/header'}
+    <style type="text/css">
+        .task-list-remain-num span {
+            width: 33.33%;
+            float: left;
+            text-align: center;
+        }
+        .paging {
+            padding: 30px 0;
+        }
+        .dialog {
+          position: fixed;
+          left: 0;
+          top: 0;
+          z-index: 10001;
+          width: 100%;
+          height: 100%;
+        }
+        .dialog-content {
+            width: 70%;
+        }
+        .dialog-overlay {
+          position: absolute;
+          top: 0;
+          left: 0;
+          z-index: 10002;
+          width: 100%;
+          height: 100%;
+          background-color: rgba(0, 0, 0, 0.5);
+        }
+    </style>
+</head>
+
+<body data-offset="140" id="htmlBody">
+<div class="site-header header-fixed">
+    <a onclick="history.back()" class="back"></a>
+    <div class="tit-name">审核任务[{$item['id']?$item['id']:''}]</div>
+</div>
+<div class="main myAttend">
+    <div class="task-list">
+        {if !empty($tasks)}
+        <div class="new-task-list">
+            {include file='mytaskaudit/_list'}
+        </div>
+        <div class="paging" style="display: block;">
+            <span class="paging-prev">上一页</span>
+            <span class="paging-num-total">
+                    <select name="page" class="paging-selct">
+                        {for start="1" end="$pageCount+1"}
+                        <option value="{$i}">{$i}</option>
+                        {/for}
+                    </select>
+                </span>
+            <span class="paging-next" data-page="{$pageCount}">下一页</span>
+            <form id="page_form">
+                <input type="hidden" name="page" value="1">
+            </form>
+        </div>
+        {/if}
+    </div>
+</div>
+{include file='common/footer'}
+<script type="text/javascript" src="/static/home/mobile/js/mytaskjoin.js?v=4"></script>
+<script type="text/javascript">
+function check(join_id){
+    window.location.href = "/home/mytaskaudit/detail/id/"+join_id+".html";
+}
+</script>
+</body>
+</html>

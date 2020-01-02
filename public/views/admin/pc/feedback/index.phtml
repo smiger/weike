@@ -1,0 +1,129 @@
+{include file="common/header"}
+<div class="content-wrapper">
+    {include file="feedback/nav"/}
+    <section class="content">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="nav-tabs-custom">
+                    {include file="feedback/tabs"/}
+                    <div class="tab-content">
+                        <div class="page-content">
+                            <div class="panel panel-info">
+                                <div class="panel-heading">
+                                    筛选
+                                    <span class="pull-right">共有反馈&nbsp;<font style="color: red;font-weight: bold;">{$total}</font>&nbsp;条</span>
+                                </div>
+                                <div class="panel-body">
+                                    <form class="form-horizontal" method="get" role="form">
+                                        <div class="form-group">
+                                            <label class="col-xs-12 col-sm-3 col-md-2 control-label">关键词</label>
+                                            <div class="col-sm-6 col-md-8 col-lg-8 col-xs-12">
+                                                <input type="text" class="form-control" name="keyword" value="{$_GET['keyword']?$_GET['keyword']:''}" placeholder="请输入用户名">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-xs-12 col-sm-3 col-md-2 control-label">状态</label>
+                                            <div class="col-sm-6 col-md-8 col-lg-8 col-xs-12">
+                                                <label class="checkbox-inline">
+                                                    <input type="checkbox" name="is_reply[]" {if !empty($_GET['is_reply']) && in_array(0,$_GET['is_reply'])}checked{/if} value="0">
+                                                    待回复
+                                                </label>
+                                                <label class="checkbox-inline">
+                                                    <input type="checkbox" name="is_reply[]" {if !empty($_GET['is_reply']) && in_array(1,$_GET['is_reply'])}checked{/if} value="1">
+                                                    已回复
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-sm-6 col-md-8 col-lg-8 col-xs-12 col-md-offset-2 col-lg-offset-2 col-sm-offset-4">
+                                                <button class="btn btn-primary"><i class="fa fa-search"></i> 搜索</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <form method="post" class="form-horizontal" id="display_form">
+                                <div class="panel panel-default ">
+                                    <div class="table-responsive panel-body">
+                                        <table class="table table-hover">
+                                            <thead class="navbar-inner">
+                                            <tr>
+                                                <th style="width: 45px">删?</th>
+                                                <th>反馈ID</th>
+                                                <th>用户名</th>
+                                                <th>反馈内容</th>
+                                                <th>状态</th>
+                                                <th>反馈时间</th>
+                                                <th>更新时间</th>
+                                                <th>操作</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            {if !empty($list)}
+                                                {volist name="list" id="item"}
+                                                <tr>
+                                                    <td>
+                                                        <input type="checkbox" name="ids[]" value="{$item['id']}">
+                                                    </td>
+                                                    <td>{$item['id']}</td>
+                                                    <td>{$item['username']}</td>
+                                                    <td>{$item['content']}</td>
+                                                    <td>
+                                                        {if $item['is_reply'] == 0}
+                                                        <label class="label label-success">待回复</label>
+                                                        {else}
+                                                        <label class="label label-danger">已回复</label>
+                                                        {/if}
+                                                    </td>
+                                                    <td>
+                                                        {$item.create_time}
+                                                    </td>
+                                                    <td>
+                                                        {$item.update_time}
+                                                    </td>
+                                                    <td>
+                                                        <a href="{:U('post', 'id=' . $item['id'])}" class="btn btn-sm btn-success">回复</a>
+                                                    </td>
+                                                </tr>
+                                                {/volist}
+                                                <tr>
+                                                    <td>
+                                                        <input type="checkbox" onclick="var ck = this.checked;$('table').find(':checkbox').each(function(){this.checked = ck});">
+                                                    </td>
+                                                    <td colspan="6">
+                                                        <button class="btn btn-sm btn-danger" name="submit" type="button">删除</button>
+                                                    </td>
+                                                </tr>
+                                            {/if}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </form>
+                            {$pager}
+                            <script type="text/javascript">
+                                $(function () {
+                                    $('button[name="submit"]').bind('click',function() {
+                                        if (confirm('删除后不可恢复，您确定删除吗？')) {
+                                            $.post(
+                                                window.location.href,
+                                                $('#display_form').serialize(),
+                                                function (ret) {
+                                                    message(ret.message, ret.redirect, ret.type);
+                                                }, 'json'
+                                            );
+                                        }
+                                    });
+                                });
+                            </script>
+                        </div>
+                    </div>
+                    <!-- /.tab-content -->
+                </div>
+                <!-- /.nav-tabs-custom -->
+            </div>
+            <!-- /.col -->
+        </div>
+    </section>
+</div>
+{include file="common/footer"}

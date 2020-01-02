@@ -1,0 +1,111 @@
+{include file="common/header"}
+<div class="content-wrapper">
+    {include file="feedback/nav"/}
+    <section class="content">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="nav-tabs-custom">
+                    {include file="feedback/tabs"/}
+                    <div class="tab-content">
+                        <div class="panel panel-info">
+                            <div class="panel-heading">
+                                {$item['username']?$item['username']:''}&nbsp;&nbsp;{$item['create_time']?$item['create_time']:''}
+                            </div>
+                            <div class="panel-body">
+                                {$item['content']|nl2br}
+                            </div>
+                        </div>
+
+                        {if !empty($list)}
+                        {volist name="list" id="row"}
+                        <div class="panel panel-info">
+                            <div class="panel-heading">
+                                {$row['username']?$row['username']:'管理回复'}&nbsp;&nbsp;{$row['create_time']?$row['create_time']:''}
+                            </div>
+                            <div class="panel-body">
+                                {$row['content']|nl2br}
+                            </div>
+                        </div>
+                        {/volist}
+                        {/if}
+
+                        {$pager}
+
+                        <form method="post" class="form-horizontal form" id="post_form">
+                            <div class="panel panel-info">
+                                <div class="panel-heading">
+                                    反馈回复
+                                </div>
+                                <div class="panel-body">
+                                    <div class="form-group">
+                                        <label class="col-xs-12 col-sm-3 col-md-2 control-label">内容</label>
+                                        <div class="col-sm-6 col-xs-12">
+                                            <textarea class="form-control" id="content" name="content" maxlength="1000" rows="5" placeholder="请输入反馈回复"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-6 col-xs-12 col-sm-offset-2">
+                                            <input type="hidden" name="id" value="{$item['id']?$item['id']:0}">
+                                            <button type="button" id="submit" name="submit" class="btn btn-primary">回复</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <input type="hidden" name="parent_id" value="{$item['id']?$item['id']:0}" />
+                        </form>
+                        <link rel="stylesheet" href="/static/plugins/dialog/css/dialog.css" />
+                        <script src="/static/plugins/dialog/js/dialog.js"></script>
+                        <style type="text/css">
+                            .dialog {
+                              position: fixed;
+                              left: 0;
+                              top: 0;
+                              z-index: 10001;
+                              width: 100%;
+                              height: 100%;
+                            }
+                            .dialog-content {
+                                width: 230px;
+                            }
+                            .dialog-overlay {
+                              position: absolute;
+                              top: 0;
+                              left: 0;
+                              z-index: 10002;
+                              width: 100%;
+                              height: 100%;
+                              background-color: rgba(0, 0, 0, 0.5);
+                            }
+                        </style>
+                        <script type="text/javascript">
+                            $(function () {
+                                $("#submit").click(function () {
+                                    var val=$('#content').val();
+                                     if(val==""){
+                                        $(document).dialog({
+                                            titleText: '反馈回复',
+                                            content: '请输入您需要回复的内容',
+                                        });
+                                        return;
+                                    }
+
+                                    $.post(
+                                        "{:U('save')}",
+                                        $('#post_form').serialize(),
+                                        function (res) {
+                                            message(res.message,res.redirect,res.type)
+                                        },'json'
+                                    );
+                                });
+                            });
+                        </script>
+                    </div>
+                    <!-- /.tab-content -->
+                </div>
+                <!-- /.nav-tabs-custom -->
+            </div>
+            <!-- /.col -->
+        </div>
+    </section>
+</div>
+{include file="common/footer"}

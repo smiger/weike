@@ -1,0 +1,87 @@
+{include file="common/header"}
+<div class="content-wrapper">
+    {include file="banner/nav"/}
+    <section class="content">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="nav-tabs-custom">
+                    {include file="banner/tabs"/}
+                    <div class="tab-content">
+                        <div class="page-content">
+                            <form method="post" class="form-horizontal" id="display_form">
+                                <div class="panel panel-default ">
+                                    <div class="table-responsive panel-body">
+                                        <table class="table table-hover">
+                                            <thead class="navbar-inner">
+                                            <tr>
+                                                <th style="width: 45px">删?</th>
+                                                <th>标题</th>
+                                                <th>排序</th>
+                                                <th>状态</th>
+                                                <th>添加时间</th>
+                                                <th>操作</th>
+                                            </tr>
+                                            </thead>
+                                            {if !empty($list)}
+                                            <tbody>
+                                            {volist name="list" id="item" key="index" }
+                                            <tr>
+                                                <td>
+                                                    <input type="checkbox" name="ids[]" value="{$item['id']}">
+                                                </td>
+                                                <td>{$item['title']}</td>
+                                                <td>{$item['order_by']}</td>
+                                                <td>
+                                                    {if $item['is_display'] == 1}
+                                                    <span class="label label-success">显示</span>
+                                                    {else}
+                                                    <span class="label label-default">隐藏</span>
+                                                    {/if}
+                                                </td>
+                                                <td>{$item['create_time']}</td>
+                                                <td>
+                                                    <a href="{:U('post', 'id=' . $item['id'])}"  class="btn btn-sm btn-success">编辑</a>
+                                                </td>
+                                            </tr>
+                                            {/volist}
+                                            <tr>
+                                                <td>
+                                                    <input type="checkbox" onclick="var ck = this.checked;$('table').find(':checkbox').each(function(){this.checked = ck});">
+                                                </td>
+                                                <td colspan="5">
+                                                    <button name="submit" class="btn btn-sm btn-danger" type="button">删除</button>
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                            {/if}
+                                        </table>
+                                    </div>
+                                </div>
+                            </form>
+                            {$pager}
+                            <script type="text/javascript">
+                                $(function () {
+                                    $('button[name="submit"]').bind('click',function() {
+                                        if (confirm('删除后不可恢复，您确定删除吗？')) {
+                                            $.post(
+                                                window.location.href,
+                                                $('#display_form').serialize(),
+                                                function (ret) {
+                                                    message(ret.message, ret.redirect, ret.type);
+                                                }, 'json'
+                                            );
+                                        }
+                                    });
+                                });
+                            </script>
+                        </div>
+                    </div>
+                    <!-- /.tab-content -->
+                </div>
+                <!-- /.nav-tabs-custom -->
+            </div>
+            <!-- /.col -->
+        </div>
+    </section>
+</div>
+{include file="common/footer"}

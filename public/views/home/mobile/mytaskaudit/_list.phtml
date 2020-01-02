@@ -1,0 +1,49 @@
+            {volist name="tasks" id="task" key="task_index"}
+            <ul class="ui-list-text reward-icon">
+                <li class="clearfix">
+                    <i class="iconfont" style="background-image: url({$task['category_icon']});"></i>
+                    <div class="ui-vertical">
+                        <h3 class="ui-row"><span class="text-color-orange fr">￥{$task['unit_price']}</span>{$task['title']}</h3>
+                        <p>NO.{$task['no']}&nbsp;&nbsp;
+                            {if $task.join_status == 1}
+                            <span class="fr">等待上传验证</span>
+                            {$task['join_create_time']}&nbsp;
+                            抢单
+                            {/if}
+
+                            {if $task.join_status == 2}
+                            <span class="fr">等待审核</span>
+                            {$task['join_create_time']}&nbsp;
+                            抢单
+                            {/if}
+
+                            {if $task.join_status == 3}
+                            <span class="fr">奖励已发放</span>
+                            {$task['join_create_time']}&nbsp;<!-- {$task['join_audit_time']}&nbsp; -->
+                            审核
+                            {/if}
+
+                            {if $task.join_status == 4}
+                            <span class="fr">审核不通过</span>
+                            {$task['join_create_time']}&nbsp;<!-- {$task['join_audit_time']}&nbsp; -->
+                            审核不通过
+                            {/if}
+                        </p>
+                    </div>
+                </li>
+                {if $task.join_status == 2}
+                <li class="operate ui-flex mb15">
+                    <div class="ui-col text-color-blue">
+                        <a style="padding:0;" href="/home/mytaskaudit/detail/id/{$task['join_id']}.html">审核</a>
+                    </div>
+                </li>
+                {/if}
+                {if $task.join_status == 4}
+                <li class="operate ui-flex mb15">
+                    <div class="ui-col text-color-blue">
+                        <a style="padding:0;" href="/home/mytaskaudit/view/id/{$task['join_id']}.html" target="_blank">查看</a>
+                    </div>
+                </li>
+                {/if}
+            </ul>
+            {/volist}

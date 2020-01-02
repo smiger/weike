@@ -1,0 +1,106 @@
+﻿<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0,minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>我参与的</title>
+    {include file='common/header'}
+    <style type="text/css">
+        .task-list-remain-num span {
+            width: 33.33%;
+            float: left;
+            text-align: center;
+        }
+        .paging {
+            margin: 30px 0;
+        }
+        .dialog {
+          position: fixed;
+          left: 0;
+          top: 0;
+          z-index: 10001;
+          width: 100%;
+          height: 100%;
+        }
+        .dialog-content {
+            width: 70%;
+        }
+        .dialog-overlay {
+          position: absolute;
+          top: 0;
+          left: 0;
+          z-index: 10002;
+          width: 100%;
+          height: 100%;
+          background-color: rgba(0, 0, 0, 0.5);
+        }
+    </style>
+</head>
+
+<body data-offset="140" id="htmlBody">
+<div class="site-header header-fixed">
+    <a onclick="history.back()" class="back"></a>
+    <div class="tit-name">我参与的</div>
+</div>
+<div class="main myAttend">
+    <div class="zhuanghu-tab2">
+        <ul class="zh-tab-tit">
+            <li id="all" class="{$category_type == 'all'?'active':'libg'}" onclick="location.href='/home/mytaskjoin.html'">全部</li>
+            <li id="lock" class="{$category_type == 'lock'?'active':'libg'}" onclick="location.href='/home/mytaskjoin/category/t/lock.html'">已抢单</li>
+            <li id="wait" class="{$category_type == 'wait'?'active':'libg'}" onclick="location.href='/home/mytaskjoin/category/t/wait.html'">待审核</li>
+            <li id="pass" class="{$category_type == 'pass'?'active':'libg'}" onclick="location.href='/home/mytaskjoin/category/t/pass.html'">通过</li>
+            <li id="nopass" class="{$category_type == 'nopass'?'active':'libg'}" onclick="location.href='/home/mytaskjoin/category/t/nopass.html'">不通过</li>
+        </ul>
+    </div>
+    <div class="task-list">
+        {if !empty($tasks)}
+        <div class="new-task-list">
+            {include file='mytaskjoin/_list'}
+        </div>
+        <div class="task-del" style="display:none;">
+            <a href="#" class="button4" onclick="MySaveTask.delSave()">删除(0)</a>
+        </div>
+        <div class="paging" style="display: block;">
+            <span class="paging-prev">上一页</span>
+            <span class="paging-num-total">
+                    <select name="page" class="paging-selct">
+                        {for start="1" end="$pageCount+1"}
+                        <option value="{$i}">{$i}</option>
+                        {/for}
+                    </select>
+                </span>
+            <span class="paging-next" data-page="{$pageCount}">下一页</span>
+            <form id="page_form">
+                <input type="hidden" name="page" value="1">
+            </form>
+        </div>
+        {/if}
+    </div>
+</div>
+{include file='common/footer'}
+<script type="text/javascript" src="/static/home/mobile/js/mytaskjoin.js?v=4"></script>
+<script type="text/javascript">
+function check(id){
+    window.location.href = "/home/taskcheck/index/id/"+id+".html";
+}
+
+function remove(id) {
+    $(document).dialog({
+        type : 'confirm',
+        titleText: '放弃接单',
+        content: '确定要放弃任务ID为：' + id + '任务吗？',
+        onClickConfirmBtn: function(){
+            Common.loading.show();
+            $.post('/home/mytaskjoin/del.html', { id: id }, function(res) {
+                message(res.message,res.redirect,res.type);
+                Common.loading.hide();
+            });
+        }
+    });
+}
+</script>
+</body>
+</html>

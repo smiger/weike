@@ -1,0 +1,41 @@
+﻿<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0,minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>我的隐藏</title>
+    {include file='common/header'}
+    <link href="/static/home/mobile/css/reset_5.css" rel="stylesheet" type="text/css"/>
+    <link href="/static/home/mobile/css/style.css" rel="stylesheet" type="text/css"/>
+    <link href="/static/home/mobile/css/new_style.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="/static/home/mobile/css/font-awesome.min.css">
+</head>
+<body data-offset="110" id="htmlBody">
+<div class="site-header header-fixed">
+    <a onclick="history.back()" class="back"></a>
+    <div class="tit-name">我的隐藏</div>
+    <a href="#" class="sc">编辑</a>
+</div>
+<div class="main fixed-padding">
+    <div class="task-list">
+        <div class="new-task-list">
+            <ul class="my-sc">
+            </ul>
+        </div>
+        <div class="loading" style="display:none;">加载中...</div>
+        <div class="task-del" style="display:none;">
+            <a href="#" class="button4" onclick="MySaveTask.delSave()">删除(0)</a>
+        </div>
+    </div>
+    <div class="paging">
+        <span class="paging-prev" onclick="MySaveTask.page_prev()"><a href="#">上一页</a></span>
+        <span class="paging-num-total"></span>
+        <span class="paging-next" onclick="MySaveTask.page_next()"><a href="#">下一页</a></span>
+    </div>
+</div>
+{include file='common/footer'}
+</body>
+</html>

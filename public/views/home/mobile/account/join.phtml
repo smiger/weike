@@ -1,0 +1,55 @@
+﻿<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0,minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>我参与的</title>
+    {include file='common/header'}
+    <style type="text/css">
+        .new-task-list {
+            min-height: -webkit-calc(100vh - 272px);
+            min-height: calc(100vh - 272px);
+        }
+
+    </style>
+</head>
+
+<body data-offset="140" id="htmlBody">
+<div class="site-header header-fixed">
+    <a onclick="history.back()" class="back"></a>
+    <div class="tit-name">我参与的</div>
+</div>
+<div class="main myAttend">
+    <div class="zhuanghu-tab2">
+        <ul class="zh-tab-tit">
+            <li id="all" class=" active">全部</li>
+            <li id="lock" class="libg">已抢单</li>
+            <li id="wait" class="libg">待审核</li>
+            <li id="pass" class="libg">通过</li>
+            <li id="noPass" class="libg">不通过</li>
+        </ul>
+    </div>
+    <div class="task-list">
+        <div class="new-task-list">
+            <ul class="my-sc">
+            </ul>
+        </div>
+        <div class="task-del" style="display:none;">
+            <a href="#" class="button4" onclick="MySaveTask.delSave()">删除(0)</a>
+        </div>
+    </div>
+    <div class="paging">
+        <span class="paging-prev" onclick="AttendTask.page_prev()"><a href="#">上一页</a></span>
+        <span class="paging-num-total">
+					<select name="" class="paging-selct"></select>
+					<span class="paging-lastPage"></span>
+				</span>
+        <span class="paging-next" onclick="AttendTask.page_next()"><a href="#">下一页</a></span>
+    </div>
+</div>
+{include file='common/footer'}
+</body>
+</html>

@@ -1,0 +1,96 @@
+{include file="common/header"}
+<div class="content-wrapper">
+    {include file="taskcategory/nav_category"/}
+    <section class="content">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="nav-tabs-custom">
+                    {include file="taskcategory/tabs_category"/}
+                    <div class="tab-content">
+                        <div class="page-content">
+                            <form method="post" class="form-horizontal" id="display_form">
+                                <div class="panel panel-default ">
+                                    <div class="table-responsive panel-body">
+                                        <table class="table table-hover">
+                                            <thead class="navbar-inner">
+                                            <tr>
+                                                <th style="width: 45px">删?</th>
+                                                <th>名称</th>
+                                                <th>最小积分/金额</th>
+                                                <th>缩略图</th>
+                                                <th>排序</th>
+                                                <th>状态</th>
+                                                <th>添加时间</th>
+                                                <th>操作</th>
+                                            </tr>
+                                            </thead>
+                                            {if condition="!empty($list)"}
+                                            <tbody>
+                                            {volist name="list" id="item" key="index" }
+                                            <tr>
+                                                <td>
+                                                    <input type="checkbox" name="ids[]" value="{$item['id']}">
+                                                </td>
+                                                <td>{$item['title']}</td>
+                                                <td>
+                                                    <span class="label label-info">${$item['min_give_credit1']}</span>
+                                                    &nbsp;/&nbsp;
+                                                    <span class="label label-warning">￥{$item['min_give_credit2']}</span>
+                                                </td>
+                                                <td>
+                                                    <img style="width: 50px;height: 40px;" src="{:to_media($item['thumb'])}">
+                                                </td>
+                                                <td>{$item['order_by']}</td>
+                                                <td>
+                                                    {if condition="$item['is_display'] eq '1'"}
+                                                    <span class="label label-success">显示</span>
+                                                    {else}
+                                                    <span class="label label-default">隐藏</span>
+                                                    {/if}
+                                                </td>
+                                                <td>{$item['create_time']}</td>
+                                                <td>
+                                                    <a role="button" href="{:U('post_category', 'id=' . $item['id'])}" class="btn btn-sm btn-success" type="button">编辑</a>
+                                                </td>
+                                            </tr>
+                                            {/volist}
+                                            <tr>
+                                                <td>
+                                                    <input type="checkbox" onclick="var ck = this.checked;$('table').find(':checkbox').each(function(){this.checked = ck});">
+                                                </td>
+                                                <td colspan="6">
+                                                    <button class="btn btn-sm btn-danger" name="submit" type="button">删除</button>
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                            {/if}
+                                        </table>
+                                    </div>
+                                </div>
+                            </form>
+                            <script type="text/javascript">
+                                $(function () {
+                                    $('button[name="submit"]').bind('click',function() {
+                                        if (confirm('删除后不可恢复，您确定删除吗？')) {
+                                            $.post(
+                                                window.location.href,
+                                                $('#display_form').serialize(),
+                                                function (ret) {
+                                                    message(ret.message, ret.redirect, ret.type);
+                                                }, 'json'
+                                            );
+                                        }
+                                    });
+                                });
+                            </script>
+                        </div>
+                    </div>
+                    <!-- /.tab-content -->
+                </div>
+                <!-- /.nav-tabs-custom -->
+            </div>
+            <!-- /.col -->
+        </div>
+    </section>
+</div>
+{include file="common/footer"}

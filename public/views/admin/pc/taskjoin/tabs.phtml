@@ -1,0 +1,10 @@
+<ul class="nav nav-tabs">
+    <li {if condition="in_array($action,['index'])"}class="active"{/if}>
+        <a href="{:U('index')}">任务数据</a>
+    </li>
+    {if condition="in_array($action,['post']) && !empty($row['id'])"}
+        <li class="active">
+            <a href="{:U('post', 'id=' . $row['id'])}">查看任务数据</a>
+        </li>
+    {/if}
+</ul>

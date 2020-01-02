@@ -1,0 +1,194 @@
+<html>
+<head>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0,minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>充值</title>
+    {include file='common/header'}
+    <link href="/static/home/mobile/css/reset_5.css" rel="stylesheet" type="text/css" />
+    <link href="/static/home/mobile/css/style.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="/static/home/mobile/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/static/home/mobile/css/new_page.css" />
+
+    <!-- 日期选择 -->
+    <script src="/static/plugins/mobiscroll-2.5.2/dev/js/mobiscroll.core-2.5.2.js" type="text/javascript"></script>
+    <script src="/static/plugins/mobiscroll-2.5.2/dev/js/mobiscroll.core-2.5.2-zh.js" type="text/javascript"></script>
+    <link href="/static/plugins/mobiscroll-2.5.2/dev/css/mobiscroll.core-2.5.2.css" rel="stylesheet" type="text/css" />
+    <link href="/static/plugins/mobiscroll-2.5.2/dev/css/mobiscroll.animation-2.5.2.css" rel="stylesheet" type="text/css" />
+    <script src="/static/plugins/mobiscroll-2.5.2/dev/js/mobiscroll.datetime-2.5.1.js" type="text/javascript"></script>
+    <script src="/static/plugins/mobiscroll-2.5.2/dev/js/mobiscroll.datetime-2.5.1-zh.js" type="text/javascript"></script>
+    <script src="/static/plugins/mobiscroll-2.5.2/dev/js/mobiscroll.android-ics-2.5.2.js" type="text/javascript"></script>
+    <link href="/static/plugins/mobiscroll-2.5.2/dev/css/mobiscroll.android-ics-2.5.2.css" rel="stylesheet" type="text/css" />
+    <!-- 日期选择 -->
+
+    <style type="text/css">
+        .images-box{
+            display: flex;
+            display: -webkit-flex;
+            flex-flow: wrap;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+        .images-box .item{
+            margin-right: 5px;
+            margin-bottom: 5px;
+            width: 100px;
+            height: 100px;
+            position: relative;
+        }
+        .images-box .item input{
+            position: absolute;
+            z-index: 3;
+            opacity: 0;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+        }
+        .images-box .item span{
+            display: block;
+            width: 100px;
+            height: 100px;
+            text-align: center;
+            line-height: 60px;
+        }
+        .images-box .img-item img{
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header class="new-header" style="padding-top: 15px;">
+        <a href="javascript:history.go(-1)" class="back">
+            <img src="/static/home/mobile/picture/return.png" />
+        </a>
+        <div class="tit-name">充值</div>
+        <span class="dowm-btn publish-task-btn">
+            <a href="rechargelog.html" class="sc" style="color: #fff;">明细</a>
+        </span>
+    </header>
+    <div class="new-top-up">
+        <div class="update-box" id="hasZfb" style="">
+            <form id="post_form">
+                <div class="member-form">
+                    <div class="item-box"><span>姓名:</span>
+                        <input type="text" name="realname" value="{$member['alipay_realname']?$member['alipay_realname']:''}" class="m_txt" placeholder="请输入真实姓名">
+                    </div>
+                </div>
+                <div class="member-form">
+                    <div class="item-box"><span>账号:</span>
+                        <input type="text" name="account" value="{$member['alipay_account']?$member['alipay_account']:''}" class="m_txt" placeholder="请输入卡号、支付宝、微信账号">
+                    </div>
+                </div>
+                <div class="member-form">
+                    <div class="item-box"><span style="font-size: 21px;font-weight: bold">￥</span>
+                        <input type="text" class="m_txt" placeholder="请输入充值金额" name="credit2">
+                    </div>
+                </div>
+                <div class="member-form">
+                    <div class="item-box"><span>时间:</span>
+                        <input type="text" id="pay_time" name="pay_time" class="m_txt" value="" readonly placeholder="请输入充值时间">
+                    </div>
+                </div>
+                <div class="member-form">
+                    <div class="item-box"><span>截图:</span>
+                        <div style="line-height: 50px;">请上传支付的截图</div>
+                    </div>
+                </div>
+                <div class="member-form">
+                    <div class="item-box" style="height: auto;">
+                        <div class="images-box">
+                                                        <div class="item">
+                                <span id="uploadForm"></span>
+                            </div>
+                        </div>
+                        <div class="files" style="display: none">
+                            <input type="file" accept="image/*" name="thumbs[]">
+                        </div>
+                    </div>
+                </div>
+                <div class="member-form">
+                    <div class="member-btn">
+                        <input type="button" class="button1" value="确认">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script type="text/javascript">
+        /* 获取元素路径 */
+        function getFileSrc(file){
+            var url = null;
+            if (window.createObjectURL != undefined) {
+                url = window.createObjectURL(file)
+            } else if (window.URL != undefined) {
+                url = window.URL.createObjectURL(file)
+            } else if (window.webkitURL != undefined) {
+                url = window.webkitURL.createObjectURL(file)
+            }
+            return url;
+        }
+
+        function removeImg(obj) {
+            $(obj).remove();
+            $('.images-box .item').last().show();
+        }
+
+        $(function () {
+            $('.button1').click(function () {
+                var formData = new FormData($( "#post_form" )[0]);
+                $.ajax({
+                    url: window.location.href,
+                    type: 'POST',
+                    data: formData,
+                    dataType: "json",
+                    async: false,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    success: function (res) {
+                        message(res.message,res.redirect,res.type);
+                    },
+                    error: function () {
+                        message('请求错误','','error');
+                    }
+                });
+            });
+
+            //点击图片上传
+            $('.images-box .item').last().click(function(){
+                //点击选择图片
+                $('.files input[type="file"]:first').click().bind('change',function(){
+                    if(this.files.length > 0){
+                        var src = getFileSrc(this.files[0]);
+                        $('.images-box').prepend('<div class="item img-item" onclick="removeImg(this);"><img class="images-item" src="'+src+'"></div>');
+                        //向.files的div中添加input，已经选择了一个，将这个保留，新增一个新的input作为补充
+                        $('.files').prepend('<input type="file" accept="image/*" name="thumbs[]">');
+                        $('.images-box .item').last().hide();
+                    }
+                });
+            });
+
+            //日期选择插件
+            var currYear = (new Date()).getFullYear();
+            var opt={
+                date:{preset : 'date'},
+                datetime:{preset : 'datetime'},
+                time:{preset : 'time'},
+                default:{
+                    theme: 'android-ics light', //皮肤样式
+                    display: 'modal', //显示方式
+                    mode: 'scroller', //日期选择模式
+                    lang:'zh',
+                    startYear:currYear - 10, //开始年份
+                    endYear:currYear + 10 //结束年份
+                }
+            };
+            var optDateTime = $.extend(opt['datetime'], opt['default']);
+            $("#pay_time").mobiscroll(optDateTime).datetime(optDateTime);
+        });
+    </script>
+</body>
+</html>

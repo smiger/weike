@@ -1,0 +1,48 @@
+                {volist name="tasks" id="task" key="task_index"}
+                <li>
+                    <a href="/home/task/detail/id/{$task['id']}.html">
+                    <div class="task-list-wrap">
+                        {if $task_index == 0}
+                            <img class="task-list-hot" src="/static/home/mobile/images/hot.png">
+                        {/if}
+                        <div class="task-list-title-silver">
+                            <div class="task-list-title">{$task['title']}</div>
+                            <span class="task-list-gold">
+                                <span>￥</span>
+                                {$task['unit_price']}元
+                            </span>
+                        </div>
+                        <!-- <span class="task-list-prefix">商</span> -->
+                        <span class="task-list-id">{$task['id']}</span>
+                        <span class="task-jifen">{$task['give_credit1']}积分</span>
+                        <span class="task-list-remain-num">剩余{$task['ticket_num']-$task['join_num']}份</span>
+                        <div class="task-list-progress-content">
+                            <div class="task-list-progress"><span style="width:{$task['percent']}%"></span></div>
+                            <div class="task-list-progress-num">{$task['percent']}%</div>
+                        </div>
+                        <div class="task-list-gold-silver">
+                            <span class="task-list-end-time">结束时间：{$task['end_time']} </span>
+                        </div>
+                        <div class="task-list-gold-silver">
+                            <span class="task-list-end-time" style="width: auto;">任务状态：
+                            {if $task.category_type == "past"}
+                            任务已到期
+                            {/if}
+                            {if $task.category_type == "complete"}
+                            任务已完成
+                            {/if}
+                            {if $task.category_type == "wait"}
+                            任务待审核
+                            {/if}
+                            {if $task.category_type == "nopass"}
+                            任务未通过审核，编辑任务查看详情
+                            {/if}
+                            {if $task.category_type == "ing"}
+                            任务进行中
+                            {/if}
+                            </span>
+                        </div>
+                    </div>
+                    </a>
+                </li>
+                {/volist}

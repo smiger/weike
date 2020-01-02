@@ -1,0 +1,74 @@
+﻿<!DOCTYPE HTML>
+<html>
+
+	<head>
+		<meta name="apple-mobile-web-app-capable" content="yes">  
+        <meta name="viewport" content="width=device-width, initial-scale=1.0,minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>提现</title>
+        {include file='common/header'}
+		<link href="/static/home/mobile/css/reset_5.css" rel="stylesheet" type="text/css" />
+		<link href="/static/home/mobile/css/style.css" rel="stylesheet" type="text/css" />
+		<link rel="stylesheet" href="/static/home/mobile/css/font-awesome.min.css">
+		<link rel="stylesheet" type="text/css" href="/static/home/mobile/css/new_page.css" />
+		<script type="text/javascript">
+			function check() {
+				if($('#total_fee').val() == '') {
+					$('#error').text('充值金额还没填写');
+					$('#error').show();
+					return false;
+				} else {
+					$('#error').text('');
+					$('#error').hide();
+					return true;
+				}
+			}
+		</script>
+		<style type="text/css">
+			
+		</style>
+	</head>
+
+	<body>
+		<header class="new-header" style="padding-top: 15px;">
+			<a onclick="history.back()" class="back">
+				<img src="/static/home/mobile/picture/return.png" />
+			</a>
+			<div class="tit-name">提现</div>
+			<span class="dowm-btn publish-task-btn">
+				<a href="goldDetail.html" class="sc" style="color: #fff;">明细</a>
+			</span>
+		</header>
+
+		<div class="new-top-up">
+			<div class="update-box" id="hasZfb" style="display: none;">
+				<div class="zfb-count">
+					<img src="/static/home/mobile/picture/alipay.png" />支付宝账号：<span></span>
+				</div>
+				<div class="user-gold">
+					<span>余额：<span class="user-gold-money"></span></span>
+					<span class="gold-all-btn">全部</span>
+				</div>
+				<div class="member-form">
+					<div class="item-box"><span>￥</span><input type="text" class="m_txt" placeholder="请输入取现金额" id="goldNum" oninput="CashValue.computeMoney()"></div>
+					<div class="tixian_txt">最低一元提现，每天可提现，24小时到账</div>
+					<div class="member-btn"><input type="button" class="button1" onclick="CashValue.draw();" value="确认"></div>
+				</div>
+				<div id="error" style="display:none;"></div>
+			</div>
+			<div class="update-box" id="noZfb-phone">
+				<p>温馨提示：</p>
+				<ul>
+					<li class="bing-zfb">您还没绑定支付宝账号不能取现，
+						<a class="bang" href="/home/profile/alipay.html">去绑定</a>
+					</li>
+					<li class="bing-phone">您还没绑定手机号，
+						<a class="bang" href="/home/profile/phone.html">去绑定</a>
+					</li>
+					<li class="check-count">提现前检查好自己的提现账号</li>
+				</ul>
+			</div>
+		</div>
+        {include file='common/footer'}
+</body>
+</html>

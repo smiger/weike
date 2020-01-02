@@ -1,0 +1,159 @@
+<html>
+<head>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0,minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>找回密码</title>
+    <link href="/static/home/mobile/css/reset_5.css" rel="stylesheet" type="text/css"/>
+    <link href="/static/home/mobile/css/style.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="/static/home/mobile/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/static/home/mobile/css/new_style.css"/>
+    <script type="text/javascript" src="/static/home/mobile/js/jquery.min.js"></script>
+    <!-- 弹出层 -->
+    <link rel="stylesheet" href="/static/plugins/dialog/css/dialog.css"/>
+    <script src="/static/plugins/dialog/lib/zepto.min.js"></script>
+    <script src="/static/plugins/dialog/js/dialog.js"></script>
+    <!-- 弹出层 -->
+    <script type="text/javascript" src="/static/home/mobile/js/global.js"></script>
+</head>
+
+<body>
+<div class="find-pwd">
+    <div class="site-header">
+        <a onclick="window.history.back();" class="back"></a>
+        <div class="tit-name">忘记密码</div>
+    </div>
+    <div class="main findPwd">
+        <div class="denglu-box">
+            <div class="dl-form">
+                <form id="formForgetpass">
+                <div class="item-box">
+                    <input name="username" id="forgetpass-username" placeholder="请输入注册的用户名" type="text" class="m_txt">
+                </div>
+                <div class="item-box">
+                    <input name="email" id="forgetpass-email" placeholder="请输入注册的邮箱地址" type="email" class="m_txt">
+                </div>
+                <div class="item-box">
+                    <input type="text" class="m_txt" placeholder="输入验证码" name="captcha" id="forgetpass-verifycode" />
+                    <div class="yzm">
+                        <img id="forgetpass-verifycodeimg" style="width:90px; height:30px;"  src="{:captcha_src()}" onclick="this.src='{:captcha_src()}?'+Math.random()" alt="captcha" />
+                    </div>
+                </div>
+                </form>
+            </div>
+        </div>
+        <div style="padding: 10px;color:red;font-size: 14px; line-height: 22px;">
+            <label id="okForgetpass" style="display: none;">请前往您的邮箱查收找回密码邮件，<br />并通过链接重置新的登录密码！</label>
+        </div>
+    </div>
+    <div class="member-btn">
+        <input type="button" class="button1" value="立即找回" id="ajax-forgetpass" />
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var $okbox = $("#okForgetpass");
+    var $form = $("#formForgetpass");
+    var $username = $("#forgetpass-username");
+    var $email = $("#forgetpass-email");
+    var $verifycode = $('#forgetpass-verifycode');
+    var $submit = $("#ajax-forgetpass");
+
+    function validateEmail(email){
+        var error = 0;
+        var reg = /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
+        if (email.length == 0)
+        {
+            error = 1;
+            $email.addClass("error");
+            message("请输入邮箱地址", "", "error");
+        }
+        else if (!reg.test(email))
+        {
+            error = 1;
+            $email.addClass("error");
+            message("请输入正确的邮箱地址", "", "error");
+        }
+        return error;
+    }
+
+    function verifycodeimg(prefix){
+        var timenow = new Date().getTime();
+        $('#' + prefix + '-verifycodeimg').attr("src", '{:captcha_src()}?' + timenow);
+    }
+
+    $email.change(function() {
+        verifycodeimg('forgetpass');
+    });
+
+    $email.blur(function() {
+        var username = $username.val();
+        if ($.trim(username) == "") {
+            message("用户名不能为空", "", "error");
+            return false;
+        }
+
+        var email = $email.val();
+        var error = validateEmail(email);
+        if(error != 0)
+            return false;
+
+        var server = "/home/forgetpass/checkemail";
+        var data = {"username": $username.val(), "email": $email.val()};
+        Common.ApiPost(server, data, function(res){
+            if(res.type != "success"){
+                $email.addClass("error");
+                message(res.message,'',res.type);
+            }else{
+                $email.removeClass("error");
+            }
+        });
+    });
+
+    $submit.click(function () {
+        var username = $username.val();
+        if ($.trim(username) == "") {
+            message("用户名不能为空", "", "error");
+            return false;
+        }
+
+        var email = $email.val();
+        var verifycode = $verifycode.val();
+        var error = validateEmail(email);
+        if(error != 0)
+            return false;
+
+        var server = "/home/forgetpass/sendmail";
+        var data = {"username": $username.val(), "email": email, "captcha": verifycode};
+        Common.ApiPost(server, data, function(res){
+            if(res.redirect == -1){
+                $email.addClass("error");
+                message("邮箱地址不存在,请重新输入", "", "error");
+            }else if(res.redirect == -2){
+                $email.removeClass("error");
+                $verifycode.addClass("error");
+                message("验证码输入错误,请重新输入", "", "error");
+            }else if(res.redirect == -3){
+                $email.removeClass("error");
+                $verifycode.addClass("error");
+                message("邮件发送失败，请稍候尝试", "", "error");
+            }
+
+            if (res.redirect != 0) {
+                verifycodeimg('forgetpass');
+            } else {
+                $email.removeClass("error");
+                $verifycode.removeClass("error");
+
+                $form.hide();
+                $submit.hide();
+                $okbox.show();
+            }
+        });
+    });
+});
+</script>
+</body>
+</html>

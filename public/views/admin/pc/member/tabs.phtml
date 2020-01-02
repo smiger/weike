@@ -1,0 +1,17 @@
+<ul class="nav nav-tabs">
+    {if condition="in_array($action,['index'])"}
+    <li {if condition="in_array($action,['index'])"}class="active"{/if}>
+        <a href="{:U('index')}">会员列表</a>
+    </li>
+    {/if}
+    {if condition="in_array($action,['post']) && !empty($item)"}
+        <li class="active">
+            <a href="{:U('post', 'id=' . $item['uid'])}">编辑会员</a>
+        </li>
+    {/if}
+    {if condition="in_array($action,['charge'])"}
+    <li {if condition="in_array($action,['charge'])"}class="active"{/if}>
+        <a href="{:U('charge')}">充值记录</a>
+    </li>
+    {/if}
+</ul>

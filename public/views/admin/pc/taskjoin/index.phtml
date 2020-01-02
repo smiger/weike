@@ -1,0 +1,190 @@
+{include file="common/header"}
+<div class="content-wrapper">
+    {include file="taskjoin/nav"/}
+    <section class="content">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="nav-tabs-custom">
+                    {include file="taskjoin/tabs"/}
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="tab1">
+                            <div class="page-content">
+                                <div class="panel panel-info">
+                                    <div class="panel-heading">筛选</div>
+                                    <div class="panel-body">
+                                        <form class="form-horizontal" role="form">
+                                            <div class="form-group">
+                                                <label class="col-xs-12 col-sm-3 col-md-2 control-label">会员编号</label>
+                                                <div class="col-sm-6 col-md-3 col-lg-3 col-xs-12">
+                                                    <input type="text" class="form-control" name="uid" value="{$params['uid']?$params['uid']:''}" placeholder="请输入会员编号">
+                                                </div>
+                                                <label class="col-xs-12 col-sm-3 col-md-2 control-label">任务编号</label>
+                                                <div class="col-sm-6 col-md-3 col-lg-3 col-xs-12 .col-md-offset-2">
+                                                    <input type="text" class="form-control" name="title" value="{$params['title']?$params['title']:''}" placeholder="请输入任务编号">
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                 <label class="col-xs-12 col-sm-3 col-md-2 control-label">开始时间</label>
+                                                 <div class="col-sm-3 col-md-3 col-lg-3 col-xs-12">
+                                                    <input size="16" id="start_time" name="start_time" type="text" value="{$params['start_time']?$params['start_time']:''}"  class="form-control datetime" placeholder="请选择开始时间" />
+                                                 </div>
+                                                 <label class="col-xs-12 col-sm-3 col-md-2 control-label">结束时间</label>
+                                                 <div class="col-sm-3 col-md-3 col-lg-3 col-xs-12">
+                                                    <input size="16" id="end_time" name="end_time" type="text" value="{$params['end_time']?$params['end_time']:''}"  class="form-control datetime" placeholder="请选择结束时间" />
+                                                 </div>
+
+                                                <link rel="stylesheet" type="text/css" href="/static/plugins/bootstrap-datetimepicker/bootstrap-datetimepicker.min.css" />
+                                                <script type="text/javascript" src="/static/plugins/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js"></script>
+                                                <script type="text/javascript" src="/static/plugins/bootstrap-datetimepicker/bootstrap-datetimepicker.zh-CN.js"></script>
+                                                <script type="text/javascript">
+                                                    $(function(){
+                                                        $("#start_time").datetimepicker({
+                                                            minView: "month",
+                                                            format: 'yyyy-mm-dd',
+                                                            language: 'zh-CN',
+                                                            weekStart: 1,
+                                                            todayBtn:  1,
+                                                            todayHighlight: 1,
+                                                            showClear: 1,
+                                                            autoclose: true
+                                                        }).on("click",function(){
+                                                            $("#start_time").datetimepicker("setEndDate", $("#end_time").val());
+                                                            $("#end_time").datetimepicker("setStartDate", $("#start_time").val());
+                                                        });
+                                                        $("#end_time").datetimepicker({
+                                                            minView: "month",
+                                                            format: 'yyyy-mm-dd',
+                                                            language: 'zh-CN',
+                                                            weekStart: 1,
+                                                            todayBtn:  1,
+                                                            todayHighlight: 1,
+                                                            showClear: 1,
+                                                            autoclose: true
+                                                        }).on("click",function(){
+                                                            $("#start_time").datetimepicker("setEndDate", $("#end_time").val());
+                                                            $("#end_time").datetimepicker("setStartDate", $("#start_time").val());
+                                                        });
+                                                    });
+                                                </script>
+                                            </div>  
+
+                                            <div class="form-group">
+                                                <label class="col-xs-12 col-sm-3 col-md-2 control-label">状态</label>
+                                                <div class="col-sm-6 col-md-8 col-lg-8 col-xs-12">
+                                                    <label class="checkbox-inline">
+                                                        <input type="checkbox" name="status[]" {if !empty($_GET['status']) && in_array(1,$_GET['status'])}checked{/if} value="1">
+                                                        已抢单
+                                                    </label>
+                                                    <label class="checkbox-inline">
+                                                        <input type="checkbox" name="status[]" {if !empty($_GET['status']) && in_array(2,$_GET['status'])}checked{/if} value="2">
+                                                        待审核
+                                                    </label>
+                                                    <label class="checkbox-inline">
+                                                        <input type="checkbox" name="status[]" {if !empty($_GET['status']) && in_array(3,$_GET['status'])}checked{/if} value="3">
+                                                        已审核
+                                                    </label>
+                                                    <label class="checkbox-inline">
+                                                        <input type="checkbox" name="status[]" {if !empty($_GET['status']) && in_array(4,$_GET['status'])}checked{/if} value="4">
+                                                        审核未通过
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-sm-6 col-md-8 col-lg-8 col-xs-12 col-md-offset-2 col-lg-offset-2 col-sm-offset-4">
+                                                    <button class="btn btn-default"><i class="fa fa-search"></i> 搜索</button>
+                                                    <!-- <input type="hidden" name="token" value="28ab76d3">
+                                                    <input class="btn btn-primary" type="submit" name="export_submit" value="导出"> -->
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <form method="post" class="form-horizontal" id="display_form">
+                                    <input type="hidden" name="op" value="post_category">
+                                    <input type="hidden" name="ac" value="delete">
+                                    <div class="panel panel-default ">
+                                        <div class="table-responsive panel-body">
+                                            <table class="table table-hover">
+                                                <thead class="navbar-inner">
+                                                <tr>
+                                                    <th style="width: 45px">删?</th>
+                                                    <th>编号</th>
+                                                    <th>会员编号</th>
+                                                    <th>任务编号</th>
+                                                    <th>审核状态</th>
+                                                    <th>提交时间</th>
+                                                    <th>操作</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                {if !empty($list)}
+                                                    {volist name="list" id="item"}
+                                                    <tr>
+                                                        <td>
+                                                            <input type="checkbox" name="ids[]" value="{$item['id']}">
+                                                        </td>
+                                                        <td>{$item['id']}</td>
+                                                        <td>{$item['uid']}</td>
+                                                        <td>{$item['task_id']}</td>
+                                                        <td>
+                                                            {if $item['status'] == 2}
+                                                            <label class="label label-info">待审核</label>
+                                                            {elseif $item['status'] == 3}
+                                                            <label class="label label-success">通过审核</label>
+                                                            {elseif $item['status'] == 4}
+                                                            <label class="label label-success">审核未通过</label>
+                                                            {else}
+                                                            <label class="label label-danger">已抢单</label>
+                                                            {/if}
+                                                        </td>
+                                                        <td>
+                                                            {$item.update_time}
+                                                        </td>
+                                                        <td>
+                                                            <a href="{:U('post', 'id=' . $item['id'])}"  class="btn btn-sm btn-success">查看</a>
+                                                        </td>
+                                                    </tr>
+                                                    {/volist}
+                                                    <tr>
+                                                        <td>
+                                                            <input type="checkbox" onclick="var ck = this.checked;$('table').find(':checkbox').each(function(){this.checked = ck});">
+                                                        </td>
+                                                        <td colspan="6">
+                                                            <button class="btn btn-sm btn-danger" name="submit" type="button">删除</button>
+                                                        </td>
+                                                    </tr>
+                                                {/if}
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </form>
+                                {$pager}
+                                <script type="text/javascript">
+                                    $(function () {
+                                        $('button[name="submit"]').bind('click',function() {
+                                            if (confirm('删除后不可恢复，您确定删除吗？')) {
+                                                $.post(
+                                                    window.location.href,
+                                                    $('#display_form').serialize(),
+                                                    function (ret) {
+                                                        message(ret.message, ret.redirect, ret.type);
+                                                    }, 'json'
+                                                );
+                                            }
+                                        });
+                                    });
+                                </script>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.tab-content -->
+                </div>
+                <!-- /.nav-tabs-custom -->
+            </div>
+            <!-- /.col -->
+        </div>
+    </section>
+</div>
+{include file="common/footer"}

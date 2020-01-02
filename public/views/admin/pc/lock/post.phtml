@@ -1,0 +1,74 @@
+{include file="common/header"}
+<div class="content-wrapper">
+    {include file="lock/nav"/}
+    <section class="content">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="nav-tabs-custom">
+                    {include file="lock/tabs"/}
+                    <div class="tab-content">
+                        <form method="post" class="form-horizontal form" id="post_form">
+                            <div class="panel panel-info">
+                                <div class="panel-heading">
+                                    任务分类
+                                </div>
+                                <div class="panel-body">
+                                    <div class="form-group">
+                                        <label class="col-xs-12 col-sm-3 col-md-2 control-label">网站名称</label>
+                                        <div class="col-sm-8 col-xs-12">
+                                            <input type="text" class="form-control" name="name" value="{$item['name']?$item['name']:''}" placeholder="请输入网站名称">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-xs-12 col-sm-3 col-md-2 control-label">域名</label>
+                                        <div class="col-sm-8 col-xs-12">
+                                            <input type="text" class="form-control" name="domain" value="{$item['domain']?$item['domain']:''}" placeholder="请输入域名">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-xs-12 col-sm-3 col-md-2 control-label">授权类型</label>
+                                        <div class="col-sm-8 col-xs-12">
+                                            <label class="radio-inline">
+                                                <input type="radio" name="is_forever" value="1" {$item['is_forever']?'checked':''}>
+                                                永久
+                                            </label>
+                                            <label class="radio-inline">
+                                                <input type="radio" name="is_forever" value="0" {$item['is_forever']?'':'checked'}>
+                                                临时
+                                            </label>
+                                        </div>
+                                    </div>
+                                    {:tpl_date(['title'=>'到期时间','name'=>'to_date','value'=>!empty($item['to_date'])?$item['to_date']:''])}
+                                    <div class="form-group">
+                                        <div class="col-sm-8 col-xs-12 col-sm-offset-2">
+                                            <input type="hidden" name="id" value="{$item['id']?$item['id']:0}">
+                                            <button type="button" name="submit" class="btn btn-primary">提交</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        <script type="text/javascript">
+                            $(function () {
+                                //提交分类信息
+                                $("button[name='submit']").click(function () {
+                                    $.post(
+                                        window.location.href,
+                                        $('#post_form').serialize(),
+                                        function (res) {
+                                            message(res.message,res.redirect,res.type)
+                                        },'json'
+                                    );
+                                });
+                            });
+                        </script>
+                    </div>
+                    <!-- /.tab-content -->
+                </div>
+                <!-- /.nav-tabs-custom -->
+            </div>
+            <!-- /.col -->
+        </div>
+    </section>
+</div>
+{include file="common/footer"}

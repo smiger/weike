@@ -1,0 +1,163 @@
+.top {
+  width: 100%;
+  height: 12rem;
+  background: #FE4B1C;
+  margin-bottom: .8rem;
+  overflow: hidden;
+}
+.top .out-1 {
+  width: 8rem;
+  height: 8rem;
+  border-radius: 100%;
+  -webkit-border-radius: 100%;
+  background: rgba(255, 255, 255, 0.4);
+  margin: 1rem auto 0 auto;
+}
+.top .out-1 .out-2 {
+  width: 7rem;
+  height: 7rem;
+  border-radius: 100%;
+  -webkit-border-radius: 100%;
+  background: #ffffff;
+  margin: 0 auto;
+}
+.top .out-1 .out-2 .signBtn {
+  width: 6.2rem;
+  height: 6.2rem;
+  border-radius: 100%;
+  -webkit-border-radius: 100%;
+  border: 1px #FE4B1C solid;
+}
+.top .out-1 .out-2 .signBtn strong,
+.top .out-1 .out-2 .signBtn span {
+  display: block;
+  width: 85%;
+  margin: 0 auto;
+  text-align: center;
+  color: #FE4B1C;
+}
+.top .out-1 .out-2 .signBtn strong {
+  height: 3.5rem;
+  line-height: 4.5rem;
+  font-weight: 600;
+  border-bottom: 1px #eee solid;
+}
+.top .out-1 .out-2 .signBtn span {
+  height: 2.5rem;
+  line-height: 2.5rem;
+  font-size: .9rem;
+  line-height: 2rem !important;
+}
+.top .out-1:active {
+  animation: sign .25s forwards;
+  -webkit-animation: sign .25s forwards;
+}
+.tips {
+  position: absolute;
+  top: 13.6rem;
+  z-index: 999;
+  width: 100%;
+  color: #fff;
+  font-size: .9rem;
+  text-align: center;
+  padding-bottom: .5rem;
+}
+.Calendar {
+  background: #fff;
+  padding-bottom: 1rem;
+}
+.Calendar #toyear {
+  border-bottom: 1px #e7e7e7 solid;
+  width: 96%;
+  margin: 0 auto;
+  height: 2.5rem;
+  text-align: center;
+  color: #333;
+  font-size: .95rem;
+}
+.Calendar #toyear .year-month {
+  height: 100%;
+  line-height: 2.5rem;
+}
+.Calendar #toyear #idCalendarPre,
+.Calendar #toyear #idCalendarNext {
+  height: 100%;
+  line-height: 2.5rem;
+  padding: 0 2rem;
+  text-align: center;
+  font-size: .85rem;
+  color: #999;
+}
+.Calendar table,
+.Calendar tr,
+.Calendar td {
+  border: 0;
+}
+.Calendar table {
+  width: 96%;
+  margin: 0 auto;
+}
+.Calendar table tr {
+  text-align: center;
+  height: 2rem;
+}
+.Calendar table tr td span {
+  margin: 0 auto;
+  display: block;
+  line-height: 1.6rem;
+  width: 1.5rem;
+  height: 1.5rem;
+  font-size: .9rem;
+  border-radius: 100%;
+}
+.Calendar table tr .onToday span {
+  background: #FE4B1C;
+  color: #fff;
+}
+
+.site-header {
+  height: 205px;
+  box-sizing: border-box;
+  padding: 10px 20px 0;
+  background: #FE4B1C;
+  background-size: 100% 100%;
+  z-index: 5;
+}
+.site-header .tit-name {
+  font-size: 18px;
+  color: #fff;
+  font-weight: bold;
+  height: 50px;
+  line-height: 45px;
+  text-align: center;
+}
+.site-header .back {
+  position: initial;
+  width: 30px;
+  height: 30px;
+  background: url(../images/close.png) no-repeat;
+  background-size: 16px 16px;
+  background-position: 0px 7px;
+}
+
+.find-pwd .site-header,
+.header-fixed.site-header {
+  height: 60px;
+}
+
+.site-header .tit-name {
+  font-size: 1.25rem;
+  font-weight: 500;
+  text-indent: -30px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.find-pwd .site-header .back,
+.site-header.header-fixed .back {
+  float: left;
+  background: url(../../images/return.png) no-repeat;
+  background-size: 22px 22px;
+  margin-top: 10px;
+}

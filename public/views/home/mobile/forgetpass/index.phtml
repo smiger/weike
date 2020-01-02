@@ -1,0 +1,157 @@
+<html>
+<head>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0,minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>找回密码</title>
+    <link href="/static/home/mobile/css/reset_5.css" rel="stylesheet" type="text/css"/>
+    <link href="/static/home/mobile/css/style.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="/static/home/mobile/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/static/home/mobile/css/new_style.css"/>
+    <script type="text/javascript" src="/static/home/mobile/js/jquery.min.js"></script>
+    <!-- 弹出层 -->
+    <link rel="stylesheet" href="/static/plugins/dialog/css/dialog.css"/>
+    <script src="/static/plugins/dialog/lib/zepto.min.js"></script>
+    <script src="/static/plugins/dialog/js/dialog.js"></script>
+    <!-- 弹出层 -->
+    <script type="text/javascript" src="/static/home/mobile/js/global.js"></script>
+</head>
+
+<body>
+<div class="find-pwd">
+    <div class="site-header">
+        <div class="tit-name">重设密码</div>
+    </div>
+    <div class="main findPwd">
+        <div class="denglu-box">
+            <div class="dl-form">
+                <form id="formForgetpass">
+                <div class="item-box">
+                    <input name="username" id="forgetpass-username" placeholder="" type="text" class="m_txt" readonly="readonly" value="{$member['username']?$member['username']:''}" />
+                </div>
+                <div class="item-box">
+                    <input name="email" id="forgetpass-email" placeholder="" type="text" class="m_txt" readonly="readonly" value="{$member['email']?$member['email']:''}" />
+                </div>
+                <div class="item-box">
+                    <input type="password" name="password" class="m_txt" placeholder="输入新密码" id="forgetpass-password" >
+                </div>
+                <div class="item-box">
+                    <input type="password" name="password_confirm" class="m_txt" placeholder="重复新密码" id="forgetpass-confirm-password" >
+                </div>
+                <div class="item-box">
+                    <input type="text" class="m_txt" placeholder="输入验证码" name="captcha" id="forgetpass-verifycode" />
+                    <div class="yzm">
+                        <img id="forgetpass-verifycodeimg" style="width:90px; height:30px;"  src="{:captcha_src()}" onclick="this.src='{:captcha_src()}?'+Math.random()" alt="captcha" />
+                    </div>
+                </div>
+                </form>
+            </div>
+        </div>
+        <div style="padding: 10px;color:red;font-size: 14px; line-height: 22px;">
+            <label id="okForgetpass" style="display: none;">请前往您的邮箱查收找回密码邮件，<br />并通过链接重置新的登录密码！</label>
+        </div>
+    </div>
+    <div class="member-btn">
+        <input type="button" class="button1" value="确认重设" id="ajax-forgetpass" />
+    </div>
+</div>
+
+<script type="text/javascript">
+var password_empty = "新密码不能为空。";
+var password_shorter = "新密码不能少于 6 个字符。";
+var confirm_password_invalid = "两次输入新密码不一致";
+var passwd_balnk = "密码中不能包含空格";
+var verifycode_required = "请输入验证码";
+var verifycode_faild = '验证码输入错误';
+var uid = {$member['uid']?$member['uid']:0};
+var sign = '{$member['sign']?$member['sign']:''}';
+
+function verifycodeimg(){
+    var timenow = new Date().getTime();
+    $('#' + prefix + '-verifycodeimg').attr("src", '{:captcha_src()}?' + timenow);
+}
+
+$(function () {
+    var $verifycode = $('#forgetpass-verifycode');
+    var $password  = $('#forgetpass-password');
+    var $confirm_password = $('#forgetpass-confirm-password');
+    var $submit = $("#ajax-forgetpass");
+
+    $submit.click(function () {
+        var verifycode = $verifycode.val();
+        var password = $password.val();
+        var confirm_password = $confirm_password.val();
+        var error = 0;
+        if (password.length == 0)
+        {
+            error = 1;
+            $password.addClass("error");
+            message(password_empty, "", "error");
+        }
+        else if (password.length < 6)
+        {
+            error = 1;
+            $password.addClass("error");
+            message(password_shorter, "", "error");
+        }
+        else if (/ /.test(password) == true)
+        {
+            error = 1;
+            $password.addClass("error");
+            message(passwd_balnk, "", "error");
+        }
+        else if(confirm_password.length == 0)
+        {
+            error = 1;
+            $confirm_password.addClass("error");
+            message("请输入确认密码", "", "error");
+        }
+        else if (confirm_password != password )
+        {
+            error = 1;
+            $confirm_password.addClass("error");
+            message(confirm_password_invalid, "", "error");
+        }
+        else if (verifycode.length < 4 )
+        {
+            error = 1;
+            $verifycode.addClass("error");
+            message(verifycode_required, "", "error");
+        }
+
+        if(error != 0)
+            return false;
+
+        var server = "/home/forgetpass/changepass";
+        var data = {"uid": uid, "sign": sign, "password": password, "confirm_password": confirm_password, "captcha": verifycode};
+        Common.ApiPost(server, data, function(res){
+            if(res.redirect == -1){
+                message("邮箱地址不存在,请重新输入", "", "error");
+                return;
+            }else if(res.redirect == -2){
+                $verifycode.addClass("error");
+                message(verifycode_faild, "", "error");
+                return;
+            }
+
+            if (res.type == 'error') {
+                message(res.message,'','error');
+                return;
+            }
+
+            if (res.redirect != 0) {
+                verifycodeimg();
+            } else {
+                $password.removeClass("error");
+                $confirm_password.removeClass("error");
+                $verifycode.removeClass("error");
+
+                window.location = '/home/auth/login.html';
+            }
+        });
+    });
+});
+</script>
+</body>
+</html>

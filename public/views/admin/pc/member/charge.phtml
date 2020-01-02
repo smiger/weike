@@ -1,0 +1,123 @@
+{include file="common/header"}
+<div class="content-wrapper">
+    {include file="member/nav"}
+    <section class="content">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="nav-tabs-custom">
+                    {include file="member/tabs"}
+                    <div class="tab-content">
+                        <div class="page-content">
+                            <div class="panel panel-info">
+                                <div class="panel-heading">
+                                    筛选
+                                    <span class="pull-right">累计充值&nbsp;<font style="color: red;font-weight: bold;">{$total}</font>&nbsp;次</span>
+                                </div>
+                                <div class="panel-body">
+                                    <form class="form-horizontal" method="get" role="form">
+                                        <div class="form-group">
+                                            <label class="col-xs-12 col-sm-3 col-md-2 control-label">关键词</label>
+                                            <div class="col-sm-6 col-md-8 col-lg-8 col-xs-12">
+                                                <input type="text" class="form-control" name="keyword" value="{$_GET['keyword']?$_GET['keyword']:''}" placeholder="请输入会员编号">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-sm-6 col-md-8 col-lg-8 col-xs-12 col-md-offset-2 col-lg-offset-2 col-sm-offset-4">
+                                                <button class="btn btn-primary"><i class="fa fa-search"></i> 搜索</button>
+                                                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#chargeModal">在线充值</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <!-- 充值金额 -->
+                            <div class="modal fade in" id="chargeModal" tabindex="-1" role="dialog" aria-labelledby="chargeModalLabel" aria-hidden="false">
+                                <div class="modal-dialog modal-md" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                            <h4 class="modal-title" id="chargeModalLabel">会员充值</h4></div>
+                                        <div class="modal-body">
+                                            <form class="form-horizontal" role="form" id="chargeModalForm">
+                                                <div class="form-group">
+                                                    <label class=" col-sm-3  control-label">会员编号</label>
+                                                    <div class="col-sm-9">
+                                                        <input type="text" class="form-control" name="uid" placeholder="请输入会员编号">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class=" col-sm-3  control-label">充值金额</label>
+                                                    <div class="col-sm-9">
+                                                        <input type="number" class="form-control" name="num" placeholder="请输入充值金额">
+                                                        <span class="help-block">输入100，代表充值100；-100代表扣除100余额</span>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                                                    <button type="button" class="btn btn-primary" id="chargeModalBtn">立即充值</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <script type="text/javascript">
+                                $(function () {
+                                    $('#chargeModalBtn').click(function () {
+                                        var _this = $(this);
+                                        _this.attr('disabled','disabled');
+                                        message('正在充值，请稍等...','','loading');
+                                        $.post(
+                                            window.location.href,
+                                            $('#chargeModalForm').serialize(),
+                                            function (ret) {
+                                                _this.removeAttr('disabled');
+                                                message(ret.message,ret.redirect,ret.type);
+                                            },'json'
+                                        );
+                                    });
+                                });
+                            </script>
+                            <!-- 充值金额 -->
+                            <form method="post" class="form-horizontal" id="store_category_form">
+                                <div class="panel panel-default ">
+                                    <div class="table-responsive panel-body">
+                                        <table class="table table-hover">
+                                            <thead class="navbar-inner">
+                                            <tr>
+                                                <th>会员编号</th>
+                                                <th>充值金额</th>
+                                                <th>备注信息</th>
+                                                <th>充值时间</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            {if !empty($list)}
+                                                {volist name="list" id="item"}
+                                                <tr>
+                                                    <td>{$item['uid']}</td>
+                                                    <td>{$item['num']}</td>
+                                                    <td>{$item['remark']}</td>
+                                                    <td>
+                                                        {$item['create_time']}
+                                                    </td>
+                                                </tr>
+                                                {/volist}
+                                            {/if}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </form>
+                            {$pager}
+                        </div>
+                    </div>
+                    <!-- /.tab-content -->
+                </div>
+                <!-- /.nav-tabs-custom -->
+            </div>
+            <!-- /.col -->
+        </div>
+    </section>
+</div>
+{include file="common/footer"}

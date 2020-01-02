@@ -1,0 +1,579 @@
+---------------------------------------------------------------
+[ 2020-01-02T19:59:13+08:00 ] 0.0.0.0 GET /
+[ info ] localhost/ [运行时间：1.515830s][吞吐率：0.66req/s] [内存消耗：3,399.03kb] [文件加载：71]
+[ info ] [ LANG ] D:\BaiduYunDownload\weike2\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => '',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'localhost',
+  'connection' => 'keep-alive',
+  'cache-control' => 'max-age=0',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.88 Safari/537.36',
+  'sec-fetch-user' => '?1',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+  'sec-fetch-site' => 'none',
+  'sec-fetch-mode' => 'navigate',
+  'accept-encoding' => 'gzip, deflate, br',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'cookie' => 'XDEBUG_SESSION=XDEBUG_ECLIPSE; administrator=eyJpZCI6MSwidXNlcm5hbWUiOiJhZG1pbiIsInBhc3N3b3JkIjoiY2VmMThiYWQ5ZDEwYmQ5ZWIxZDE1MzBjOGI1YjlkZTQiLCJzYWx0IjoielNlU3M3UTAiLCJnZW5kZXIiOjAsImxldmVsIjowLCJiaXJ0aGRheSI6MCwibmlja25hbWUiOiIiLCJtb2JpbGUiOiIiLCJlbWFpbCI6IiIsImF2YXRhciI6IiIsImlzX2NoZWNrIjoxLCJsYXN0X2xvZ2luX2lwIjoiIiwibGFzdF9sb2dpbl90aW1lIjowLCJ1cGRhdGVfdGltZSI6IjIwMTgtMDgtMTggMjE6MTQ6MDUiLCJjcmVhdGVfdGltZSI6IjE5NzAtMDEtMDEgMDg6MDA6MDAifQ%3D%3D; bdshare_firstime=1577962828334',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\home\controller\Index->index[ D:\BaiduYunDownload\weike2\app\home\controller\Index.php ]
+[ info ] [ VIEW ] ./views/home/mobile/index\index.phtml [ array (
+  0 => 'controller',
+  1 => 'action',
+  2 => 'site',
+  3 => 'member',
+  4 => 'categories',
+  5 => 'banners',
+  6 => 'notices',
+  7 => 'withdraws',
+  8 => 'today_credit1',
+  9 => 'today_credit2',
+  10 => 'tasks',
+  11 => 'pageCount',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.004971s ] mysql:host=localhost;dbname=web32;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tb_config` [ RunTime:0.023514s ]
+[ sql ] [ SQL ] SELECT * FROM `tb_config` LIMIT 1 [ RunTime:0.000742s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tb_task_category` [ RunTime:0.014765s ]
+[ sql ] [ SQL ] SELECT * FROM `tb_task_category` ORDER BY order_by desc LIMIT 0,100 [ RunTime:0.000782s ]
+[ sql ] [ SQL ] SELECT SUM((give_credit2-fee)/ticket_num) AS credit2,SUM(give_credit1/ticket_num) AS credit1 FROM tb_task WHERE is_complete=0 AND is_display=1 AND check_period*3600+create_time<1577966352 AND start_time<1577966352 AND end_time>1577966352 [ RunTime:0.000798s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tb_banner` [ RunTime:0.014446s ]
+[ sql ] [ SQL ] SELECT * FROM `tb_banner` WHERE  `is_display` = 1 ORDER BY order_by desc LIMIT 10 [ RunTime:0.000755s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tb_notice` [ RunTime:0.020898s ]
+[ sql ] [ SQL ] SELECT * FROM `tb_notice` WHERE  `is_display` = 1 ORDER BY order_by desc,id desc LIMIT 10 [ RunTime:0.001016s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tb_withdraw` [ RunTime:0.013698s ]
+[ sql ] [ SQL ] SELECT * FROM `tb_withdraw` WHERE  `status` = 1 ORDER BY id DESC LIMIT 0,10 [ RunTime:0.000709s ]
+[ sql ] [ SQL ] SELECT * FROM tb_task WHERE is_complete=0 AND is_display=1 AND check_period_time<1577966352 AND start_time<1577966352 AND end_time>1577966352 ORDER BY top_end_time DESC, end_time ASC, id DESC LIMIT 0,15 [ RunTime:0.000917s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS num FROM tb_task WHERE is_complete=0 AND is_display=1 AND check_period_time<1577966352 AND start_time<1577966352 AND end_time>1577966352 [ RunTime:0.000771s ]
+[ error ] D:\BaiduYunDownload\weike2\app\admin\model\Config.php:29 错误：unserialize(): Error at offset 401 of 4294 bytes
+---------------------------------------------------------------
+[ 2020-01-02T19:59:16+08:00 ] 0.0.0.0 GET /home/account.html
+[ info ] localhost/home/account.html [运行时间：0.131317s][吞吐率：7.62req/s] [内存消耗：2,969.14kb] [文件加载：57]
+[ info ] [ LANG ] D:\BaiduYunDownload\weike2\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'home',
+    1 => 'account',
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'localhost',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.88 Safari/537.36',
+  'sec-fetch-user' => '?1',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+  'sec-fetch-site' => 'same-origin',
+  'sec-fetch-mode' => 'navigate',
+  'referer' => 'http://localhost/',
+  'accept-encoding' => 'gzip, deflate, br',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'cookie' => 'XDEBUG_SESSION=XDEBUG_ECLIPSE; administrator=eyJpZCI6MSwidXNlcm5hbWUiOiJhZG1pbiIsInBhc3N3b3JkIjoiY2VmMThiYWQ5ZDEwYmQ5ZWIxZDE1MzBjOGI1YjlkZTQiLCJzYWx0IjoielNlU3M3UTAiLCJnZW5kZXIiOjAsImxldmVsIjowLCJiaXJ0aGRheSI6MCwibmlja25hbWUiOiIiLCJtb2JpbGUiOiIiLCJlbWFpbCI6IiIsImF2YXRhciI6IiIsImlzX2NoZWNrIjoxLCJsYXN0X2xvZ2luX2lwIjoiIiwibGFzdF9sb2dpbl90aW1lIjowLCJ1cGRhdGVfdGltZSI6IjIwMTgtMDgtMTggMjE6MTQ6MDUiLCJjcmVhdGVfdGltZSI6IjE5NzAtMDEtMDEgMDg6MDA6MDAifQ%3D%3D; bdshare_firstime=1577962828334',
+)
+[ info ] [ PARAM ] array (
+  '/home/account_html' => '',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\home\controller\Account->index[ D:\BaiduYunDownload\weike2\app\home\controller\Account.php ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001585s ] mysql:host=localhost;dbname=web32;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tb_config` [ RunTime:0.019098s ]
+[ sql ] [ SQL ] SELECT * FROM `tb_config` LIMIT 1 [ RunTime:0.000741s ]
+[ error ] D:\BaiduYunDownload\weike2\app\admin\model\Config.php:29 错误：unserialize(): Error at offset 401 of 4294 bytes
+---------------------------------------------------------------
+[ 2020-01-02T19:59:21+08:00 ] 0.0.0.0 GET /home/auth/login.html
+[ info ] localhost/home/auth/login.html [运行时间：0.441633s][吞吐率：2.26req/s] [内存消耗：3,211.02kb] [文件加载：63]
+[ info ] [ LANG ] D:\BaiduYunDownload\weike2\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'home',
+    1 => 'auth',
+    2 => 'login',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'localhost',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Linux; Android 5.0; SM-G900P Build/LRX21T) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.88 Mobile Safari/537.36',
+  'sec-fetch-user' => '?1',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+  'sec-fetch-site' => 'same-origin',
+  'sec-fetch-mode' => 'navigate',
+  'referer' => 'http://localhost/home/account.html',
+  'accept-encoding' => 'gzip, deflate, br',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'cookie' => 'XDEBUG_SESSION=XDEBUG_ECLIPSE; administrator=eyJpZCI6MSwidXNlcm5hbWUiOiJhZG1pbiIsInBhc3N3b3JkIjoiY2VmMThiYWQ5ZDEwYmQ5ZWIxZDE1MzBjOGI1YjlkZTQiLCJzYWx0IjoielNlU3M3UTAiLCJnZW5kZXIiOjAsImxldmVsIjowLCJiaXJ0aGRheSI6MCwibmlja25hbWUiOiIiLCJtb2JpbGUiOiIiLCJlbWFpbCI6IiIsImF2YXRhciI6IiIsImlzX2NoZWNrIjoxLCJsYXN0X2xvZ2luX2lwIjoiIiwibGFzdF9sb2dpbl90aW1lIjowLCJ1cGRhdGVfdGltZSI6IjIwMTgtMDgtMTggMjE6MTQ6MDUiLCJjcmVhdGVfdGltZSI6IjE5NzAtMDEtMDEgMDg6MDA6MDAifQ%3D%3D; bdshare_firstime=1577962828334',
+)
+[ info ] [ PARAM ] array (
+  '/home/auth/login_html' => '',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\home\controller\Auth->login[ D:\BaiduYunDownload\weike2\app\home\controller\Auth.php ]
+[ info ] [ VIEW ] ./views/home/mobile/auth\login.phtml [ array (
+  0 => 'controller',
+  1 => 'action',
+  2 => 'site',
+  3 => 'member',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001566s ] mysql:host=localhost;dbname=web32;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tb_config` [ RunTime:0.020701s ]
+[ sql ] [ SQL ] SELECT * FROM `tb_config` LIMIT 1 [ RunTime:0.000683s ]
+[ error ] D:\BaiduYunDownload\weike2\app\admin\model\Config.php:29 错误：unserialize(): Error at offset 401 of 4294 bytes
+---------------------------------------------------------------
+[ 2020-01-02T19:59:22+08:00 ] 0.0.0.0 GET /captcha.html
+[ info ] localhost/captcha.html [运行时间：0.346941s][吞吐率：2.88req/s] [内存消耗：1,569.48kb] [文件加载：40]
+[ info ] [ LANG ] D:\BaiduYunDownload\weike2\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'method',
+  'method' => 
+  array (
+    0 => '\\think\\captcha\\CaptchaController',
+    1 => 'index',
+  ),
+  'var' => 
+  array (
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'localhost',
+  'connection' => 'keep-alive',
+  'user-agent' => 'Mozilla/5.0 (Linux; Android 5.0; SM-G900P Build/LRX21T) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.88 Mobile Safari/537.36',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'sec-fetch-site' => 'same-origin',
+  'sec-fetch-mode' => 'no-cors',
+  'referer' => 'http://localhost/home/auth/login.html',
+  'accept-encoding' => 'gzip, deflate, br',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'cookie' => 'XDEBUG_SESSION=XDEBUG_ECLIPSE; administrator=eyJpZCI6MSwidXNlcm5hbWUiOiJhZG1pbiIsInBhc3N3b3JkIjoiY2VmMThiYWQ5ZDEwYmQ5ZWIxZDE1MzBjOGI1YjlkZTQiLCJzYWx0IjoielNlU3M3UTAiLCJnZW5kZXIiOjAsImxldmVsIjowLCJiaXJ0aGRheSI6MCwibmlja25hbWUiOiIiLCJtb2JpbGUiOiIiLCJlbWFpbCI6IiIsImF2YXRhciI6IiIsImlzX2NoZWNrIjoxLCJsYXN0X2xvZ2luX2lwIjoiIiwibGFzdF9sb2dpbl90aW1lIjowLCJ1cGRhdGVfdGltZSI6IjIwMTgtMDgtMTggMjE6MTQ6MDUiLCJjcmVhdGVfdGltZSI6IjE5NzAtMDEtMDEgMDg6MDA6MDAifQ%3D%3D; bdshare_firstime=1577962828334',
+)
+[ info ] [ PARAM ] array (
+  '/captcha_html' => '',
+  'id' => NULL,
+)
+[ info ] [ RUN ] think\captcha\CaptchaController->index[ D:\BaiduYunDownload\weike2\vendor\topthink\think-captcha\src\CaptchaController.php ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2020-01-02T19:59:23+08:00 ] 0.0.0.0 GET /static/home/mobile/js/jquery.min.map
+[ info ] localhost/static/home/mobile/js/jquery.min.map [运行时间：0.652067s][吞吐率：1.53req/s] [内存消耗：1,555.63kb] [文件加载：41]
+[ info ] [ LANG ] D:\BaiduYunDownload\weike2\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'static',
+    1 => 'home',
+    2 => 'mobile',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'localhost',
+  'connection' => 'keep-alive',
+  'user-agent' => 'Mozilla/5.0 (Linux; Android 5.0; SM-G900P Build/LRX21T) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.88 Mobile Safari/537.36',
+  'sec-fetch-site' => 'none',
+  'sec-fetch-mode' => 'no-cors',
+  'accept-encoding' => 'gzip, deflate, br',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'cookie' => 'XDEBUG_SESSION=XDEBUG_ECLIPSE; administrator=eyJpZCI6MSwidXNlcm5hbWUiOiJhZG1pbiIsInBhc3N3b3JkIjoiY2VmMThiYWQ5ZDEwYmQ5ZWIxZDE1MzBjOGI1YjlkZTQiLCJzYWx0IjoielNlU3M3UTAiLCJnZW5kZXIiOjAsImxldmVsIjowLCJiaXJ0aGRheSI6MCwibmlja25hbWUiOiIiLCJtb2JpbGUiOiIiLCJlbWFpbCI6IiIsImF2YXRhciI6IiIsImlzX2NoZWNrIjoxLCJsYXN0X2xvZ2luX2lwIjoiIiwibGFzdF9sb2dpbl90aW1lIjowLCJ1cGRhdGVfdGltZSI6IjIwMTgtMDgtMTggMjE6MTQ6MDUiLCJjcmVhdGVfdGltZSI6IjE5NzAtMDEtMDEgMDg6MDA6MDAifQ%3D%3D; bdshare_firstime=1577962828334',
+)
+[ info ] [ PARAM ] array (
+  '/static/home/mobile/js/jquery_min_map' => '',
+  'js' => 'jquery.min.map',
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2020-01-02T19:59:37+08:00 ] 0.0.0.0 GET /home/register.html
+[ info ] localhost/home/register.html [运行时间：0.433726s][吞吐率：2.31req/s] [内存消耗：3,212.01kb] [文件加载：63]
+[ info ] [ LANG ] D:\BaiduYunDownload\weike2\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'home',
+    1 => 'register',
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'localhost',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Linux; Android 5.0; SM-G900P Build/LRX21T) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.88 Mobile Safari/537.36',
+  'sec-fetch-user' => '?1',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+  'sec-fetch-site' => 'same-origin',
+  'sec-fetch-mode' => 'navigate',
+  'referer' => 'http://localhost/home/auth/login.html',
+  'accept-encoding' => 'gzip, deflate, br',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'cookie' => 'XDEBUG_SESSION=XDEBUG_ECLIPSE; administrator=eyJpZCI6MSwidXNlcm5hbWUiOiJhZG1pbiIsInBhc3N3b3JkIjoiY2VmMThiYWQ5ZDEwYmQ5ZWIxZDE1MzBjOGI1YjlkZTQiLCJzYWx0IjoielNlU3M3UTAiLCJnZW5kZXIiOjAsImxldmVsIjowLCJiaXJ0aGRheSI6MCwibmlja25hbWUiOiIiLCJtb2JpbGUiOiIiLCJlbWFpbCI6IiIsImF2YXRhciI6IiIsImlzX2NoZWNrIjoxLCJsYXN0X2xvZ2luX2lwIjoiIiwibGFzdF9sb2dpbl90aW1lIjowLCJ1cGRhdGVfdGltZSI6IjIwMTgtMDgtMTggMjE6MTQ6MDUiLCJjcmVhdGVfdGltZSI6IjE5NzAtMDEtMDEgMDg6MDA6MDAifQ%3D%3D; bdshare_firstime=1577962828334; PHPSESSID=dqg57baog0d9r1m15htsp2nt2t',
+)
+[ info ] [ PARAM ] array (
+  '/home/register_html' => '',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\home\controller\Register->index[ D:\BaiduYunDownload\weike2\app\home\controller\Register.php ]
+[ info ] [ VIEW ] ./views/home/mobile/register\index.phtml [ array (
+  0 => 'controller',
+  1 => 'action',
+  2 => 'site',
+  3 => 'member',
+  4 => 'parent_uid',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.011559s ] mysql:host=localhost;dbname=web32;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tb_config` [ RunTime:0.019241s ]
+[ sql ] [ SQL ] SELECT * FROM `tb_config` LIMIT 1 [ RunTime:0.000712s ]
+[ error ] D:\BaiduYunDownload\weike2\app\admin\model\Config.php:29 错误：unserialize(): Error at offset 401 of 4294 bytes
+---------------------------------------------------------------
+[ 2020-01-02T19:59:37+08:00 ] 0.0.0.0 GET /captcha.html
+[ info ] localhost/captcha.html [运行时间：0.310880s][吞吐率：3.22req/s] [内存消耗：1,569.93kb] [文件加载：40]
+[ info ] [ LANG ] D:\BaiduYunDownload\weike2\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'method',
+  'method' => 
+  array (
+    0 => '\\think\\captcha\\CaptchaController',
+    1 => 'index',
+  ),
+  'var' => 
+  array (
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'localhost',
+  'connection' => 'keep-alive',
+  'user-agent' => 'Mozilla/5.0 (Linux; Android 5.0; SM-G900P Build/LRX21T) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.88 Mobile Safari/537.36',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'sec-fetch-site' => 'same-origin',
+  'sec-fetch-mode' => 'no-cors',
+  'referer' => 'http://localhost/home/register.html',
+  'accept-encoding' => 'gzip, deflate, br',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'cookie' => 'XDEBUG_SESSION=XDEBUG_ECLIPSE; administrator=eyJpZCI6MSwidXNlcm5hbWUiOiJhZG1pbiIsInBhc3N3b3JkIjoiY2VmMThiYWQ5ZDEwYmQ5ZWIxZDE1MzBjOGI1YjlkZTQiLCJzYWx0IjoielNlU3M3UTAiLCJnZW5kZXIiOjAsImxldmVsIjowLCJiaXJ0aGRheSI6MCwibmlja25hbWUiOiIiLCJtb2JpbGUiOiIiLCJlbWFpbCI6IiIsImF2YXRhciI6IiIsImlzX2NoZWNrIjoxLCJsYXN0X2xvZ2luX2lwIjoiIiwibGFzdF9sb2dpbl90aW1lIjowLCJ1cGRhdGVfdGltZSI6IjIwMTgtMDgtMTggMjE6MTQ6MDUiLCJjcmVhdGVfdGltZSI6IjE5NzAtMDEtMDEgMDg6MDA6MDAifQ%3D%3D; bdshare_firstime=1577962828334; PHPSESSID=dqg57baog0d9r1m15htsp2nt2t',
+)
+[ info ] [ PARAM ] array (
+  '/captcha_html' => '',
+  'id' => NULL,
+)
+[ info ] [ RUN ] think\captcha\CaptchaController->index[ D:\BaiduYunDownload\weike2\vendor\topthink\think-captcha\src\CaptchaController.php ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2020-01-02T19:59:38+08:00 ] 0.0.0.0 GET /static/home/mobile/js/jquery.min.map
+[ info ] localhost/static/home/mobile/js/jquery.min.map [运行时间：0.480386s][吞吐率：2.08req/s] [内存消耗：1,556.00kb] [文件加载：41]
+[ info ] [ LANG ] D:\BaiduYunDownload\weike2\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'static',
+    1 => 'home',
+    2 => 'mobile',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'localhost',
+  'connection' => 'keep-alive',
+  'user-agent' => 'Mozilla/5.0 (Linux; Android 5.0; SM-G900P Build/LRX21T) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.88 Mobile Safari/537.36',
+  'sec-fetch-site' => 'none',
+  'sec-fetch-mode' => 'no-cors',
+  'accept-encoding' => 'gzip, deflate, br',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'cookie' => 'XDEBUG_SESSION=XDEBUG_ECLIPSE; administrator=eyJpZCI6MSwidXNlcm5hbWUiOiJhZG1pbiIsInBhc3N3b3JkIjoiY2VmMThiYWQ5ZDEwYmQ5ZWIxZDE1MzBjOGI1YjlkZTQiLCJzYWx0IjoielNlU3M3UTAiLCJnZW5kZXIiOjAsImxldmVsIjowLCJiaXJ0aGRheSI6MCwibmlja25hbWUiOiIiLCJtb2JpbGUiOiIiLCJlbWFpbCI6IiIsImF2YXRhciI6IiIsImlzX2NoZWNrIjoxLCJsYXN0X2xvZ2luX2lwIjoiIiwibGFzdF9sb2dpbl90aW1lIjowLCJ1cGRhdGVfdGltZSI6IjIwMTgtMDgtMTggMjE6MTQ6MDUiLCJjcmVhdGVfdGltZSI6IjE5NzAtMDEtMDEgMDg6MDA6MDAifQ%3D%3D; bdshare_firstime=1577962828334; PHPSESSID=dqg57baog0d9r1m15htsp2nt2t',
+)
+[ info ] [ PARAM ] array (
+  '/static/home/mobile/js/jquery_min_map' => '',
+  'js' => 'jquery.min.map',
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2020-01-02T19:59:57+08:00 ] 0.0.0.0 GET /home.html
+[ info ] localhost/home.html [运行时间：0.500238s][吞吐率：2.00req/s] [内存消耗：3,240.47kb] [文件加载：69]
+[ info ] [ LANG ] D:\BaiduYunDownload\weike2\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'home',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'localhost',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Linux; Android 5.0; SM-G900P Build/LRX21T) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.88 Mobile Safari/537.36',
+  'sec-fetch-user' => '?1',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+  'sec-fetch-site' => 'same-origin',
+  'sec-fetch-mode' => 'navigate',
+  'referer' => 'http://localhost/home/register.html',
+  'accept-encoding' => 'gzip, deflate, br',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'cookie' => 'XDEBUG_SESSION=XDEBUG_ECLIPSE; administrator=eyJpZCI6MSwidXNlcm5hbWUiOiJhZG1pbiIsInBhc3N3b3JkIjoiY2VmMThiYWQ5ZDEwYmQ5ZWIxZDE1MzBjOGI1YjlkZTQiLCJzYWx0IjoielNlU3M3UTAiLCJnZW5kZXIiOjAsImxldmVsIjowLCJiaXJ0aGRheSI6MCwibmlja25hbWUiOiIiLCJtb2JpbGUiOiIiLCJlbWFpbCI6IiIsImF2YXRhciI6IiIsImlzX2NoZWNrIjoxLCJsYXN0X2xvZ2luX2lwIjoiIiwibGFzdF9sb2dpbl90aW1lIjowLCJ1cGRhdGVfdGltZSI6IjIwMTgtMDgtMTggMjE6MTQ6MDUiLCJjcmVhdGVfdGltZSI6IjE5NzAtMDEtMDEgMDg6MDA6MDAifQ%3D%3D; bdshare_firstime=1577962828334; PHPSESSID=dqg57baog0d9r1m15htsp2nt2t',
+)
+[ info ] [ PARAM ] array (
+  '/home_html' => '',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\home\controller\Index->index[ D:\BaiduYunDownload\weike2\app\home\controller\Index.php ]
+[ info ] [ VIEW ] ./views/home/mobile/index\index.phtml [ array (
+  0 => 'controller',
+  1 => 'action',
+  2 => 'site',
+  3 => 'member',
+  4 => 'categories',
+  5 => 'banners',
+  6 => 'notices',
+  7 => 'withdraws',
+  8 => 'today_credit1',
+  9 => 'today_credit2',
+  10 => 'tasks',
+  11 => 'pageCount',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001353s ] mysql:host=localhost;dbname=web32;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tb_config` [ RunTime:0.018857s ]
+[ sql ] [ SQL ] SELECT * FROM `tb_config` LIMIT 1 [ RunTime:0.000612s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tb_task_category` [ RunTime:0.013425s ]
+[ sql ] [ SQL ] SELECT * FROM `tb_task_category` ORDER BY order_by desc LIMIT 0,100 [ RunTime:0.000772s ]
+[ sql ] [ SQL ] SELECT SUM((give_credit2-fee)/ticket_num) AS credit2,SUM(give_credit1/ticket_num) AS credit1 FROM tb_task WHERE is_complete=0 AND is_display=1 AND check_period*3600+create_time<1577966397 AND start_time<1577966397 AND end_time>1577966397 [ RunTime:0.000799s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tb_banner` [ RunTime:0.013593s ]
+[ sql ] [ SQL ] SELECT * FROM `tb_banner` WHERE  `is_display` = 1 ORDER BY order_by desc LIMIT 10 [ RunTime:0.001022s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tb_notice` [ RunTime:0.013241s ]
+[ sql ] [ SQL ] SELECT * FROM `tb_notice` WHERE  `is_display` = 1 ORDER BY order_by desc,id desc LIMIT 10 [ RunTime:0.000901s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tb_withdraw` [ RunTime:0.013963s ]
+[ sql ] [ SQL ] SELECT * FROM `tb_withdraw` WHERE  `status` = 1 ORDER BY id DESC LIMIT 0,10 [ RunTime:0.001249s ]
+[ sql ] [ SQL ] SELECT * FROM tb_task WHERE is_complete=0 AND is_display=1 AND check_period_time<1577966397 AND start_time<1577966397 AND end_time>1577966397 ORDER BY top_end_time DESC, end_time ASC, id DESC LIMIT 0,15 [ RunTime:0.000925s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS num FROM tb_task WHERE is_complete=0 AND is_display=1 AND check_period_time<1577966397 AND start_time<1577966397 AND end_time>1577966397 [ RunTime:0.000594s ]
+[ error ] D:\BaiduYunDownload\weike2\app\admin\model\Config.php:29 错误：unserialize(): Error at offset 401 of 4294 bytes
+---------------------------------------------------------------
+[ 2020-01-02T19:59:58+08:00 ] 0.0.0.0 GET /static/home/mobile/js/maps/swiper.min.js.map
+[ info ] localhost/static/home/mobile/js/maps/swiper.min.js.map [运行时间：0.466828s][吞吐率：2.14req/s] [内存消耗：1,556.00kb] [文件加载：41]
+[ info ] [ LANG ] D:\BaiduYunDownload\weike2\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'static',
+    1 => 'home',
+    2 => 'mobile',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'localhost',
+  'connection' => 'keep-alive',
+  'user-agent' => 'Mozilla/5.0 (Linux; Android 5.0; SM-G900P Build/LRX21T) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.88 Mobile Safari/537.36',
+  'sec-fetch-site' => 'none',
+  'sec-fetch-mode' => 'no-cors',
+  'accept-encoding' => 'gzip, deflate, br',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'cookie' => 'XDEBUG_SESSION=XDEBUG_ECLIPSE; administrator=eyJpZCI6MSwidXNlcm5hbWUiOiJhZG1pbiIsInBhc3N3b3JkIjoiY2VmMThiYWQ5ZDEwYmQ5ZWIxZDE1MzBjOGI1YjlkZTQiLCJzYWx0IjoielNlU3M3UTAiLCJnZW5kZXIiOjAsImxldmVsIjowLCJiaXJ0aGRheSI6MCwibmlja25hbWUiOiIiLCJtb2JpbGUiOiIiLCJlbWFpbCI6IiIsImF2YXRhciI6IiIsImlzX2NoZWNrIjoxLCJsYXN0X2xvZ2luX2lwIjoiIiwibGFzdF9sb2dpbl90aW1lIjowLCJ1cGRhdGVfdGltZSI6IjIwMTgtMDgtMTggMjE6MTQ6MDUiLCJjcmVhdGVfdGltZSI6IjE5NzAtMDEtMDEgMDg6MDA6MDAifQ%3D%3D; bdshare_firstime=1577962828334; PHPSESSID=dqg57baog0d9r1m15htsp2nt2t',
+)
+[ info ] [ PARAM ] array (
+  '/static/home/mobile/js/maps/swiper_min_js_map' => '',
+  'js' => 'maps',
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2020-01-02T19:59:58+08:00 ] 0.0.0.0 GET /static/home/mobile/css/bootstrap.css.map
+[ info ] localhost/static/home/mobile/css/bootstrap.css.map [运行时间：0.455413s][吞吐率：2.20req/s] [内存消耗：1,556.03kb] [文件加载：41]
+[ info ] [ LANG ] D:\BaiduYunDownload\weike2\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'static',
+    1 => 'home',
+    2 => 'mobile',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'localhost',
+  'connection' => 'keep-alive',
+  'user-agent' => 'Mozilla/5.0 (Linux; Android 5.0; SM-G900P Build/LRX21T) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.88 Mobile Safari/537.36',
+  'sec-fetch-site' => 'none',
+  'sec-fetch-mode' => 'no-cors',
+  'accept-encoding' => 'gzip, deflate, br',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'cookie' => 'XDEBUG_SESSION=XDEBUG_ECLIPSE; administrator=eyJpZCI6MSwidXNlcm5hbWUiOiJhZG1pbiIsInBhc3N3b3JkIjoiY2VmMThiYWQ5ZDEwYmQ5ZWIxZDE1MzBjOGI1YjlkZTQiLCJzYWx0IjoielNlU3M3UTAiLCJnZW5kZXIiOjAsImxldmVsIjowLCJiaXJ0aGRheSI6MCwibmlja25hbWUiOiIiLCJtb2JpbGUiOiIiLCJlbWFpbCI6IiIsImF2YXRhciI6IiIsImlzX2NoZWNrIjoxLCJsYXN0X2xvZ2luX2lwIjoiIiwibGFzdF9sb2dpbl90aW1lIjowLCJ1cGRhdGVfdGltZSI6IjIwMTgtMDgtMTggMjE6MTQ6MDUiLCJjcmVhdGVfdGltZSI6IjE5NzAtMDEtMDEgMDg6MDA6MDAifQ%3D%3D; bdshare_firstime=1577962828334; PHPSESSID=dqg57baog0d9r1m15htsp2nt2t',
+)
+[ info ] [ PARAM ] array (
+  '/static/home/mobile/css/bootstrap_css_map' => '',
+  'css' => 'bootstrap.css.map',
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2020-01-02T20:00:07+08:00 ] 0.0.0.0 GET /home/notice/detail/id/2.html
+[ info ] localhost/home/notice/detail/id/2.html [运行时间：0.398374s][吞吐率：2.51req/s] [内存消耗：3,135.95kb] [文件加载：63]
+[ info ] [ LANG ] D:\BaiduYunDownload\weike2\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'home',
+    1 => 'notice',
+    2 => 'detail',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'localhost',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Linux; Android 5.0; SM-G900P Build/LRX21T) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.88 Mobile Safari/537.36',
+  'sec-fetch-user' => '?1',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+  'sec-fetch-site' => 'same-origin',
+  'sec-fetch-mode' => 'navigate',
+  'referer' => 'http://localhost/home.html',
+  'accept-encoding' => 'gzip, deflate, br',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'cookie' => 'XDEBUG_SESSION=XDEBUG_ECLIPSE; administrator=eyJpZCI6MSwidXNlcm5hbWUiOiJhZG1pbiIsInBhc3N3b3JkIjoiY2VmMThiYWQ5ZDEwYmQ5ZWIxZDE1MzBjOGI1YjlkZTQiLCJzYWx0IjoielNlU3M3UTAiLCJnZW5kZXIiOjAsImxldmVsIjowLCJiaXJ0aGRheSI6MCwibmlja25hbWUiOiIiLCJtb2JpbGUiOiIiLCJlbWFpbCI6IiIsImF2YXRhciI6IiIsImlzX2NoZWNrIjoxLCJsYXN0X2xvZ2luX2lwIjoiIiwibGFzdF9sb2dpbl90aW1lIjowLCJ1cGRhdGVfdGltZSI6IjIwMTgtMDgtMTggMjE6MTQ6MDUiLCJjcmVhdGVfdGltZSI6IjE5NzAtMDEtMDEgMDg6MDA6MDAifQ%3D%3D; bdshare_firstime=1577962828334; PHPSESSID=dqg57baog0d9r1m15htsp2nt2t',
+)
+[ info ] [ PARAM ] array (
+  '/home/notice/detail/id/2_html' => '',
+  'id' => '2',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\home\controller\Notice->detail[ D:\BaiduYunDownload\weike2\app\home\controller\Notice.php ]
+[ info ] [ VIEW ] ./views/home/mobile/notice\detail.phtml [ array (
+  0 => 'controller',
+  1 => 'action',
+  2 => 'site',
+  3 => 'member',
+  4 => 'item',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001459s ] mysql:host=localhost;dbname=web32;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tb_config` [ RunTime:0.019931s ]
+[ sql ] [ SQL ] SELECT * FROM `tb_config` LIMIT 1 [ RunTime:0.000552s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tb_notice` [ RunTime:0.014368s ]
+[ sql ] [ SQL ] SELECT * FROM `tb_notice` WHERE  `id` = 2 LIMIT 1 [ RunTime:0.000739s ]
+[ error ] D:\BaiduYunDownload\weike2\app\admin\model\Config.php:29 错误：unserialize(): Error at offset 401 of 4294 bytes
+---------------------------------------------------------------
+[ 2020-01-02T20:00:08+08:00 ] 0.0.0.0 GET /home/notice/detail/id/clientapp/images/new_images/favicon.ico
+[ info ] localhost/home/notice/detail/id/clientapp/images/new_images/favicon.ico [运行时间：0.121339s][吞吐率：8.24req/s] [内存消耗：2,917.38kb] [文件加载：57]
+[ info ] [ LANG ] D:\BaiduYunDownload\weike2\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'home',
+    1 => 'notice',
+    2 => 'detail',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'localhost',
+  'connection' => 'keep-alive',
+  'user-agent' => 'Mozilla/5.0 (Linux; Android 5.0; SM-G900P Build/LRX21T) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.88 Mobile Safari/537.36',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'sec-fetch-site' => 'same-origin',
+  'sec-fetch-mode' => 'no-cors',
+  'referer' => 'http://localhost/home/notice/detail/id/2.html',
+  'accept-encoding' => 'gzip, deflate, br',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'cookie' => 'XDEBUG_SESSION=XDEBUG_ECLIPSE; administrator=eyJpZCI6MSwidXNlcm5hbWUiOiJhZG1pbiIsInBhc3N3b3JkIjoiY2VmMThiYWQ5ZDEwYmQ5ZWIxZDE1MzBjOGI1YjlkZTQiLCJzYWx0IjoielNlU3M3UTAiLCJnZW5kZXIiOjAsImxldmVsIjowLCJiaXJ0aGRheSI6MCwibmlja25hbWUiOiIiLCJtb2JpbGUiOiIiLCJlbWFpbCI6IiIsImF2YXRhciI6IiIsImlzX2NoZWNrIjoxLCJsYXN0X2xvZ2luX2lwIjoiIiwibGFzdF9sb2dpbl90aW1lIjowLCJ1cGRhdGVfdGltZSI6IjIwMTgtMDgtMTggMjE6MTQ6MDUiLCJjcmVhdGVfdGltZSI6IjE5NzAtMDEtMDEgMDg6MDA6MDAifQ%3D%3D; bdshare_firstime=1577962828334; PHPSESSID=dqg57baog0d9r1m15htsp2nt2t',
+)
+[ info ] [ PARAM ] array (
+  '/home/notice/detail/id/clientapp/images/new_images/favicon_ico' => '',
+  'id' => 'clientapp',
+  'images' => 'new_images',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\home\controller\Notice->detail[ D:\BaiduYunDownload\weike2\app\home\controller\Notice.php ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001584s ] mysql:host=localhost;dbname=web32;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tb_config` [ RunTime:0.019906s ]
+[ sql ] [ SQL ] SELECT * FROM `tb_config` LIMIT 1 [ RunTime:0.000747s ]
+[ error ] D:\BaiduYunDownload\weike2\app\admin\model\Config.php:29 错误：unserialize(): Error at offset 401 of 4294 bytes
+---------------------------------------------------------------
+[ 2020-01-02T20:00:10+08:00 ] 0.0.0.0 GET /static/home/mobile/js/maps/swiper.min.js.map
+[ info ] localhost/static/home/mobile/js/maps/swiper.min.js.map [运行时间：0.503613s][吞吐率：1.99req/s] [内存消耗：1,556.00kb] [文件加载：41]
+[ info ] [ LANG ] D:\BaiduYunDownload\weike2\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'static',
+    1 => 'home',
+    2 => 'mobile',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'localhost',
+  'connection' => 'keep-alive',
+  'user-agent' => 'Mozilla/5.0 (Linux; Android 5.0; SM-G900P Build/LRX21T) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.88 Mobile Safari/537.36',
+  'sec-fetch-site' => 'none',
+  'sec-fetch-mode' => 'no-cors',
+  'accept-encoding' => 'gzip, deflate, br',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'cookie' => 'XDEBUG_SESSION=XDEBUG_ECLIPSE; administrator=eyJpZCI6MSwidXNlcm5hbWUiOiJhZG1pbiIsInBhc3N3b3JkIjoiY2VmMThiYWQ5ZDEwYmQ5ZWIxZDE1MzBjOGI1YjlkZTQiLCJzYWx0IjoielNlU3M3UTAiLCJnZW5kZXIiOjAsImxldmVsIjowLCJiaXJ0aGRheSI6MCwibmlja25hbWUiOiIiLCJtb2JpbGUiOiIiLCJlbWFpbCI6IiIsImF2YXRhciI6IiIsImlzX2NoZWNrIjoxLCJsYXN0X2xvZ2luX2lwIjoiIiwibGFzdF9sb2dpbl90aW1lIjowLCJ1cGRhdGVfdGltZSI6IjIwMTgtMDgtMTggMjE6MTQ6MDUiLCJjcmVhdGVfdGltZSI6IjE5NzAtMDEtMDEgMDg6MDA6MDAifQ%3D%3D; bdshare_firstime=1577962828334; PHPSESSID=dqg57baog0d9r1m15htsp2nt2t',
+)
+[ info ] [ PARAM ] array (
+  '/static/home/mobile/js/maps/swiper_min_js_map' => '',
+  'js' => 'maps',
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2020-01-02T20:00:10+08:00 ] 0.0.0.0 GET /static/home/mobile/css/bootstrap.css.map
+[ info ] localhost/static/home/mobile/css/bootstrap.css.map [运行时间：0.462303s][吞吐率：2.16req/s] [内存消耗：1,556.03kb] [文件加载：41]
+[ info ] [ LANG ] D:\BaiduYunDownload\weike2\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'static',
+    1 => 'home',
+    2 => 'mobile',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'localhost',
+  'connection' => 'keep-alive',
+  'user-agent' => 'Mozilla/5.0 (Linux; Android 5.0; SM-G900P Build/LRX21T) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.88 Mobile Safari/537.36',
+  'sec-fetch-site' => 'none',
+  'sec-fetch-mode' => 'no-cors',
+  'accept-encoding' => 'gzip, deflate, br',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'cookie' => 'XDEBUG_SESSION=XDEBUG_ECLIPSE; administrator=eyJpZCI6MSwidXNlcm5hbWUiOiJhZG1pbiIsInBhc3N3b3JkIjoiY2VmMThiYWQ5ZDEwYmQ5ZWIxZDE1MzBjOGI1YjlkZTQiLCJzYWx0IjoielNlU3M3UTAiLCJnZW5kZXIiOjAsImxldmVsIjowLCJiaXJ0aGRheSI6MCwibmlja25hbWUiOiIiLCJtb2JpbGUiOiIiLCJlbWFpbCI6IiIsImF2YXRhciI6IiIsImlzX2NoZWNrIjoxLCJsYXN0X2xvZ2luX2lwIjoiIiwibGFzdF9sb2dpbl90aW1lIjowLCJ1cGRhdGVfdGltZSI6IjIwMTgtMDgtMTggMjE6MTQ6MDUiLCJjcmVhdGVfdGltZSI6IjE5NzAtMDEtMDEgMDg6MDA6MDAifQ%3D%3D; bdshare_firstime=1577962828334; PHPSESSID=dqg57baog0d9r1m15htsp2nt2t',
+)
+[ info ] [ PARAM ] array (
+  '/static/home/mobile/css/bootstrap_css_map' => '',
+  'css' => 'bootstrap.css.map',
+)
+[ info ] [ LOG ] INIT File

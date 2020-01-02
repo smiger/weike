@@ -1,0 +1,10 @@
+<ul class="nav nav-tabs">
+    <li {if condition="in_array($action,['index'])"}class="active"{/if}>
+        <a href="{:U('index')}" >充值列表</a>
+    </li>
+    {if condition="in_array($action,['post']) && !empty($item)"}
+        <li class="active">
+            <a href="{:U('post', 'id=' . $item['id'])}">审核管理</a>
+        </li>
+    {/if}
+</ul>

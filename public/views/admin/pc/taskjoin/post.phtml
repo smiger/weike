@@ -1,0 +1,372 @@
+{include file="common/header"}
+<div class="content-wrapper">
+    {include file="taskjoin/nav"/}
+    <section class="content">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="nav-tabs-custom">
+                    {include file="taskjoin/tabs"/}
+                    <div class="tab-content">
+                        <form method="post" class="form-horizontal form" id="post_form">
+                            <div class="panel panel-info">
+                                <div class="panel-heading">
+                                    任务数据详情
+                                </div>
+                                <div class="panel-body">
+                                    <div class="form-group">
+                                        <label class="col-xs-12 col-sm-3 col-md-2 control-label">用户名</label>
+                                        <div class="col-sm-6 col-xs-12">
+                                            <input type="text" class="form-control" name="username" value="{$row['username']?$row['username']:''}" disabled="disabled" placeholder="请输入用户名">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-xs-12 col-sm-3 col-md-2 control-label">审核图样</label>
+                                        <div class="col-sm-6 col-xs-12" style="padding-top: 7px;">
+                                            <div class="clearfix">
+                                            {if !empty($row['thumbs'])}
+                                            {volist name="row['thumbs']" id="thumb"}
+                                            <div class="input-group pull-left" style="margin-top:.5em;margin-right:.5em;">
+                                                <a href="{:to_media($thumb)}" target="_blank">
+                                                <img src="{:to_media($thumb)}" onerror="this.src='/static/admin/web/images/nopic.jpg'; this.title='图片未找到.'" class="img-responsive img-thumbnail" width="150">
+                                                </a>
+                                            </div>
+                                            {/volist}
+                                            {/if}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-xs-12 col-sm-3 col-md-2 control-label">文字验证</label>
+                                        <div class="col-sm-6 col-xs-12">
+                                            <textarea class="form-control" id="check_text_content" name="check_text_content" maxlength="1000" rows="5" readonly="readonly" placeholder="">{$row['check_text_content']?$row['check_text_content']:''}</textarea>
+                                        </div>
+                                    </div>
+                                    {if $row['status'] == 3 || $row['status'] == 4}
+                                    <div class="form-group">
+                                        <label class="col-xs-12 col-sm-3 col-md-2 control-label">审核状态</label>
+                                        <div class="col-sm-6 col-xs-12" style="padding-top: 7px;">
+                                            {if $row['status'] == 2}
+                                            <label class="label label-info">待审核</label>
+                                            {elseif $row['status'] == 3}
+                                            <label class="label label-success">通过审核</label>
+                                            {elseif $row['status'] == 4}
+                                            <label class="label label-success">审核未通过</label>
+                                            {else}
+                                            <label class="label label-danger">已抢单</label>
+                                            {/if}
+                                        </div>
+                                    </div>
+                                    {else}
+                                    <div class="form-group">
+                                        <label class="col-xs-12 col-sm-3 col-md-2 control-label">审核状态</label>
+                                        <div class="col-sm-6 col-xs-12">
+                                            <label class="radio-inline">
+                                                <input type="radio" name="status" {if isset($row['status']) && 3==$row['status']}checked{/if} value="3">
+                                                通过审核
+                                            </label>
+                                            <label class="radio-inline">
+                                                <input type="radio" name="status" {if isset($row['status']) && 4==$row['status']}checked{/if} value="4">
+                                                未审核通过
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-6 col-xs-12 col-sm-offset-2">
+                                            <input type="hidden" name="id" value="{$row['id']?$row['id']:0}">
+                                            <button type="button" id="check" name="check" class="btn btn-primary">提交</button>
+                                        </div>
+                                    </div>
+                                    {/if}
+                                </div>
+                            </div>
+                        </form>
+
+                        <link rel="stylesheet" type="text/css" href="/static/plugins/bootstrap-datetimepicker/bootstrap-datetimepicker.min.css" />
+                        <script type="text/javascript" src="/static/plugins/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js"></script>
+                        <script type="text/javascript" src="/static/plugins/bootstrap-datetimepicker/bootstrap-datetimepicker.zh-CN.js"></script>
+                        <script type="text/javascript">
+                            $(function(){
+                                $("#start_time").datetimepicker({
+                                    format: 'yyyy-mm-dd hh:ii',
+                                    language: 'zh-CN',
+                                    weekStart: 1,
+                                    todayBtn:  1,
+                                    todayHighlight: 1,
+                                    showClear: true,
+                                    autoclose: true
+                                }).on("click",function(){
+                                    $("#start_time").datetimepicker("setEndDate", $("#end_time").val());
+                                    $("#end_time").datetimepicker("setStartDate", $("#start_time").val());
+                                });
+                                $("#end_time").datetimepicker({
+                                    format: 'yyyy-mm-dd hh:ii',
+                                    language: 'zh-CN',
+                                    weekStart: 1,
+                                    todayBtn:  1,
+                                    todayHighlight: 1,
+                                    showClear: true,
+                                    autoclose: true
+                                }).on("click",function(){
+                                    $("#start_time").datetimepicker("setEndDate", $("#end_time").val());
+                                    $("#end_time").datetimepicker("setStartDate", $("#start_time").val());
+                                });
+                            });
+                        </script>
+
+                        <link rel="stylesheet" href="/static/plugins/dialog/css/dialog.css" />
+                        <script src="/static/plugins/dialog/js/dialog.js"></script>
+                        <style type="text/css">
+                            .dialog {
+                              position: fixed;
+                              left: 0;
+                              top: 0;
+                              z-index: 10001;
+                              width: 100%;
+                              height: 100%;
+                            }
+                            .dialog-content {
+                                width: 200px;
+                            }
+                            .dialog-overlay {
+                              position: absolute;
+                              top: 0;
+                              left: 0;
+                              z-index: 10002;
+                              width: 100%;
+                              height: 100%;
+                              background-color: rgba(0, 0, 0, 0.5);
+                            }
+                        </style>
+                        <script type="text/javascript">
+                            //计算费用
+                            function countMoney(unit_price,task_num){
+                                var fee = 0;
+                                var service_charge = 1 + fee;
+                                var count_money = parseFloat(unit_price)*parseFloat(task_num);
+                                count_money = parseFloat(count_money);
+                                $('#count_money').val((count_money*service_charge).toFixed(2));
+                                $("#user_gold").html(count_money.toFixed(2));
+                                $('#plat_gold').html((count_money*Math.abs(fee)).toFixed(2));
+                            }
+
+                            $(function () {
+                                //输入积分事件
+                                $("#unit_price").bind('input propertychange', function() {
+                                    var money = parseFloat($(this).val().trim());
+                                    if(isNaN(money)){
+                                        money = 0;
+                                    }
+                                    /*var fee = parseFloat($(this).attr('data-fee'));
+                                    $('#user_gold').html((money*Math.abs((1-fee))).toFixed(2));
+                                    $('#plat_gold').html((money*Math.abs(fee)).toFixed(2));*/
+                                    var task_num = $("#task_num").val();
+                                    if($.trim(task_num)!=""){
+                                        countMoney(money,task_num);
+                                    }
+                                });
+
+                                $("#sender_province").change(function(){
+                                    var provinceId = $("#sender_province").val();
+                                    clearCitys("sender_city");
+                                    if(isNotEmpty(provinceId))
+                                    {
+                                        loadCitys(provinceId, "sender_city");
+                                    }
+                                });
+
+                                $("#sender_city").change(function(){
+                                    var cityId = $("#sender_city").val();
+                                    clearDistricts("sender_district");
+                                    if(isNotEmpty(cityId))
+                                    {
+                                        loadDistricts(cityId, "sender_district");
+                                    }
+                                });
+
+                                $("#consignee_province").change(function(){
+                                    var provinceId = $("#consignee_province").val();
+                                    clearCitys("consignee_city");
+                                    if(isNotEmpty(provinceId))
+                                    {
+                                        loadCitys(provinceId, "consignee_city");
+                                    }
+                                });
+
+                                $("#consignee_city").change(function(){
+                                    var cityId = $("#consignee_city").val();
+                                    clearDistricts("consignee_district");
+                                    if(isNotEmpty(cityId))
+                                    {
+                                        loadDistricts(cityId, "consignee_district");
+                                    }
+                                });
+
+                                function loadCitys(provinceId, objId)
+                                {
+                                    console.log("provinceId="+provinceId);
+                                    var loading = message("加载中", "", "loading");
+                                    $.ajax({
+                                        url: "{:U('region/citys')}",
+                                        type:"post",
+                                        data:{"provinceId":provinceId},
+                                        dataType: "json",
+                                        success: function(res) {
+                                            loading.close();
+                                            var data = res.message;
+                                            var city=$("#" + objId);
+                                            city.empty();
+                                            if(data!=null&& data!=""){
+                                                city.html("<option value=''>请选择城市</option>");
+                                                $.each(data,function(k,v) {
+                                                    city.append("<option value='" + v.id + "'>" + v.name + "</option>");
+                                                });
+                                            } else {
+                                                city.html("<option value=''>请选择城市</option>");
+                                            }
+                                        },
+                                        error:function(){
+                                            loading.close();
+                                            message("请求失败!", "", "error");
+                                        }
+                                    });
+                                    return false;
+                                }
+
+                                function clearCitys(objId)
+                                {
+                                    var city= $("#" + objId);
+                                    city.empty();
+                                    city.html("<option value=''>请选择城市</option>");
+                                }
+
+                                function loadDistricts(cityId, objId)
+                                {
+                                    console.log("CityId="+cityId);
+                                    var loading = message("加载中", "", "loading");
+                                    $.ajax({
+                                        url: "{:U('region/districts')}",
+                                        type:"post",
+                                        data:{"cityId":cityId},
+                                        dataType: "json",
+                                        success: function(res) {
+                                            loading.close();
+                                            var data = res.message;
+                                            var district = $("#" + objId);
+                                            district.empty();
+                                            if(data!=null&& data!=""){
+                                                district.html("<option value=''>请选择区/县</option>");
+                                                $.each(data,function(k,v) {
+                                                    district.append("<option value='" + v.id + "'>" + v.name + "</option>");
+                                                });
+                                            } else {
+                                                district.html("<option value=''>请选择区/县</option>");
+                                            }
+                                        },
+                                        error:function(){
+                                            loading.close();
+                                            message("请求失败!", "", "error");
+                                        }
+                                    });
+                                    return false;
+                                }
+
+                                function clearDistricts(objId)
+                                {
+                                    var district = $("#" + objId);
+                                    district.empty();
+                                    district.html("<option value=''>请选择区/县</option>");
+                                }
+
+                                function isNotEmpty(val)
+                                {
+                                    if(val==undefined||val==""||val==null)
+                                        return false;
+                                    else
+                                        return true;
+                                }
+
+                                //校验数量
+                                $("#task_num").bind('input propertychange', function() {
+                                    var task_num = $(this).val();
+                                    var r = /^[0-9]*[1-9][0-9]*$/;
+                                    if(task_num==""){
+                                        $("#count_money").val("");
+                                        return false;
+                                    }
+                                    if(!r.test(task_num)){
+                                        message('请输入正确的数量！','','error');
+                                        $("#task_num").val("");
+                                        $("#task_num").focus();
+                                        $("#count_money").val("");
+                                        return false;
+                                    }
+                                    var min_number = $("#min_number").val();
+                                    if(parseInt(task_num)<parseInt(min_number)){
+                                        message("数量不能低于"+min_number+"！",'','error');
+                                        $("#task_num").val("");
+                                        $("#task_num").focus();
+                                        $("#count_money").val("");
+                                        return false;
+                                    }
+                                    var unit_price = $("#unit_price").val();
+                                    if(unit_price.trim()!=""&&task_num.trim()!=""){
+                                        countMoney(unit_price,task_num);
+                                    }       
+                                });
+
+                                $("#check").click(function () {
+                                    var val=$('input:radio[name="status"]:checked').val();
+                                     if(val==null){
+                                        $(document).dialog({
+                                            titleText: '任务审核',
+                                            content: '还未选择审核状态',
+                                        });
+                                        return;
+                                    }
+
+                                    $(document).dialog({
+                                        type : 'confirm',
+                                        titleText: '任务审核',
+                                        content: '确定要审核此任务吗？审核后无法修改。',
+                                        onClickConfirmBtn: function(){
+                                            $.post(
+                                                "{:U('check')}",
+                                                $('#post_form').serialize(),
+                                                function (res) {
+                                                    message(res.message,res.redirect,res.type)
+                                                },'json'
+                                            );
+                                        }
+                                    });
+                                });
+
+                                $("#submit").click(function () {
+                                    var val=$('input:radio[name="is_display"]:checked').val();
+                                     if(val==null){
+                                        $(document).dialog({
+                                            titleText: '任务审核',
+                                            content: '还未选择审核状态',
+                                        });
+                                        return;
+                                    }
+
+                                    $.post(
+                                        "{:U('save')}",
+                                        $('#post_form').serialize(),
+                                        function (res) {
+                                            message(res.message,res.redirect,res.type)
+                                        },'json'
+                                    );
+                                });
+                            });
+                        </script>
+                    </div>
+                    <!-- /.tab-content -->
+                </div>
+                <!-- /.nav-tabs-custom -->
+            </div>
+            <!-- /.col -->
+        </div>
+    </section>
+</div>
+{include file="common/footer"}

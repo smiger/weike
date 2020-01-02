@@ -1,0 +1,30 @@
+                {volist name="tasks" id="task" key="task_index"}
+                <li>
+                    <div class="task-list-wrap">
+                        {if $task_index == 0}
+                            <img class="task-list-hot" src="/static/home/mobile/images/hot.png">
+                        {/if}
+                        <div class="task-list-title-silver">
+                            <div class="task-list-title">{$task['title']}</div>
+                            <span class="task-list-gold">
+                                <span>￥</span>
+                                {$task['unit_price']}元
+                            </span>
+                        </div>
+                        <span class="task-list-prefix">商</span>
+                        <span class="task-list-id">{$task['id']}</span>
+                        <span class="task-jifen">{$task['give_credit1']}积分</span>
+                        <span class="task-list-remain-num">剩余{$task['ticket_num']-$task['join_num']}份</span>
+                        <div class="task-list-progress-content">
+                            <div class="task-list-progress"><span style="width:{$task['percent']}%"></span></div>
+                            <div class="task-list-progress-num">{$task['percent']}%</div>
+                        </div>
+                        <div class="task-list-gold-silver">
+                            <span class="task-list-end-time">结束时间：{$task['end_time']} </span>
+                        </div>
+                        <div class="task-list-manage">
+                            <a href="/home/mytaskaudit/index/id/{$task['id']}.html" onclick="check({$task['id']})" class="task-list-manage-button">审核</a>
+                        </div>
+                    </div>
+                </li>
+                {/volist}

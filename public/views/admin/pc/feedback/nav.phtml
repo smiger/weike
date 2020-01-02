@@ -1,0 +1,22 @@
+<section class="content-header">
+    <h1>
+        反馈管理
+        <small>
+            {if $action == 'index'}
+            反馈列表
+            {else}
+            {if empty($item)}添加反馈{else}修改反馈{/if}
+            {/if}
+        </small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i>反馈管理</a></li>
+        <li class="active">
+            {if $action == 'index'}
+            反馈列表
+            {else}
+            审核反馈
+            {/if}
+        </li>
+    </ol>
+</section>

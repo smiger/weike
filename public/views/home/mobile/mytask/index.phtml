@@ -1,0 +1,100 @@
+﻿<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0,minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>我发布的</title>
+    <link rel="stylesheet" href="/static/home/mobile/css/bootstrap.css">
+    {include file='common/header'}
+    <style type="text/css">
+        .zhuanghu-tab li {
+            width: 20%;
+        }
+        .task-list-remain-num span {
+            width: 33.33%;
+            float: left;
+            text-align: center;
+        }
+        .paging {
+            margin: 30px 0;
+        }
+        .dialog {
+          position: fixed;
+          left: 0;
+          top: 0;
+          z-index: 10001;
+          width: 100%;
+          height: 100%;
+        }
+        .dialog-content {
+            width: 70%;
+        }
+        .dialog-overlay {
+          position: absolute;
+          top: 0;
+          left: 0;
+          z-index: 10002;
+          width: 100%;
+          height: 100%;
+          background-color: rgba(0, 0, 0, 0.5);
+        }
+    </style>
+</head>
+
+<body>
+<div class="site-header header-fixed">
+    <a onclick="history.back()" class="back"></a>
+    <div class="tit-name">我发布的</div>
+</div>
+<div class="main Myrelease">
+    <div class="zhuanghu-tab">
+        <ul class="zh-tab-tit">
+            <li id="all" class="{$category_type == 'all'?'active':''}" onclick="location.href='/home/mytask.html'">全部</li>
+            <li id="wait" class="{$category_type == 'wait'?'active':''}" onclick="location.href='/home/mytask/category/t/wait.html'">待审核</li>
+            <li id="ing" class="{$category_type == 'ing'?'active':''}" onclick="location.href='/home/mytask/category/t/ing.html'">进行中</li>
+            <li id="pass" class="{$category_type == 'pass'?'active':''}" onclick="location.href='/home/mytask/category/t/pass.html'">已完成</li>
+            <li id="past" class="{$category_type == 'past'?'active':''}" onclick="location.href='/home/mytask/category/t/past.html'">已失效</li>
+        </ul>
+    </div>
+    <div class="task-list">
+        {if !empty($tasks)}
+        <div class="new-task-list">
+            <ul>
+                {include file='mytask/_list'}
+            </ul>
+        </div>
+        <div class="task-del" style="display:none;">
+            <a href="#" class="button4" onclick="MySaveTask.delSave()">删除(0)</a>
+        </div>
+        <div class="paging clearfix" style="display: block;">
+            <span class="paging-prev">上一页</span>
+            <span class="paging-num-total">
+                    <select name="page" class="paging-selct">
+                        {for start="1" end="$pageCount+1"}
+                        <option value="{$i}">{$i}</option>
+                        {/for}
+                    </select>
+                </span>
+            <span class="paging-next" data-page="{$pageCount}">下一页</span>
+            <form id="page_form">
+                <input type="hidden" name="page" value="1">
+            </form>
+        </div>
+        {/if}
+    </div>
+</div>
+
+<script type="text/javascript" src="/static/plugins/bootstrap/js/bootstrap.js"></script>
+<script type="text/javascript" src="/static/home/mobile/js/bootbox.min.js"></script>
+<script type="text/javascript">
+var $setting_top_fee = '{$setting.top_fee}';
+var $setting_top_max_hour = '{$setting.top_max_hour}';
+</script>
+<script type="text/javascript" src="/static/home/mobile/js/mytask.js?v=4"></script>
+
+{include file='common/footer'}
+</body>
+</html>

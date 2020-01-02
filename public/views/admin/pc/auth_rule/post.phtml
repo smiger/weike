@@ -1,0 +1,108 @@
+{include file="common/header"}
+<div class="content-wrapper">
+    {include file="auth_rule/nav"/}
+    <section class="content">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="nav-tabs-custom">
+                    {include file="auth_rule/tabs"/}
+                    <div class="tab-content">
+                        <form method="post" class="form-horizontal form" id="post_form">
+                            <div class="panel panel-info">
+                                <div class="panel-heading">
+                                    菜单规则信息
+                                </div>
+                                <div class="panel-body">
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">父级节点</label>
+                                        <div class="col-sm-7">
+                                            <select class="form-control select2" name="pid" style="width:100%;">
+                                                <option value="0">顶级节点</option>
+                                                {volist name="treeList" id="vo"}
+                                                <option value="{$vo.id}" {if condition="$vo.level eq '3'"}disabled="disabled"{/if} {if isset($item['pid']) && $item.pid == $vo.id}selected="selected"{/if} {if isset($item['id']) && $item.id == $vo.id}disabled="disabled"{/if} >
+                                                    {eq name="vo.level" value="3"}　　│　　├{/eq}
+                                                    {eq name="vo.level" value="2"}　　├{/eq}
+                                                    {$vo.title}
+                                                </option>
+                                                {/volist}
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">节点名称</label>
+                                        <div class="col-sm-7"><input class="form-control" name="title" value="{$item['title']?$item['title']:''}" placeholder="请输入节点名称"></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">节点地址</label>
+                                        <div class="col-sm-7"><input class="form-control" name="name" value="{$item['name']?$item['name']:''}" placeholder="请输入节点地址"></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">节点类型</label>
+                                        <div class="col-sm-7">
+                                            <select class="form-control select2" name="level" style="width:100%;">
+                                                <option value="1" {if isset($item['level']) && $item.level == 1}selected="selected"{/if} >项目</option>
+                                                <option value="2" {if isset($item['level']) && $item.level == 2}selected="selected"{/if} >模块</option>
+                                                <option value="3" {if isset($item['level']) && $item.level == 3}selected="selected"{/if} >操作</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">状态</label>
+                                        <div class="col-sm-7">
+                                            <select class="form-control select2" name="status" style="width:100%;">
+                                                <option value="1" {if isset($item['status']) && $item.status == 1}selected="selected"{/if} >启用</option>
+                                                <option value="0" {if isset($item['status']) && $item.status == 0}selected="selected"{/if} >禁用</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <!-- <div class="form-group">
+                                        <label class="col-sm-2 control-label">是否菜单</label>
+                                        <div class="col-sm-7">
+                                            <select class="form-control select2" name="ismenu" style="width:100%;">
+                                                <option value="0" {if isset($item['ismenu']) && $item.ismenu == 0}selected="selected"{/if} >否</option>
+                                                <option value="1" {if isset($item['ismenu']) && $item.ismenu == 1}selected="selected"{/if} >是</option>
+                                            </select>
+                                        </div>
+                                    </div> -->
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">节点图标</label>
+                                        <div class="col-sm-7"><input class="form-control" name="icon" value="{$item['icon']?$item['icon']:''}" placeholder="请输入节点图标"></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">排序</label>
+                                        <div class="col-sm-7"><input class="form-control" name="sorts" value="{$item.sorts|default='50'}" placeholder="请输入排序"></div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="col-sm-6 col-xs-12 col-sm-offset-2">
+                                            <input type="hidden" name="id" value="{$item['id']?$item['id']:0}">
+                                            <button type="button" name="submit" class="btn btn-primary">提交</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        <script type="text/javascript">
+                            $(function () {
+                                //提交分类信息
+                                $("button[name='submit']").click(function () {
+                                    $.post(
+                                        window.location.href,
+                                        $('#post_form').serialize(),
+                                        function (res) {
+                                            message(res.message,res.redirect,res.type)
+                                        },'json'
+                                    );
+                                });
+                            });
+                        </script>
+                    </div>
+                    <!-- /.tab-content -->
+                </div>
+                <!-- /.nav-tabs-custom -->
+            </div>
+            <!-- /.col -->
+        </div>
+    </section>
+</div>
+{include file="common/footer"}
