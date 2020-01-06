@@ -202,7 +202,7 @@ class Task extends Base{
             //处理是整数的
             params_floor(['check_period','rate','interval_hour','limit_ticket_num'],$params);
 
-            $params['give_credit1'] = intval($params['give_credit1']);
+//            $params['give_credit1'] = intval($params['give_credit1']);
             $params['ticket_num'] = intval($params['ticket_num']);
             $params['give_credit2'] = $params['unit_price'] * $params['ticket_num'];
             $params['amount'] = $params['give_credit2'] * (1 + $params['fee']);
@@ -211,22 +211,22 @@ class Task extends Base{
             if($params['amount'] > $member['credit2']){
                 message('账户余额不足','','error');
             }
-            if($params['give_credit1'] > $member['credit1']){
-                message('积分不足','','error');
-            }
+//            if($params['give_credit1'] > $member['credit1']){
+//                message('积分不足','','error');
+//            }
 
             $task_operate_steps_contents = $params['process_sm'];
             unset($params['process_sm']);
             unset($params['processFile']);
 
-            if (empty($task_operate_steps_contents)) {
-                message('您未写操作说明!','','error');
-            }
-            foreach ($task_operate_steps_contents as $key => $value) {
-                if (empty(trim($value))) {
-                    message('您未写操作说明!','','error');
-                }
-            }
+//            if (empty($task_operate_steps_contents)) {
+//                message('您未写操作说明!','','error');
+//            }
+//            foreach ($task_operate_steps_contents as $key => $value) {
+//                if (empty(trim($value))) {
+//                    message('您未写操作说明!','','error');
+//                }
+//            }
 
             // 获取表单上传文件
             $thumbs = [];
@@ -261,13 +261,13 @@ class Task extends Base{
                         'mark_height' => 0,
                         'mark_degree' => ''
                     ];
-                    if($water['is_mark']==1 && $image->width() > $water['mark_width'] && $image->height() > $water['mark_height']) {
-                        if($water['mark_type'] == 'text'){
-                            $image->text($water['mark_txt'], './hgzb.ttf', 50, '#ff0000', 9)->save($imgresource);
-                        }else{
-                            $image->water(".".$water['mark_img'], 9, $water['mark_degree'])->save($imgresource);
-                        }
-                    }
+//                    if($water['is_mark']==1 && $image->width() > $water['mark_width'] && $image->height() > $water['mark_height']) {
+//                        if($water['mark_type'] == 'text'){
+//                            $image->text($water['mark_txt'], './hgzb.ttf', 50, '#ff0000', 9)->save($imgresource);
+//                        }else{
+//                            $image->water(".".$water['mark_img'], 9, $water['mark_degree'])->save($imgresource);
+//                        }
+//                    }
 
                     $record = [
                         'uid' => $this->member['uid'],
@@ -290,7 +290,7 @@ class Task extends Base{
             $params['thumbs'] = check_array($thumbs)?serialize($thumbs):'';
             $params['start_time'] = strtotime($params['start_time']);
             $params['end_time'] = strtotime($params['end_time']);
-            $params['check_period_time'] = intval($params['check_period']) * 3600 + TIMESTAMP;
+            $params['check_period_time'] = 0 + TIMESTAMP;
             $params['uid'] = $this->member['uid'];
             $params['update_time'] = TIMESTAMP;
 
@@ -349,27 +349,27 @@ class Task extends Base{
                 }
             }
 
-            if($params['give_credit1']>0 || $params['amount']>0){
-                $status1 = Member::updateCreditById($member['uid'], -$params['give_credit1'], -$params['amount']);
+            if($params['amount']>0){
+                $status1 = Member::updateCreditById($member['uid'], 0, -$params['amount']);
                 if(!$status1){
                     Db::rollback();
                     message('发布失败:-3','','error');
                 }
                 //分别记录积分和余额记录
-                if($params['give_credit1']>0){
-                    $status2 = CreditRecord::addInfo([
-                        'uid' => $member['uid'],
-                        'type' => 'credit1',
-                        'num' => -$params['give_credit1'],
-                        'title' => '发布任务',
-                        'remark' => "任务[{$insert_task_id}]-" . $params['title'] . "发布成功，扣除{$params['give_credit1']}积分。",
-                        'create_time' => TIMESTAMP
-                    ]);
-                    if(!$status2){
-                        Db::rollback();
-                        message('发布失败:-4','','error');
-                    }
-                }
+//                if($params['give_credit1']>0){
+//                    $status2 = CreditRecord::addInfo([
+//                        'uid' => $member['uid'],
+//                        'type' => 'credit1',
+//                        'num' => -$params['give_credit1'],
+//                        'title' => '发布任务',
+//                        'remark' => "任务[{$insert_task_id}]-" . $params['title'] . "发布成功，扣除{$params['give_credit1']}积分。",
+//                        'create_time' => TIMESTAMP
+//                    ]);
+//                    if(!$status2){
+//                        Db::rollback();
+//                        message('发布失败:-4','','error');
+//                    }
+//                }
                 if($params['amount']>0){
                     $status3 = CreditRecord::addInfo([
                         'uid' => $member['uid'],
@@ -508,15 +508,15 @@ class Task extends Base{
         $task_operate_steps_contents = $params['process_sm'];
         unset($params['process_sm']);
         unset($params['processFile']);
-
-        if (empty($task_operate_steps_contents)) {
-            message('您未写操作说明!','','error');
-        }
-        foreach ($task_operate_steps_contents as $key => $value) {
-            if (empty(trim($value))) {
-                message('您未写操作说明!','','error');
-            }
-        }
+//
+//        if (empty($task_operate_steps_contents)) {
+//            message('您未写操作说明!','','error');
+//        }
+//        foreach ($task_operate_steps_contents as $key => $value) {
+//            if (empty(trim($value))) {
+//                message('您未写操作说明!','','error');
+//            }
+//        }
 
         $thumbsi = isset($_POST["thumbsi"]) && is_array($_POST["thumbsi"]) ? $_POST["thumbsi"] : [];
         $thumbs = [];

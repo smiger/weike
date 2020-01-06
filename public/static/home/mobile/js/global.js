@@ -12,7 +12,7 @@ function message(message,redirect,type) {
         type : 'toast',
         infoIcon: '/static/plugins/dialog/images/icon/'+type+'.png',
         infoText: message,
-        autoClose: 3000,
+        autoClose: 1000,
         onClosed:function () {
             if(redirect == 'reload'){
                 window.location.reload();

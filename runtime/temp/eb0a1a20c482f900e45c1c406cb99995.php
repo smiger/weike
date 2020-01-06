@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:37:"./views/home/mobile/index\index.phtml";i:1541935408;s:71:"D:\BaiduYunDownload\weike2\public\views\home\mobile\common\footer.phtml";i:1541935408;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:37:"./views/home/mobile/index\index.phtml";i:1578038129;s:71:"D:\BaiduYunDownload\weike2\public\views\home\mobile\common\footer.phtml";i:1541935408;}*/ ?>
 ﻿<!DOCTYPE HTML>
 <html>
 	<head>
@@ -34,7 +34,7 @@
         <!-- 弹出层 -->
         <script type="text/javascript" src="/static/plugins/clipboard.min.js"></script>
         <script type="text/javascript" src="/static/home/mobile/js/swiper.min.js"></script>
-        <script type="text/javascript" src="/static/home/mobile/js/global.js"></script>
+        <script type="text/javascript" src="/static/home/mobile/js/global.js?v=1001"></script>
 	</head>
     <body class="new-body">
     <header class="new-header" style="padding-top: 12px;">
@@ -163,7 +163,7 @@
             <span class="paging-prev">上一页</span>
             <span class="paging-num-total">
 					<select name="page" class="paging-selct">
-                        <?php $__FOR_START_2019311008__=1;$__FOR_END_2019311008__=$pageCount+1;for($i=$__FOR_START_2019311008__;$i < $__FOR_END_2019311008__;$i+=1){ ?>
+                        <?php $__FOR_START_310480165__=1;$__FOR_END_310480165__=$pageCount+1;for($i=$__FOR_START_310480165__;$i < $__FOR_END_310480165__;$i+=1){ ?>
                         <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
                         <?php } ?>
                     </select>

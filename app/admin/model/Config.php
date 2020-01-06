@@ -20,7 +20,7 @@ class Config extends Base{
      */
     public static function getInfo(){
         try{
-            $config = self::find();
+            $config = self::order('create_time','desc')->find();
             if(!empty($config['setting'])){
                 $config['setting'] = unserialize($config['setting']);
             }

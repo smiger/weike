@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:36:"./views/home/mobile/auth\login.phtml";i:1541935408;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:36:"./views/home/mobile/auth\login.phtml";i:1578038129;}*/ ?>
 <!DOCTYPE HTML>
 <html>
 
@@ -17,7 +17,7 @@
         <script src="/static/plugins/dialog/lib/zepto.min.js"></script>
         <script src="/static/plugins/dialog/js/dialog.js"></script>
         <!-- 弹出层 -->
-        <script type="text/javascript" src="/static/home/mobile/js/global.js"></script>
+        <script type="text/javascript" src="/static/home/mobile/js/global.js?v=1001"></script>
 	</head>
 	<style type="text/css">
 		.site-header .tit-name{

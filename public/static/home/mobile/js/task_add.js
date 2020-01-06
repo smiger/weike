@@ -179,19 +179,19 @@ $(function () {
                  return false;
             }           
         }
-        var alertMsg = "";
-        var stepImgLength = $("#stepUl li").length;
-        if(stepImgLength==1){
-            //var process_sm = document.getElementsByName("process_sm[]")[0].value;
-            var process_sm = $(".step_text").eq(0).val();
-            if(process_sm.trim()==""){
-                alertMsg = "您未写操作说明!";
-            }
-        }
-        if (alertMsg != "") {
-            message(alertMsg,'','error');
-            return false;
-        }
+        // var alertMsg = "";
+        // var stepImgLength = $("#stepUl li").length;
+        // if(stepImgLength==1){
+        //     //var process_sm = document.getElementsByName("process_sm[]")[0].value;
+        //     var process_sm = $(".step_text").eq(0).val();
+        //     if(process_sm.trim()==""){
+        //         alertMsg = "您未写操作说明!";
+        //     }
+        // }
+        // if (alertMsg != "") {
+        //     message(alertMsg,'','error');
+        //     return false;
+        // }
         /*if(task_state==1){
             var user_rmb_balance = $("#user_rmb_balance").val();
             var count_money = $("#count_money").val();
@@ -244,7 +244,7 @@ $(function () {
         }
         message('正在发布','','loading');
         $.ajax({
-            url: post_form_action,
+            url: '/home/task/add',
             type: 'POST',
             data: formData,
             dataType: "json",

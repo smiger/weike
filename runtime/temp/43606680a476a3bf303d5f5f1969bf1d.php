@@ -16,7 +16,7 @@
     <script src="/static/plugins/dialog/lib/zepto.min.js"></script>
     <script src="/static/plugins/dialog/js/dialog.js"></script>
     <!-- 弹出层 -->
-    <script type="text/javascript" src="/static/home/mobile/js/global.js"></script>
+    <script type="text/javascript" src="/static/home/mobile/js/global.js?v=1001"></script>
 </head>
 <body>
     <style>

@@ -10,7 +10,7 @@ function message(message,redirect,type) {
         template: message,
         position  : 'top-center',
         style: type ,
-        autoclose: 3000,
+        autoclose: 1000,
         onOpen: function () {},
         onClose: function() {
             if(redirect != undefined){
