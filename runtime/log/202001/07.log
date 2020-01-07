@@ -1,0 +1,120 @@
+---------------------------------------------------------------
+[ 2020-01-07T19:34:20+08:00 ] 0.0.0.0 GET /home/index.html
+[ info ] localhost/home/index.html [运行时间：0.440113s][吞吐率：2.27req/s] [内存消耗：3,470.13kb] [文件加载：70]
+[ info ] [ LANG ] D:\BaiduYunDownload\weike2\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'home',
+    1 => 'index',
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'localhost',
+  'connection' => 'keep-alive',
+  'cache-control' => 'max-age=0',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Linux; Android 5.0; SM-G900P Build/LRX21T) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.88 Mobile Safari/537.36',
+  'sec-fetch-user' => '?1',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+  'sec-fetch-site' => 'same-origin',
+  'sec-fetch-mode' => 'navigate',
+  'referer' => 'http://localhost/home/task/detail/id/45.html',
+  'accept-encoding' => 'gzip, deflate, br',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'cookie' => 'XDEBUG_SESSION=XDEBUG_ECLIPSE; bdshare_firstime=1577962828334; PHPSESSID=tu58b2hcach26cs79s9ovhiubo; administrator=eyJpZCI6MSwidXNlcm5hbWUiOiJhZG1pbiIsInBhc3N3b3JkIjoiY2VmMThiYWQ5ZDEwYmQ5ZWIxZDE1MzBjOGI1YjlkZTQiLCJzYWx0IjoielNlU3M3UTAiLCJnZW5kZXIiOjAsImxldmVsIjowLCJiaXJ0aGRheSI6MCwibmlja25hbWUiOiIiLCJtb2JpbGUiOiIiLCJlbWFpbCI6IiIsImF2YXRhciI6IiIsImlzX2NoZWNrIjoxLCJsYXN0X2xvZ2luX2lwIjoiIiwibGFzdF9sb2dpbl90aW1lIjowLCJ1cGRhdGVfdGltZSI6IjIwMjAtMDEtMDIgMTc6MTQ6MDkiLCJjcmVhdGVfdGltZSI6IjE5NzAtMDEtMDEgMDg6MDA6MDAifQ%3D%3D; member=eyJ1aWQiOjE4MCwidXNlcm5hbWUiOiIxODY1OTY1MjAyOCIsImdlbmRlciI6MCwicGFyZW50X3VpZCI6MCwiZXhwZXJpZW5jZV92YWx1ZSI6IjAuMDAiLCJsZXZlbCI6MSwiaW52aXRhdGlvbl9jb2RlIjpudWxsLCJvYXRoX3R5cGUiOjAsIm9wZW5pZCI6bnVsbCwiY3JlZGl0MSI6Ijk4NC4wMCIsImNyZWRpdDIiOiIwLjgwIiwicGFzc3dvcmQiOiI3ZWNiYWEzZjVmYjczZDNmMmQ3ZGVlYmZkNzdlYzlkYyIsInNhbHQiOiJGMkg5MXgwSCIsImF2YXRhciI6bnVsbCwiZW1haWwiOiIiLCJpc19iaW5kX2VtYWlsIjowLCJhbGlwYXlfYWNjb3VudCI6bnVsbCwiYWxpcGF5X3JlYWxuYW1lIjpudWxsLCJpc19iaW5kX2FsaXBheSI6MCwibW9iaWxlIjpudWxsLCJpc19iaW5kX21vYmlsZSI6MCwiY2hhbm5lbF9pZCI6MCwiY2hhbm5lbF9uYW1lIjpudWxsLCJjaGFubmVsX2Rlc2MiOm51bGwsImlzX2JpbmRfY2hhbm5lbCI6MCwiaXNfY2hlY2siOjEsImlzX2RlbCI6MCwiaW52aXRlX3RvdGFsIjoxLCJpbnZpdGVfcmViYXRlIjoiMC4wMCIsInNpZ24iOiIiLCJzaWduX2NvbnRpbnVlIjoyLCJ1cGRhdGVfdGltZSI6IjIwMjAtMDEtMDcgMTc6MjY6MzgiLCJjcmVhdGVfdGltZSI6IjIwMjAtMDEtMDIgMTY6MTk6NDcifQ%3D%3D',
+)
+[ info ] [ PARAM ] array (
+  '/home/index_html' => '',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\home\controller\Index->index[ D:\BaiduYunDownload\weike2\app\home\controller\Index.php ]
+[ info ] [ VIEW ] ./views/home/mobile/index\index.phtml [ array (
+  0 => 'controller',
+  1 => 'action',
+  2 => 'site',
+  3 => 'member',
+  4 => 'categories',
+  5 => 'banners',
+  6 => 'notices',
+  7 => 'withdraws',
+  8 => 'today_credit1',
+  9 => 'today_credit2',
+  10 => 'tasks',
+  11 => 'pageCount',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001750s ] mysql:host=localhost;dbname=web32;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tb_config` [ RunTime:0.026343s ]
+[ sql ] [ SQL ] SELECT * FROM `tb_config` ORDER BY `create_time`  desc LIMIT 1 [ RunTime:0.000958s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tb_member` [ RunTime:0.021862s ]
+[ sql ] [ SQL ] SELECT * FROM `tb_member` WHERE  `uid` = 180 LIMIT 1 [ RunTime:0.001327s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tb_task_category` [ RunTime:0.025185s ]
+[ sql ] [ SQL ] SELECT * FROM `tb_task_category` ORDER BY order_by desc LIMIT 0,100 [ RunTime:0.000775s ]
+[ sql ] [ SQL ] SELECT SUM((give_credit2-fee)/ticket_num) AS credit2,SUM(give_credit1/ticket_num) AS credit1 FROM tb_task WHERE is_complete=0 AND is_display=1 AND check_period*3600+create_time<1578396860 AND start_time<1578396860 AND end_time>1578396860 [ RunTime:0.000890s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tb_banner` [ RunTime:0.015546s ]
+[ sql ] [ SQL ] SELECT * FROM `tb_banner` WHERE  `is_display` = 1 ORDER BY order_by desc LIMIT 10 [ RunTime:0.000979s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tb_notice` [ RunTime:0.015921s ]
+[ sql ] [ SQL ] SELECT * FROM `tb_notice` WHERE  `is_display` = 1 ORDER BY order_by desc,id desc LIMIT 10 [ RunTime:0.000762s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tb_withdraw` [ RunTime:0.015037s ]
+[ sql ] [ SQL ] SELECT * FROM `tb_withdraw` WHERE  `status` = 1 ORDER BY id DESC LIMIT 0,10 [ RunTime:0.000756s ]
+[ sql ] [ SQL ] SELECT * FROM tb_task WHERE is_complete=0 AND is_display=1 AND check_period_time<1578396860 AND start_time<1578396860 AND end_time>1578396860 ORDER BY top_end_time DESC, end_time ASC, id DESC LIMIT 0,15 [ RunTime:0.000949s ]
+[ sql ] [ SQL ] SELECT COUNT(1) AS num FROM tb_task WHERE is_complete=0 AND is_display=1 AND check_period_time<1578396860 AND start_time<1578396860 AND end_time>1578396860 [ RunTime:0.000832s ]
+---------------------------------------------------------------
+[ 2020-01-07T19:34:21+08:00 ] 0.0.0.0 GET /static/home/mobile/css/bootstrap.css.map
+[ info ] localhost/static/home/mobile/css/bootstrap.css.map [运行时间：0.097885s][吞吐率：10.22req/s] [内存消耗：1,557.72kb] [文件加载：41]
+[ info ] [ LANG ] D:\BaiduYunDownload\weike2\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'static',
+    1 => 'home',
+    2 => 'mobile',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'localhost',
+  'connection' => 'keep-alive',
+  'user-agent' => 'Mozilla/5.0 (Linux; Android 5.0; SM-G900P Build/LRX21T) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.88 Mobile Safari/537.36',
+  'sec-fetch-site' => 'none',
+  'sec-fetch-mode' => 'no-cors',
+  'accept-encoding' => 'gzip, deflate, br',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'cookie' => 'XDEBUG_SESSION=XDEBUG_ECLIPSE; bdshare_firstime=1577962828334; PHPSESSID=tu58b2hcach26cs79s9ovhiubo; administrator=eyJpZCI6MSwidXNlcm5hbWUiOiJhZG1pbiIsInBhc3N3b3JkIjoiY2VmMThiYWQ5ZDEwYmQ5ZWIxZDE1MzBjOGI1YjlkZTQiLCJzYWx0IjoielNlU3M3UTAiLCJnZW5kZXIiOjAsImxldmVsIjowLCJiaXJ0aGRheSI6MCwibmlja25hbWUiOiIiLCJtb2JpbGUiOiIiLCJlbWFpbCI6IiIsImF2YXRhciI6IiIsImlzX2NoZWNrIjoxLCJsYXN0X2xvZ2luX2lwIjoiIiwibGFzdF9sb2dpbl90aW1lIjowLCJ1cGRhdGVfdGltZSI6IjIwMjAtMDEtMDIgMTc6MTQ6MDkiLCJjcmVhdGVfdGltZSI6IjE5NzAtMDEtMDEgMDg6MDA6MDAifQ%3D%3D; member=eyJ1aWQiOjE4MCwidXNlcm5hbWUiOiIxODY1OTY1MjAyOCIsImdlbmRlciI6MCwicGFyZW50X3VpZCI6MCwiZXhwZXJpZW5jZV92YWx1ZSI6IjAuMDAiLCJsZXZlbCI6MSwiaW52aXRhdGlvbl9jb2RlIjpudWxsLCJvYXRoX3R5cGUiOjAsIm9wZW5pZCI6bnVsbCwiY3JlZGl0MSI6Ijk4NC4wMCIsImNyZWRpdDIiOiIwLjgwIiwicGFzc3dvcmQiOiI3ZWNiYWEzZjVmYjczZDNmMmQ3ZGVlYmZkNzdlYzlkYyIsInNhbHQiOiJGMkg5MXgwSCIsImF2YXRhciI6bnVsbCwiZW1haWwiOiIiLCJpc19iaW5kX2VtYWlsIjowLCJhbGlwYXlfYWNjb3VudCI6bnVsbCwiYWxpcGF5X3JlYWxuYW1lIjpudWxsLCJpc19iaW5kX2FsaXBheSI6MCwibW9iaWxlIjpudWxsLCJpc19iaW5kX21vYmlsZSI6MCwiY2hhbm5lbF9pZCI6MCwiY2hhbm5lbF9uYW1lIjpudWxsLCJjaGFubmVsX2Rlc2MiOm51bGwsImlzX2JpbmRfY2hhbm5lbCI6MCwiaXNfY2hlY2siOjEsImlzX2RlbCI6MCwiaW52aXRlX3RvdGFsIjoxLCJpbnZpdGVfcmViYXRlIjoiMC4wMCIsInNpZ24iOiIiLCJzaWduX2NvbnRpbnVlIjoyLCJ1cGRhdGVfdGltZSI6IjIwMjAtMDEtMDcgMTc6MjY6MzgiLCJjcmVhdGVfdGltZSI6IjIwMjAtMDEtMDIgMTY6MTk6NDcifQ%3D%3D',
+)
+[ info ] [ PARAM ] array (
+  '/static/home/mobile/css/bootstrap_css_map' => '',
+  'css' => 'bootstrap.css.map',
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2020-01-07T19:34:21+08:00 ] 0.0.0.0 GET /static/home/mobile/js/maps/swiper.min.js.map
+[ info ] localhost/static/home/mobile/js/maps/swiper.min.js.map [运行时间：0.085004s][吞吐率：11.76req/s] [内存消耗：1,557.69kb] [文件加载：41]
+[ info ] [ LANG ] D:\BaiduYunDownload\weike2\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'static',
+    1 => 'home',
+    2 => 'mobile',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'localhost',
+  'connection' => 'keep-alive',
+  'user-agent' => 'Mozilla/5.0 (Linux; Android 5.0; SM-G900P Build/LRX21T) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.88 Mobile Safari/537.36',
+  'sec-fetch-site' => 'none',
+  'sec-fetch-mode' => 'no-cors',
+  'accept-encoding' => 'gzip, deflate, br',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'cookie' => 'XDEBUG_SESSION=XDEBUG_ECLIPSE; bdshare_firstime=1577962828334; PHPSESSID=tu58b2hcach26cs79s9ovhiubo; administrator=eyJpZCI6MSwidXNlcm5hbWUiOiJhZG1pbiIsInBhc3N3b3JkIjoiY2VmMThiYWQ5ZDEwYmQ5ZWIxZDE1MzBjOGI1YjlkZTQiLCJzYWx0IjoielNlU3M3UTAiLCJnZW5kZXIiOjAsImxldmVsIjowLCJiaXJ0aGRheSI6MCwibmlja25hbWUiOiIiLCJtb2JpbGUiOiIiLCJlbWFpbCI6IiIsImF2YXRhciI6IiIsImlzX2NoZWNrIjoxLCJsYXN0X2xvZ2luX2lwIjoiIiwibGFzdF9sb2dpbl90aW1lIjowLCJ1cGRhdGVfdGltZSI6IjIwMjAtMDEtMDIgMTc6MTQ6MDkiLCJjcmVhdGVfdGltZSI6IjE5NzAtMDEtMDEgMDg6MDA6MDAifQ%3D%3D; member=eyJ1aWQiOjE4MCwidXNlcm5hbWUiOiIxODY1OTY1MjAyOCIsImdlbmRlciI6MCwicGFyZW50X3VpZCI6MCwiZXhwZXJpZW5jZV92YWx1ZSI6IjAuMDAiLCJsZXZlbCI6MSwiaW52aXRhdGlvbl9jb2RlIjpudWxsLCJvYXRoX3R5cGUiOjAsIm9wZW5pZCI6bnVsbCwiY3JlZGl0MSI6Ijk4NC4wMCIsImNyZWRpdDIiOiIwLjgwIiwicGFzc3dvcmQiOiI3ZWNiYWEzZjVmYjczZDNmMmQ3ZGVlYmZkNzdlYzlkYyIsInNhbHQiOiJGMkg5MXgwSCIsImF2YXRhciI6bnVsbCwiZW1haWwiOiIiLCJpc19iaW5kX2VtYWlsIjowLCJhbGlwYXlfYWNjb3VudCI6bnVsbCwiYWxpcGF5X3JlYWxuYW1lIjpudWxsLCJpc19iaW5kX2FsaXBheSI6MCwibW9iaWxlIjpudWxsLCJpc19iaW5kX21vYmlsZSI6MCwiY2hhbm5lbF9pZCI6MCwiY2hhbm5lbF9uYW1lIjpudWxsLCJjaGFubmVsX2Rlc2MiOm51bGwsImlzX2JpbmRfY2hhbm5lbCI6MCwiaXNfY2hlY2siOjEsImlzX2RlbCI6MCwiaW52aXRlX3RvdGFsIjoxLCJpbnZpdGVfcmViYXRlIjoiMC4wMCIsInNpZ24iOiIiLCJzaWduX2NvbnRpbnVlIjoyLCJ1cGRhdGVfdGltZSI6IjIwMjAtMDEtMDcgMTc6MjY6MzgiLCJjcmVhdGVfdGltZSI6IjIwMjAtMDEtMDIgMTY6MTk6NDcifQ%3D%3D',
+)
+[ info ] [ PARAM ] array (
+  '/static/home/mobile/js/maps/swiper_min_js_map' => '',
+  'js' => 'maps',
+)
+[ info ] [ LOG ] INIT File
