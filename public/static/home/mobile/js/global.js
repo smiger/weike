@@ -54,6 +54,26 @@ function copy(obj) {
     }
 }
 
+function copyqq(obj) {
+    var value  = $(obj).attr('data-copy');
+    if(value){
+        if(!window.hasOwnProperty('qqclipboard')){
+            window['qqclipboard'] = new Clipboard('.qqclipboards', {
+                text: function() {
+                    return value;
+                }
+            });
+            window['qqclipboard'].on('success', function(e) {
+                message('复制成功','','success')
+            });
+
+            window['qqclipboard'].on('error', function(e) {
+                message('复制失败','','error')
+            });
+        }
+    }
+}
+
 //阿拉伯数字转换为简写汉字转换
 function Arabia_To_SimplifiedChinese(Num) {
     for (i = Num.length - 1; i >= 0; i--) {

@@ -200,7 +200,7 @@ class Mytaskaudit extends Base {
                     'type' => 'credit2',
                     'num' => $parent_money,
                     'title' => '审核任务',
-                    'remark' => "任务[" . $params['id'] . "]-" . $params['title'] . "审核成功，获得推荐收入{$parent_money}元。",
+                    'remark' => "任务[" . $params['id'] . "]-" . $params['title'] . "审核成功，获得推荐收入{$parent_money}积分。",
                     'create_time' => TIMESTAMP
                 ]);
                 if(!$status3){
@@ -212,7 +212,7 @@ class Mytaskaudit extends Base {
                     'uid' => $joinMemberInfo['parent_uid'],
                     'num' => $parent_money,
                     'task_id' => $insert_task_id,
-                    'remark' => "徒弟[" . $joinMemberInfo['username'] . "]完成任务[" . $params['id'] . "]-" . $params['title'] . "，获得推荐收入{$parent_money}元。",
+                    'remark' => "徒弟[" . $joinMemberInfo['username'] . "]完成任务[" . $params['id'] . "]-" . $params['title'] . "，获得推荐收入{$parent_money}积分。",
                     'create_time' => TIMESTAMP
                 ]);
                 if(!$status3){
@@ -256,7 +256,7 @@ class Mytaskaudit extends Base {
                     'type' => 'credit2',
                     'num' => $unit_price,
                     'title' => '审核任务',
-                    'remark' => "任务[" . $params['id'] . "]-" . $params['title'] . "审核成功，奖励{$unit_price}元。",
+                    'remark' => "任务[" . $params['id'] . "]-" . $params['title'] . "审核成功，奖励{$unit_price}积分。",
                     'create_time' => TIMESTAMP
                 ]);
                 if(!$status3){

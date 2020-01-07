@@ -119,7 +119,7 @@ function ajaxGetListByData(data) {
                         '                           <div class="task-list-title">' +item['title']+ '</div>\n' +
                         '                            <span class="task-list-gold">\n' +
                         '                                <span>￥</span>\n' +
-                        '                                '+item['unit_price']+'元\n' +
+                        '                                '+item['unit_price']+'积分\n' +
                         '                            </span>\n' +
                         '                        </div>\n' +
                         '                        <span class="task-list-prefix">商</span>\n' +

@@ -19,8 +19,8 @@ class Activity extends Base{
     public function spin(){
         $member = $this->checkLogin();
 
-        $params = ['give_credit1' => 100];
-        if($params['give_credit1'] > $member['credit1']){
+        $params = ['give_credit1' => 10];
+        if($params['give_credit1'] > $member['credit2']){
             message('积分不足','','error');
         }
 
@@ -29,7 +29,7 @@ class Activity extends Base{
         Db::startTrans();
 
         $give_credit1 = -$params['give_credit1'] + $spin['credit'];
-        $status1 = Member::updateCreditById($member['uid'], $give_credit1, 0);
+        $status1 = Member::updateCreditById($member['uid'], 0, $give_credit1);
         if(!$status1){
             Db::rollback();
             message('抽奖失败:-1','','error');
@@ -37,7 +37,7 @@ class Activity extends Base{
 
         $status2 = CreditRecord::addInfo([
             'uid' => $member['uid'],
-            'type' => 'credit1',
+            'type' => 'credit2',
             'num' => -$params['give_credit1'],
             'title' => '活动抽奖',
             'remark' => "使用积分抽奖，扣除{$params['give_credit1']}积分。",
@@ -71,11 +71,11 @@ class Activity extends Base{
     private function _spin() {
         $prizes = [
             ['name' => '没洗手？', 'credit' => 0],
-            ['name' => '200积分', 'credit' => 200],
+            ['name' => '20积分', 'credit' => 20],
             ['name' => '人品差？', 'credit' => 0],
-            ['name' => '50积分', 'credit' => 50],
+            ['name' => '5积分', 'credit' => 5],
             ['name' => '运气背？', 'credit' => 0],
-            ['name' => '100积分', 'credit' => 100],
+            ['name' => '10积分', 'credit' => 10],
         ];
 
         $a = 25;

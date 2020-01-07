@@ -89,7 +89,7 @@ class Task extends Base {
             return '任务类别不存在';
         }
         if($credit2 < $category['min_give_credit2']){
-            return "该分类的奖励金额不能低于{$category['min_give_credit2']}元";
+            return "该分类的奖励金额不能低于{$category['min_give_credit2']}积分";
         }
         //此处不验证会员的余额是否足够，因为控制器中，还需要扣除余额处理，避免逻辑重复
         return true;

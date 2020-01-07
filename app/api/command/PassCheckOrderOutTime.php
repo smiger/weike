@@ -113,7 +113,7 @@ class PassCheckOrderOutTime extends Command
                             'type' => 'credit2',
                             'num' => $parent_money,
                             'title' => '任务审核',
-                            'remark' => "任务[{$insert_task_id}]-" . $params['title'] . "自动审核成功，获得推荐收入{$parent_money}元。",
+                            'remark' => "任务[{$insert_task_id}]-" . $params['title'] . "自动审核成功，获得推荐收入{$parent_money}积分。",
                             'create_time' => TIMESTAMP
                         ]);
                         if(!$status3){
@@ -128,7 +128,7 @@ class PassCheckOrderOutTime extends Command
                             'uid' => $joinMemberInfo['parent_uid'],
                             'num' => $parent_money,
                             'task_id' => $insert_task_id,
-                            'remark' => "徒弟[" . $joinMemberInfo['username'] . "]完成任务[" . $params['id'] . "]-" . $params['title'] . "，获得推荐收入{$parent_money}元。",
+                            'remark' => "徒弟[" . $joinMemberInfo['username'] . "]完成任务[" . $params['id'] . "]-" . $params['title'] . "，获得推荐收入{$parent_money}积分。",
                             'create_time' => TIMESTAMP
                         ]);
                         if(!$status3){
@@ -184,7 +184,7 @@ class PassCheckOrderOutTime extends Command
                             'type' => 'credit2',
                             'num' => $unit_price,
                             'title' => '任务审核',
-                            'remark' => "任务[{$insert_task_id}]-" . $params['title'] . "自动审核成功，奖励{$unit_price}元。",
+                            'remark' => "任务[{$insert_task_id}]-" . $params['title'] . "自动审核成功，奖励{$unit_price}积分。",
                             'create_time' => TIMESTAMP
                         ]);
                         if(!$status3){

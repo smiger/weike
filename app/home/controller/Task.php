@@ -219,14 +219,14 @@ class Task extends Base{
             unset($params['process_sm']);
             unset($params['processFile']);
 
-//            if (empty($task_operate_steps_contents)) {
-//                message('您未写操作说明!','','error');
-//            }
-//            foreach ($task_operate_steps_contents as $key => $value) {
-//                if (empty(trim($value))) {
-//                    message('您未写操作说明!','','error');
-//                }
-//            }
+            if (empty($task_operate_steps_contents)) {
+                message('您未写操作说明!','','error');
+            }
+            foreach ($task_operate_steps_contents as $key => $value) {
+                if (empty(trim($value))) {
+                    message('您未写操作说明!','','error');
+                }
+            }
 
             // 获取表单上传文件
             $thumbs = [];
@@ -508,15 +508,15 @@ class Task extends Base{
         $task_operate_steps_contents = $params['process_sm'];
         unset($params['process_sm']);
         unset($params['processFile']);
-//
-//        if (empty($task_operate_steps_contents)) {
-//            message('您未写操作说明!','','error');
-//        }
-//        foreach ($task_operate_steps_contents as $key => $value) {
-//            if (empty(trim($value))) {
-//                message('您未写操作说明!','','error');
-//            }
-//        }
+
+        if (empty($task_operate_steps_contents)) {
+            message('您未写操作说明!','','error');
+        }
+        foreach ($task_operate_steps_contents as $key => $value) {
+            if (empty(trim($value))) {
+                message('您未写操作说明!','','error');
+            }
+        }
 
         $thumbsi = isset($_POST["thumbsi"]) && is_array($_POST["thumbsi"]) ? $_POST["thumbsi"] : [];
         $thumbs = [];

@@ -39,7 +39,7 @@ class Account extends Base{
             }
             Db::startTrans();
             $status1= Member::updateInfoById($member['uid'],[
-                'credit1' => $member['credit1']+$sign_credit1
+                'credit2' => $member['credit2']+$sign_credit1
             ]);
             if(!$status1){
                 Db::rollback();

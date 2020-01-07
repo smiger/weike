@@ -114,21 +114,21 @@
         </ul>
     </div>
     {/if}
-    <div class="index-withdraws" style="padding-top:5px;border-top: solid 1px #E9E9E9;">
-        <div id="withdraw" class="swiper-container swiper-container-vertical">
-            <div class="swiper-wrapper">
-                {if !empty($withdraws)}
-                    {volist name="withdraws" id="withdraw"}
-                        <div class="swiper-slide swiper-slide-duplicate">
-                            <em style="color: #FD2D2E;">{$withdraw.username}</em> 于{$withdraw.create_time|strtotime|date="Y-n-j",###} 提现：<em style="color: #FD2D2E;">{$withdraw.credit2}</em> 元
-                        </div>
-                    {/volist}
-                {/if}
-            </div>
-        </div>
-    </div>
+<!--    <div class="index-withdraws" style="padding-top:5px;border-top: solid 1px #E9E9E9;">-->
+<!--        <div id="withdraw" class="swiper-container swiper-container-vertical">-->
+<!--            <div class="swiper-wrapper">-->
+<!--                {if !empty($withdraws)}-->
+<!--                    {volist name="withdraws" id="withdraw"}-->
+<!--                        <div class="swiper-slide swiper-slide-duplicate">-->
+<!--                            <em style="color: #FD2D2E;">{$withdraw.username}</em> 于{$withdraw.create_time|strtotime|date="Y-n-j",###} 提现：<em style="color: #FD2D2E;">{$withdraw.credit2}</em> 元-->
+<!--                        </div>-->
+<!--                    {/volist}-->
+<!--                {/if}-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
     <div class="new-site-tit">
-        今天完成所有任务可获得：<span id="expect_gold">{$today_credit2}</span> 元，<span id="expect_silver">{$today_credit1}</span> 积分
+        今天完成所有任务可获得：<span id="expect_gold">{$today_credit2}</span> 积分
     </div>
     <div class="new-main index-new-main">
         {if !empty($tasks)}
@@ -143,13 +143,12 @@
                         <div class="task-list-title-silver">
                             <div class="task-list-title">{$task['title']}</div>
                             <span class="task-list-gold">
-                                <span>￥</span>
-                                {$task['unit_price']}元
+                                {$task['unit_price']}积分
                             </span>
                         </div>
                         <span class="task-list-prefix">商</span>
                         <span class="task-list-id">{$task['id']}</span>
-                        <span class="task-jifen">{$task['give_credit1']}积分</span>
+<!--                        <span class="task-jifen">{$task['give_credit1']}积分</span>-->
                         <span class="task-list-remain-num">剩余{$task['ticket_num']-$task['join_num']}份</span>
                         <div class="task-list-progress-content">
                             <div class="task-list-progress"><span style="width:{$task['percent']}%"></span></div>

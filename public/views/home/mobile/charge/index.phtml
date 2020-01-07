@@ -5,7 +5,7 @@
         <meta name="apple-mobile-web-app-capable" content="yes">
         <meta name="viewport" content="width=device-width, initial-scale=1.0,minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-        <title>资金流水</title>
+        <title>积分记录</title>
         {include file='common/header'}
         <link rel="shortcut icon" href="clientapp/images/new_images/favicon.ico" />
         <link href="/static/home/mobile/css/reset_5.css" rel="stylesheet" type="text/css" />
@@ -19,12 +19,12 @@
             <a onclick="history.back()" class="back">
                 <img src="/static/home/mobile/picture/return.png" />
             </a>
-            <div class="tit-name">资金流水</div>
+            <div class="tit-name">积分记录</div>
         </header>
         <div class="new-gold-detial">
             
             <div class="new-all-profit">
-                您的总收益：<span id="all_profit">{$credit2}</span>元
+                您的总收益：<span id="all_profit">{$credit2}</span>积分
             </div>
             <div class="update-box mx_list" id="table">
                 <ul id="flow">
@@ -46,7 +46,7 @@
                                     var lis = [];
                                     $.get('/home/charge/ajax?page='+page, function(res){
                                         layui.each(res.data.data, function(index, item){
-                                                $("#flow").append('<li><b><i>'+item.num+'元</i><time>'+item.create_time+'</time></b><p>'+item.title+'<span>'+item.remark+'</span></p>    </li>');
+                                                $("#flow").append('<li><b><i>'+item.num+'积分</i><time>'+item.create_time+'</time></b><p>'+item.title+'<span>'+item.remark+'</span></p>    </li>');
                                         });
                                         next(lis.join(''), res.data.length > 0 ? true : false);
                                     });

@@ -13,3 +13,7 @@
 \extend\wxpay\WxPay.Config.php
 \app\extra\alipay.php
 
+
+
+composer remove topthink/think-captcha
+composer require topthink/think-captcha 1.*

@@ -29,7 +29,7 @@ $(function () {
             $("input[name='give_credit1']").attr('placeholder','不低于'+credit1+'积分');
         }
         if(credit2 > 0){
-            $("#unit_price").attr('placeholder','不低于'+credit2+'元');
+            $("#unit_price").attr('placeholder','不低于'+credit2+'积分');
         }
         $('.t_item_selected').not(this).removeClass('t_item_selected');
         $(this).not('.t_item_selected').addClass('t_item_selected');
@@ -179,19 +179,19 @@ $(function () {
                  return false;
             }           
         }
-        // var alertMsg = "";
-        // var stepImgLength = $("#stepUl li").length;
-        // if(stepImgLength==1){
-        //     //var process_sm = document.getElementsByName("process_sm[]")[0].value;
-        //     var process_sm = $(".step_text").eq(0).val();
-        //     if(process_sm.trim()==""){
-        //         alertMsg = "您未写操作说明!";
-        //     }
-        // }
-        // if (alertMsg != "") {
-        //     message(alertMsg,'','error');
-        //     return false;
-        // }
+        var alertMsg = "";
+        var stepImgLength = $("#stepUl li").length;
+        if(stepImgLength==1){
+            //var process_sm = document.getElementsByName("process_sm[]")[0].value;
+            var process_sm = $(".step_text").eq(0).val();
+            if(process_sm.trim()==""){
+                alertMsg = "您未写操作说明!";
+            }
+        }
+        if (alertMsg != "") {
+            message(alertMsg,'','error');
+            return false;
+        }
         /*if(task_state==1){
             var user_rmb_balance = $("#user_rmb_balance").val();
             var count_money = $("#count_money").val();

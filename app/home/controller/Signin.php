@@ -55,7 +55,7 @@ class Signin extends Base
 			}
 
 			Db::startTrans();
-			$status1 = Member::updateCreditById($member['uid'], $sign_credit1, 0);
+			$status1 = Member::updateCreditById($member['uid'], 0, $sign_credit1);
             if(!$status1){
 				Db::rollback();
 				message('签到失败：-1','','error');
@@ -85,7 +85,7 @@ class Signin extends Base
 
 			$status2 = Sign::addInfo([
 				'uid' => $member['uid'],
-				'credit1' => $sign_credit1
+				'credit2' => $sign_credit1
 			]);
 			if(!$status2){
 				Db::rollback();
@@ -93,7 +93,7 @@ class Signin extends Base
 			}
 			$status3 = CreditRecord::addInfo([
 				'uid' => $member['uid'],
-				'type' => 'credit1',
+				'type' => 'credit2',
 				'num' => $sign_credit1,
 				'title' => '签到',
 				'remark' => "签到成功，获得{$sign_credit1}积分。"
@@ -114,7 +114,7 @@ class Signin extends Base
 
 				$status5 = CreditRecord::addInfo([
 					'uid' => $member['uid'],
-					'type' => 'credit1',
+					'type' => 'credit2',
 					'num' => $sign_continue_credit1,
 					'title' => '签到',
 					'remark' => "您已连续" . $member['sign_continue'] . "天签到，额外获得{$sign_continue_credit1}积分。"

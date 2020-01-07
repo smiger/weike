@@ -126,7 +126,7 @@ class Task extends Common {
                         'type' => 'credit2',
                         'num' => $parent_money,
                         'title' => '任务到期',
-                        'remark' => "任务[{$insert_task_id}]-" . $params['title'] . "到期自动审核，获得推荐收入{$parent_money}元。",
+                        'remark' => "任务[{$insert_task_id}]-" . $params['title'] . "到期自动审核，获得推荐收入{$parent_money}积分。",
                         'create_time' => TIMESTAMP
                     ]);
                     if(!$status3){
@@ -146,7 +146,7 @@ class Task extends Common {
                         'uid' => $joinMemberInfo['parent_uid'],
                         'num' => $parent_money,
                         'task_id' => $insert_task_id,
-                        'remark' => "徒弟[" . $joinMemberInfo['username'] . "]完成任务[" . $params['id'] . "]-" . $params['title'] . "，获得推荐收入{$parent_money}元。",
+                        'remark' => "徒弟[" . $joinMemberInfo['username'] . "]完成任务[" . $params['id'] . "]-" . $params['title'] . "，获得推荐收入{$parent_money}积分。",
                         'create_time' => TIMESTAMP
                     ]);
                     if(!$status3){
@@ -221,7 +221,7 @@ class Task extends Common {
                         'type' => 'credit2',
                         'num' => $unit_price,
                         'title' => '任务到期',
-                        'remark' => "任务[{$insert_task_id}]-" . $params['title'] . "到期自动审核，奖励{$unit_price}元。",
+                        'remark' => "任务[{$insert_task_id}]-" . $params['title'] . "到期自动审核，奖励{$unit_price}积分。",
                         'create_time' => TIMESTAMP
                     ]);
                     if(!$status3){
@@ -270,7 +270,7 @@ class Task extends Common {
                 'type' => 'credit2',
                 'num' => $refund_money,
                 'title' => '任务到期',
-                'remark' => "任务[" . $params['id'] . "]-" . $params['title'] . "到期处理，退回{$refund_money}元。",
+                'remark' => "任务[" . $params['id'] . "]-" . $params['title'] . "到期处理，退回{$refund_money}积分。",
                 'create_time' => TIMESTAMP
             ]);
             if(!$status3){
@@ -351,7 +351,7 @@ class Task extends Common {
             'type' => 'credit2',
             'num' => $parent_money,
             'title' => '任务完成',
-            'remark' => "徒弟[" . $memberInfo['username'] . "]完成任务[" . $taskInfo['id'] . "]-" . $taskInfo['title'] . "，获得推荐收入{$parent_money}元。",
+            'remark' => "徒弟[" . $memberInfo['username'] . "]完成任务[" . $taskInfo['id'] . "]-" . $taskInfo['title'] . "，获得推荐收入{$parent_money}积分。",
             'create_time' => TIMESTAMP
         ]);
         if(!$status3){

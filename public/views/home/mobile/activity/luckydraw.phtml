@@ -4,7 +4,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-        <title>推推推广活动</title>
+        <title>互助推广活动</title>
         {include file='common/header'}
         <link rel="shortcut icon" href="clientapp/images/new_images/favicon.ico"/>
         <link href="/static/home/mobile/css/reset_5.css" rel="stylesheet" type="text/css" />
@@ -65,9 +65,9 @@
                             }
 
                             if (json.data.credit > 0) {
-                                $("#price").html("恭喜您抽中<span>" + json.data.name + "</span>奖励，已消耗100积分！");
+                                $("#price").html("恭喜您抽中<span>" + json.data.name + "</span>奖励，已消耗10积分！");
                             } else {
-                                $("#price").html("<span>" + json.data.name + "</span>继续努力，已消耗100积分！");
+                                $("#price").html("<span>" + json.data.name + "</span>继续努力，已消耗10积分！");
                             }
 
                             var animateTo = 1440 + 30 * json.data.rotate;

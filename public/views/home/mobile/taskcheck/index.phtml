@@ -4,7 +4,7 @@
 	<meta name="apple-mobile-web-app-capable" content="yes">  
     <meta name="viewport" content="width=device-width, initial-scale=1.0,minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<title>[{$item['id']?$item['id']:''}]{$item['title']?$item['title']:''},佣金{$item['unit_price']?$item['unit_price']:''}元</title>
+	<title>[{$item['id']?$item['id']:''}]{$item['title']?$item['title']:''},佣金{$item['unit_price']?$item['unit_price']:''}积分</title>
 	<link rel="stylesheet" href="/static/home/mobile/css/bootstrap.css">
 	<link href="/static/home/mobile/css/reset_5.css" rel="stylesheet" type="text/css" />
 	<link href="/static/home/mobile/css/style.css" rel="stylesheet" type="text/css" />
@@ -138,14 +138,14 @@
                     <div class="each_check_btn" onclick="save();">确认提交</div>
                 </div>
             </div> 
-            <div class="check_msg">提示：请诚信做单，骗单将被罚款，严重者封号。</div>
+            <div class="check_msg">提示：请诚信做单，共同营造一个良好的互助平台。</div>
             <input type="hidden" name="id" value="{$item['id']?$item['id']:'0'}" />
             </form>
         </div>
 
         <div class="pr-shuxing">
             <p>标题：<span id="task_title" style="color:#666666">{$item['title']}</span></p>
-            <p>审核周期：<span id="task_cycle" style="color:#666666">{$item['check_period']}小时</span></p>
+<!--            <p>审核周期：<span id="task_cycle" style="color:#666666">{$item['check_period']}小时</span></p>-->
             <p>是否需要截图：<span id="task_needImg" style="color:#666666">{$item['is_screenshot']?'是':'否'}</span></p>
             <p style="display: none;">是否限制区域：<span id="task_limitIp" style="color:#666666">{$item['is_ip_restriction']?'是':'否'}</span></p>
             <p style="display: none;"><span id="task_isRepeat" style="color:red;">{$item['province']?$item['province']:'无地区限制'}</span></p>
@@ -158,7 +158,7 @@
                 {$item['interval_hour']}小时一次
                 {/if}
             </p>
-            <p>任务奖励：单价&nbsp;<span id="task_gold">{$item['unit_price']}</span>&nbsp;元&nbsp;&nbsp;积分&nbsp;<span id="task_silver" style="color:#333333">{:floor_float($item['give_credit1']/$item['ticket_num'])}</span>&nbsp;分 </p>
+            <p>任务奖励：单价&nbsp;<span id="task_gold">{$item['unit_price']}</span>&nbsp;积分</p>
         </div>
         <div class="pr-xiangqing" id="task_url_div">
             <p class="tit" id="task_url_txt">相关地址</p>

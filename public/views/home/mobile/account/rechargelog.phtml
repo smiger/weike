@@ -55,7 +55,7 @@ $(function(){
                                             status = '审核未通过';
                                             break;
                                     }
-                                    $("#flow").append('<li><b><i>'+item.credit2+'元</i><time>'+item.create_time+'</time></b><p>'+item.account+'<span>'+status+''+(item.note ? '管理员回复：'+item.note : '')+'</span></p>    </li>');
+                                    $("#flow").append('<li><b><i>'+item.credit2+'积分</i><time>'+item.create_time+'</time></b><p>'+item.account+'<span>'+status+''+(item.note ? '管理员回复：'+item.note : '')+'</span></p>    </li>');
                                 });
                                 next(lis.join(''), res.data.length > 0 ? true : false);
                             });

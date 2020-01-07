@@ -65,7 +65,7 @@ $(function(){
                             var lis = [];
                             $.get('/home/invite/gold_ajax?page='+page, function(res){
                                 layui.each(res.data.data, function(index, item){
-                                    $("#flow").append('<li><b><i>'+item.num+'元</i><time>'+item.create_time+'</time></b><p>任务ID：'+item.task_id+'<span>'+item.remark+'</span></p>    </li>');
+                                    $("#flow").append('<li><b><i>'+item.num+'积分</i><time>'+item.create_time+'</time></b><p>任务ID：'+item.task_id+'<span>'+item.remark+'</span></p>    </li>');
                                 });
                                 next(lis.join(''), res.data.length > 0 ? true : false);
                             });
