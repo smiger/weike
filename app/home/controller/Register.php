@@ -47,6 +47,7 @@ class Register extends  Base{
             $params['salt'] = random(8);
             $params['password'] = md5_password($params['password'],$params['salt']);
             $params['create_time'] = TIMESTAMP;
+            $params['credit2'] = 10;
             unset($params['password_confirm'],$params['invitation_code'],$params['captcha'],$params['verification']);
             $insert_member_id = Member::addInfo($params);
             if(!$insert_member_id){
