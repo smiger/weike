@@ -187,7 +187,7 @@ class Mytaskaudit extends Base {
             //有推荐人，做完任务审核通过需要按后台设置比例分成给推荐人
             if ($joinMemberInfo['parent_uid'] > 0 && $setting['invitation_rebate'] > 0) {
                 $parent_money = round($unit_price * $setting['invitation_rebate'], 2);
-                $unit_price -= $parent_money;
+//                $unit_price -= $parent_money;
 
                 $status1 = Member::updateCreditById($joinMemberInfo['parent_uid'], 0, $parent_money);
                 if(!$status1){

@@ -85,7 +85,7 @@ class Signin extends Base
 
 			$status2 = Sign::addInfo([
 				'uid' => $member['uid'],
-				'credit2' => $sign_credit1
+				'credit1' => $sign_credit1
 			]);
 			if(!$status2){
 				Db::rollback();
