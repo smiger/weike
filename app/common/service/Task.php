@@ -263,7 +263,7 @@ class Task extends Common {
                 } else {
                     $output->writeln($error);
                 }
-                continue;
+//                continue;
             }
             $status3 = CreditRecord::addInfo([
                 'uid' => $params['uid'],
@@ -283,7 +283,7 @@ class Task extends Common {
                 } else {
                     $output->writeln($error);
                 }
-                continue;
+//                continue;
             }
         }
 
@@ -298,7 +298,7 @@ class Task extends Common {
             } else {
                 $output->writeln($error);
             }
-            continue;
+//            continue;
         }
 
         $update['out_stock_flag'] = 1;
@@ -315,7 +315,7 @@ class Task extends Common {
             } else {
                 $output->writeln($error);
             }
-            continue;
+//            continue;
         }
 
         Db::commit();

@@ -227,8 +227,8 @@ class Mytaskaudit extends Base {
                 }
             }
 
-//            $taskService = \think\Loader::model("Task", 'service');
-//            $taskService->invitationFirstTaskAward($joinMemberInfo, $params);
+            $taskService = \think\Loader::model("Task", 'service');
+            $taskService->invitationFirstTaskAward($joinMemberInfo, $params);
 
             $status1 = Member::updateCreditById($joinInfo['uid'], $give_credit1, $unit_price);
             if(!$status1){
