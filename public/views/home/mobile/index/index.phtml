@@ -114,19 +114,19 @@
         </ul>
     </div>
     {/if}
-<!--    <div class="index-withdraws" style="padding-top:5px;border-top: solid 1px #E9E9E9;">-->
-<!--        <div id="withdraw" class="swiper-container swiper-container-vertical">-->
-<!--            <div class="swiper-wrapper">-->
-<!--                {if !empty($withdraws)}-->
-<!--                    {volist name="withdraws" id="withdraw"}-->
-<!--                        <div class="swiper-slide swiper-slide-duplicate">-->
-<!--                            <em style="color: #FD2D2E;">{$withdraw.username}</em> 于{$withdraw.create_time|strtotime|date="Y-n-j",###} 提现：<em style="color: #FD2D2E;">{$withdraw.credit2}</em> 元-->
-<!--                        </div>-->
-<!--                    {/volist}-->
-<!--                {/if}-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
+    <div class="index-withdraws" style="padding-top:5px;border-top: solid 1px #E9E9E9;">
+        <div id="withdraw" class="swiper-container swiper-container-vertical">
+            <div class="swiper-wrapper">
+                {if !empty($withdraws)}
+                    {volist name="withdraws" id="withdraw"}
+                        <div class="swiper-slide swiper-slide-duplicate">
+                            {$withdraw.account}
+                        </div>
+                    {/volist}
+                {/if}
+            </div>
+        </div>
+    </div>
     <div class="new-site-tit">
         今天完成所有任务可获得：<span id="expect_gold">{$today_credit2}</span> 积分
     </div>

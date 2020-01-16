@@ -21,7 +21,7 @@ class Invite extends Base{
 
         return $this->fetch(__FUNCTION__, [
             'money' => $money,
-            'domain' => $this->get_domain()
+            'domain' => str_replace('\\','/',$this->get_domain())
         ]);
     }
 
