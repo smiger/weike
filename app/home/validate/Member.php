@@ -11,7 +11,7 @@ class Member extends Base {
 
     //验证规则
     protected $rule = [
-        'username|手机号' => 'require|max:25|min:4|unique:member|checkMobile:',
+        'username|用户名' => 'require|max:25|min:4|unique:member',
         //'email|邮箱'=>'require|checkEmail:',
         'password|密码' => 'require|min:6|confirm',
         'password_confirm|确认密码' => 'require',
