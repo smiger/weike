@@ -1,3 +1,4 @@
-/runtime
+/runtime/
 /public/uploads
+!/public/uploads/20200116
 .idea
